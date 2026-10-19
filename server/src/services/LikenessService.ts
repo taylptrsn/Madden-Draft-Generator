@@ -40,6 +40,50 @@ const catalogs: Partial<Record<'m26' | 'm27', FaceCatalog>> = {};
 let headFeatMem: Record<string, Record<string, FaceFeatures>> | null = null;
 let playerFeatMem: Record<string, FaceFeatures> | null = null;
 
+interface ExtraFictionalHead {
+  assetName: string;
+  portraitPid: number;
+  tone: number;
+  bodyType: string;
+  name: string;
+}
+
+interface GenericPortraitEntry {
+  pid: number;
+  plpo: string;
+  tone: number;
+  build: string;
+  neckRatio: number;
+  isModern: boolean;
+}
+
+let fictionalExtraHeadsMem: ExtraFictionalHead[] | null = null;
+let genericPortraitCatalogMem: GenericPortraitEntry[] | null = null;
+
+export function fictionalExtraHeads(): ExtraFictionalHead[] {
+  if (!fictionalExtraHeadsMem) {
+    try {
+      const p = path.join(LOOKUPS_DIR, 'fictional-extra-3d-heads.json');
+      fictionalExtraHeadsMem = JSON.parse(fs.readFileSync(p, 'utf8')).heads ?? [];
+    } catch {
+      fictionalExtraHeadsMem = [];
+    }
+  }
+  return fictionalExtraHeadsMem!;
+}
+
+export function genericPortraitCatalog(): GenericPortraitEntry[] {
+  if (!genericPortraitCatalogMem) {
+    try {
+      const p = path.join(LOOKUPS_DIR, 'm27-generic-portrait-catalog.json');
+      genericPortraitCatalogMem = JSON.parse(fs.readFileSync(p, 'utf8')).portraits ?? [];
+    } catch {
+      genericPortraitCatalogMem = [];
+    }
+  }
+  return genericPortraitCatalogMem!;
+}
+
 function headFeatures(): Record<string, Record<string, FaceFeatures>> {
   if (!headFeatMem) {
     try {
@@ -279,7 +323,10 @@ function load(): void {
     for (const r of parseCsvFile<Record<string, string>>(path.join(LOOKUPS_DIR, 'PID_Portrait_Mapping.csv'))) {
       const name = (r.Portrait || '').trim();
       const pid = parseInt(r.PID, 10);
-      if (name && !Number.isNaN(pid) && !plpoPid.has(name)) plpoPid.set(name, pid);
+      if (name && !Number.isNaN(pid)) {
+        if (!plpoPid.has(name)) plpoPid.set(name, pid);
+        if (!pidToPlpoMap.has(pid)) pidToPlpoMap.set(pid, name);
+      }
     }
     // Madden 27's own head items (data/lookups/m27-generic-head-items.json, the
     // game's FootballCharacterHeadItem assets) list every generic head it ships
@@ -311,9 +358,98 @@ function load(): void {
 
 const byToneByVersion = new Map<'m26' | 'm27', Map<number, string[]>>();
 const pidByVersion = new Map<'m26' | 'm27', Map<string, number>>();
+const pidToPlpoMap = new Map<number, string>();
 function poolsFor(version: 'm26' | 'm27'): Map<number, string[]> {
   load();
   return byToneByVersion.get(version) ?? byTone!;
+}
+
+/** Extract the build token ('H', 'M', 'B', 'T', 'BM', 'BMH', 'BMT', etc.) from a
+ *  generic head (`gen_<tone>_<build>_...`) or portrait (`plpo_generic_<tone>_<build>_...`). */
+export function headBuildCode(code: string | null | undefined): string {
+  if (!code) return '';
+  const m = /^(?:gen|plpo_generic)_\d+_([A-Za-z]+)_/i.exec(code.trim());
+  return m ? m[1].toUpperCase() : '';
+}
+
+/** Infer a player's expected bodyType when called before a prospect record exists. */
+export function inferPlayerBodyType(player: BaselinePlayer, explicitBodyType?: string | null): string {
+  if (explicitBodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(explicitBodyType)) {
+    return explicitBodyType;
+  }
+  if (player.likenessFix?.bodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(player.likenessFix.bodyType)) {
+    return player.likenessFix.bodyType;
+  }
+  const pos = (player.position || '').toUpperCase().trim();
+  const w = Number(player.weight) || 0;
+  if (w >= 295 || ['OT', 'LT', 'RT', 'T', 'OG', 'LG', 'RG', 'G', 'C', 'OL', 'DT', 'NT', 'IDL'].includes(pos)) {
+    return w > 0 && w < 275 ? 'Muscular' : 'Heavy';
+  }
+  if (['DE', 'LE', 'RE', 'LEDG', 'REDG', 'EDGE', 'LB', 'MLB', 'ILB', 'OLB', 'LOLB', 'ROLB', 'SAM', 'WILL', 'MIKE', 'TE', 'FB'].includes(pos) || w >= 235) {
+    return 'Muscular';
+  }
+  if (['WR', 'CB', 'K', 'P'].includes(pos) && w > 0 && w < 192) {
+    return 'Thin';
+  }
+  return 'Standard';
+}
+
+/** Compatibility tier (1 = ideal build match, 2 = acceptable fallback build, 0 = incompatible)
+ *  between a head/portrait build token and a Madden bodyType. */
+export function buildCompatibilityTier(build: string, bodyType: string): 0 | 1 | 2 {
+  if (!build) return 2; // Legacy M26 code without build token
+  const bt = bodyType || 'Standard';
+  if (bt === 'Heavy') {
+    if (build.includes('H')) return 1;
+    return 0;
+  }
+  if (bt === 'Muscular') {
+    if (build.includes('M')) return 1;
+    if (build === 'B') return 2;
+    return 0;
+  }
+  if (bt === 'Thin' || bt === 'Lean') {
+    if (build.includes('T')) return 1;
+    if (build === 'B') return 2;
+    return 0;
+  }
+  // Standard
+  if (build === 'B' || build === 'BM' || build === 'BMT' || build === 'BTM' || build === 'BHTM' || build === 'BMTH') return 1;
+  if (build === 'M' || build === 'T') return 2;
+  return 0;
+}
+
+/** Evaluates a generic head code against a bodyType, checking both the 3D head build token
+ *  and its mapped 2D portrait build token so neither the 3D head nor the menu portrait conflicts. */
+function headTierForBodyType(code: string, bodyType: string, version: 'm26' | 'm27'): 0 | 1 | 2 {
+  const headTier = buildCompatibilityTier(headBuildCode(code), bodyType);
+  if (headTier === 0) return 0;
+  const pid = pidByVersion.get(version)?.get(code) ?? pidByCode?.get(code) ?? 0;
+  const plpo = pid ? pidToPlpoMap.get(pid) : undefined;
+  if (plpo && plpo.startsWith('plpo_generic_')) {
+    const plpoBuild = headBuildCode(plpo);
+    if (plpoBuild) {
+      const plpoTier = buildCompatibilityTier(plpoBuild, bodyType);
+      if (plpoTier === 0) return 0;
+      const plpoTone = toneFromCode('gen_' + plpo.slice('plpo_generic_'.length));
+      if (plpoTone !== toneFromCode(code)) return 0;
+      return Math.max(headTier, plpoTier) as 1 | 2;
+    }
+  }
+  return headTier;
+}
+
+/** Filters a tone's generic head pool to heads whose build matches `bodyType`. */
+function filterPoolByBodyType(pool: string[], bodyType: string, version: 'm26' | 'm27'): { tier1: string[]; tier2: string[]; all: string[] } {
+  const tier1: string[] = [];
+  const tier2: string[] = [];
+  for (const code of pool) {
+    const t = headTierForBodyType(code, bodyType, version);
+    if (t === 1) tier1.push(code);
+    else if (t === 2) tier2.push(code);
+  }
+  const all = tier1.length + tier2.length > 0 ? [...tier1, ...tier2] : pool;
+  return { tier1: tier1.length > 0 ? tier1 : all, tier2, all };
 }
 
 function toneFromCode(code: string): number {
@@ -374,7 +510,8 @@ export const LikenessService = {
    *   3. M27 only: a recent lookup asset (>= 2019) the advanced autosave no longer
    *      lists — heads carry over between games;
    *   4. M26 only: any lookup asset (the lookup was built from M26's own files). */
-  realFace(player: Pick<BaselinePlayer, 'firstName' | 'lastName' | 'draftYear' | 'playerAssetsId' | 'photoId'>, version: 'm26' | 'm27'): RealFace | null {
+  realFace(player: Pick<BaselinePlayer, 'firstName' | 'lastName' | 'draftYear' | 'playerAssetsId' | 'photoId'> & { source?: BaselinePlayer['source'] }, version: 'm26' | 'm27'): RealFace | null {
+    if (player.source === 'generated') return null;
     const head = this.resolveHead(player, version);
     if (!head) return null;
     return { ...head, ...this.portraitFor(player, head, version) };
@@ -415,7 +552,8 @@ export const LikenessService = {
   },
 
   /** The head asset only (see realFace for the portrait). */
-  resolveHead(player: Pick<BaselinePlayer, 'firstName' | 'lastName' | 'draftYear' | 'playerAssetsId' | 'photoId'>, version: 'm26' | 'm27'): RealFace | null {
+  resolveHead(player: Pick<BaselinePlayer, 'firstName' | 'lastName' | 'draftYear' | 'playerAssetsId' | 'photoId'> & { source?: string }, version: 'm26' | 'm27'): RealFace | null {
+    if (player.source === 'generated') return null;
     const cat = catalogFor(version);
     const asset = (player.playerAssetsId || '').trim();
     const hasAsset = !!asset && !/^gen_/i.test(asset);
@@ -575,16 +713,16 @@ export const LikenessService = {
       .map((x) => x.c);
   },
 
-  assign(player: BaselinePlayer, index: number, gameVersion: 'm26' | 'm27' = 'm26'): Likeness {
+  assign(player: BaselinePlayer, index: number, gameVersion: 'm26' | 'm27' = 'm26', bodyType?: string): Likeness {
     load();
     const tone = raceToSkinTone(player.race);
     const real = this.realFace(player, gameVersion);
     if (real) return { peps: real.assetName, kind: 'asset', skinTone: tone };
-    return this.generic(player, index, gameVersion);
+    return this.generic(player, index, gameVersion, bodyType);
   },
 
-  /** The generic head this player would get (reproducible by `index`). */
-  generic(player: BaselinePlayer, index: number, gameVersion: 'm26' | 'm27' = 'm26'): Likeness {
+  /** The generic head this player would get (reproducible by `index` and matched to `bodyType`). */
+  generic(player: BaselinePlayer, index: number, gameVersion: 'm26' | 'm27' = 'm26', bodyType?: string): Likeness {
     load();
     const tone = raceToSkinTone(player.race);
     const pools = poolsFor(gameVersion);
@@ -604,26 +742,14 @@ export const LikenessService = {
       }
       pool = pool && pool.length ? pool : [...pools.values()][0];
     }
-    // Stride the pool by draft position rather than hashing the name into it.
-    // An independent per-name hash collides by the birthday problem: over a 1974
-    // class it left one head on 15 players while others went unused, so Ed "Too
-    // Tall" Jones (6'9") and Ross Browner (6'3") drew the same face. `index` is
-    // unique within a class, so `index % len` walks the pool evenly -- every head
-    // is used, the count per head is within one of the average, and no two
-    // adjacent picks repeat. The name still breaks ties between classes.
-    // Pick the head that actually looks like him when we have measured his face.
-    // Tone alone gave Pat Leahy -- light-haired, clean-shaven -- a head with dark
-    // hair and stubble, because nothing in the pick ever looked at his picture.
-    // Features come from the Madden disc headshots, so this only fires for a
-    // player the pack has; see FaceFeatures for why they survive photo-vs-render.
+    const targetBodyType = inferPlayerBodyType(player, bodyType);
+    const filtered = filterPoolByBodyType(pool, targetBodyType, gameVersion);
+    // Use Tier 1 (strict build match) when it has at least 4 heads; otherwise include Tier 2 compatible builds.
+    pool = filtered.tier1.length >= 4 ? filtered.tier1 : filtered.all;
+
     const mine = playerFeatures()[`${normalizeName(player.firstName)}_${normalizeName(player.lastName)}`];
     const heads = headFeatures()[gameVersion];
     if (mine && heads) {
-      // Spread across the K CLOSEST heads rather than taking the single nearest.
-      // The features are coarse, so a strict argmax collapses: in a 2003 class it
-      // put 181 players on one head, because most modern players measure alike.
-      // Every candidate here is still a close match on hair and facial hair; the
-      // draft position only decides which of the near-ties he gets.
       const ranked = pool
         .filter((c) => heads[c])
         .map((c) => ({ c, d: faceDistance(mine, heads[c]) }))
@@ -633,11 +759,254 @@ export const LikenessService = {
         return { peps: ranked[index % k].c, kind: 'generic', skinTone: tone };
       }
     }
-    // No measured face: stride the pool by draft position rather than hashing the
-    // name into it. An independent per-name hash collides by the birthday problem
-    // -- over a 1974 class it left one head on 15 players while others went unused,
-    // so Ed "Too Tall" Jones and Ross Browner drew the same face. `index` is unique
-    // within a class, so this walks the pool evenly instead.
     return { peps: pool[index % pool.length], kind: 'generic', skinTone: tone };
+  },
+
+  /**
+   * Class-wide generic head balancer & body-type synchronizer.
+   * Ensures:
+   * 1. Every generic-faced prospect's 3D head (`PEPS`) and 2D portrait (`PID`) strictly
+   *    match their final post-variance `bodyType` (`Heavy`, `Muscular`, `Standard`, `Thin`, `Lean`).
+   * 2. Generic heads are assigned across the 402-player class with minimum repetition
+   *    (least-used first), prioritizing `Heavy` and `Thin` builds first so composite
+   *    heads (`BMH`, `BMT`) aren't monopolized by `Standard`/`Muscular` players.
+   * 3. For fictional/generated players (`source === 'generated'`), when a `(skinTone, bodyType)`
+   *    pool is saturated (all Tier-1 heads already used once in the class), allows shifting
+   *    to an unused Tier-1 head in an adjacent skin tone within the same demographic group
+   *    (`{1,2,3}`, `{4,5}`, `{6,7}`) so all 262 generic heads/portraits can be utilized.
+   */
+  balanceClassGenericHeads(
+    prospects: Array<Record<string, unknown>>,
+    players: BaselinePlayer[],
+    gameVersion: 'm26' | 'm27' = 'm26',
+    variant = 0
+  ): void {
+    load();
+    const pools = poolsFor(gameVersion);
+    const acc = catalogFor(gameVersion).headAccessory;
+    const headsFeat = headFeatures()[gameVersion];
+    const pFeat = playerFeatures();
+    const usage = new Map<string, number>();
+    const pidUsage = new Map<number, number>();
+    const pidForHead = (h: string): number => pidByVersion.get(gameVersion)?.get(h) ?? pidByCode?.get(h) ?? 0;
+
+    const buildOrder: Record<string, number> = {
+      Heavy: 0,
+      Thin: 1,
+      Lean: 1,
+      Muscular: 2,
+      Standard: 3,
+    };
+
+    const extra3d = fictionalExtraHeads();
+    const portCatalog = genericPortraitCatalog();
+
+    // Group extra 3D heads by (tone, bodyType)
+    const extra3dByBucket = new Map<string, ExtraFictionalHead[]>();
+    for (const h of extra3d) {
+      const key = `${h.tone}|${h.bodyType}`;
+      if (!extra3dByBucket.has(key)) extra3dByBucket.set(key, []);
+      extra3dByBucket.get(key)!.push(h);
+    }
+
+    // Group cataloged portraits by (tone, bodyType tier)
+    const portByBucket = new Map<string, GenericPortraitEntry[]>();
+    for (const port of portCatalog) {
+      const tone = port.tone;
+      for (const bt of ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean']) {
+        const tier = buildCompatibilityTier(port.build, bt);
+        if (tier > 0) {
+          const key = `${tone}|${bt}|${tier}`;
+          if (!portByBucket.has(key)) portByBucket.set(key, []);
+          portByBucket.get(key)!.push(port);
+        }
+      }
+    }
+
+    const indices: number[] = [];
+    for (let i = 0; i < prospects.length; i++) {
+      const p = prospects[i];
+      const base = players[i];
+      if (!p || !base) continue;
+      if (base.likenessFix?.faceAsset) {
+        const peps = String(p.PEPS || '');
+        if (/^gen_/i.test(peps)) usage.set(peps, (usage.get(peps) ?? 0) + 1);
+        continue;
+      }
+      const peps = String(p.PEPS || '');
+      if (/^gen_/i.test(peps) || base.source === 'generated') {
+        indices.push(i);
+      }
+    }
+
+    indices.sort((a, b) => {
+      const btA = String(prospects[a].bodyType || inferPlayerBodyType(players[a]));
+      const btB = String(prospects[b].bodyType || inferPlayerBodyType(players[b]));
+      const ordA = buildOrder[btA] ?? 3;
+      const ordB = buildOrder[btB] ?? 3;
+      if (ordA !== ordB) return ordA - ordB;
+      return a - b;
+    });
+
+    const getToneCandidates = (tone: number, draftYear: number, bodyType: string) => {
+      let raw = pools.get(tone) ?? [];
+      // Filter out female bun / hair models
+      raw = raw.filter((h) => !/^gen_7_b_[ng]_001[01]/i.test(h));
+      if (draftYear < HEADWEAR_FROM) {
+        const plain = raw.filter((h) => !acc.has(h.toLowerCase()));
+        if (plain.length >= 3) raw = plain;
+      }
+      return filterPoolByBodyType(raw, bodyType, gameVersion);
+    };
+
+    const adjacentTones = (tone: number): number[] => {
+      if (tone <= 3) return [1, 2, 3, 4].filter((t) => t !== tone);
+      if (tone <= 5) return [4, 5, 3, 6].filter((t) => t !== tone);
+      return [6, 7, 5, 4].filter((t) => t !== tone);
+    };
+
+    for (const i of indices) {
+      const p = prospects[i];
+      const base = players[i];
+      const bodyType = String(p.bodyType || inferPlayerBodyType(base));
+      const draftYear = base.draftYear ?? 2026;
+      let tone = raceToSkinTone(base.race);
+      let { tier1, tier2, all } = getToneCandidates(tone, draftYear, bodyType);
+
+      const isGenerated = base.source === 'generated';
+
+      // For fictional generated players, check if we should assign an unused obscure 3D head scan
+      // when generic heads in this tone start repeating or based on cross-year seed rotation
+      let assignedExtraHead: ExtraFictionalHead | null = null;
+      if (isGenerated && gameVersion === 'm27') {
+        const extraBucket = extra3dByBucket.get(`${tone}|${bodyType}`) ?? [];
+        const unusedExtra = extraBucket.filter((h) => (usage.get(h.assetName) ?? 0) === 0);
+        const hasUnusedGen = tier1.some((h) => (usage.get(h) ?? 0) === 0);
+        
+        // If all generic heads in this bucket have been used once, or 50% chance when available
+        const seedVal = hash(`${base.firstName}|${base.lastName}|${i}|${variant}|3d`);
+        if (unusedExtra.length > 0 && (!hasUnusedGen || (seedVal % 100 < 50))) {
+          assignedExtraHead = unusedExtra[seedVal % unusedExtra.length];
+        }
+      }
+
+      if (assignedExtraHead) {
+        const headAsset = assignedExtraHead.assetName;
+        usage.set(headAsset, (usage.get(headAsset) ?? 0) + 1);
+        p.PEPS = headAsset;
+        const resolvedTone = assignedExtraHead.tone;
+        const t1Ports = portByBucket.get(`${resolvedTone}|${bodyType}|1`) ?? [];
+        const t2Ports = portByBucket.get(`${resolvedTone}|${bodyType}|2`) ?? [];
+        const unusedT1 = t1Ports.filter((x) => (pidUsage.get(x.pid) ?? 0) === 0);
+        const unusedT2 = t2Ports.filter((x) => (pidUsage.get(x.pid) ?? 0) === 0);
+        const pool = unusedT1.length > 0 ? unusedT1 : (unusedT2.length > 0 ? unusedT2 : [...t1Ports, ...t2Ports]);
+        let chosenPid = 0;
+        if (pool.length > 0) {
+          const picked = pool[hash(`${base.firstName}|${base.lastName}|${i}|port`) % pool.length];
+          chosenPid = picked.pid;
+        }
+        p.PID = chosenPid;
+        p.pinPortrait = true;
+        if (chosenPid) pidUsage.set(chosenPid, (pidUsage.get(chosenPid) ?? 0) + 1);
+
+        const vis = (p.visuals ?? {}) as Record<string, unknown>;
+        vis.skinTone = resolvedTone;
+        delete vis.genericHeadName;
+        p.visuals = vis;
+        base.race = resolvedTone;
+        continue;
+      }
+
+      // If every Tier-1 generic head in `tone` has already been assigned at least once,
+      // check adjacent tones in the same demographic band for an unused Tier-1 head
+      if (isGenerated) {
+        const hasUnusedTier1 = tier1.some((h) => (usage.get(h) ?? 0) === 0);
+        if (!hasUnusedTier1) {
+          for (const adjTone of adjacentTones(tone)) {
+            const adj = getToneCandidates(adjTone, draftYear, bodyType);
+            const unusedAdj = adj.tier1.filter((h) => (usage.get(h) ?? 0) === 0);
+            if (unusedAdj.length > 0) {
+              tone = adjTone;
+              tier1 = adj.tier1;
+              tier2 = adj.tier2;
+              all = adj.all;
+              break;
+            }
+          }
+        }
+      }
+
+      const mine = !isGenerated
+        ? pFeat[`${normalizeName(base.firstName)}_${normalizeName(base.lastName)}`]
+        : undefined;
+
+      let candidatePool = tier1.length > 0 ? tier1 : all;
+      if (tier1.every((h) => (usage.get(h) ?? 0) > 0) && tier2.some((h) => (usage.get(h) ?? 0) === 0)) {
+        candidatePool = [...tier1, ...tier2];
+      }
+
+      if (mine && headsFeat) {
+        const ranked = candidatePool
+          .filter((c) => headsFeat[c])
+          .map((c) => ({ c, d: faceDistance(mine, headsFeat[c]) }))
+          .sort((a, b) => a.d - b.d);
+        if (ranked.length > 0) {
+          const k = Math.min(ranked.length, Math.max(GENERIC_MATCH_CANDIDATES, 8));
+          candidatePool = ranked.slice(0, k).map((x) => x.c);
+        }
+      }
+
+      const seedStride = hash(`${base.firstName}|${base.lastName}|${i}|${variant}`);
+      let bestHead = candidatePool[seedStride % candidatePool.length];
+      let bestScore = Infinity;
+
+      for (let j = 0; j < candidatePool.length; j++) {
+        const idx = (seedStride + j) % candidatePool.length;
+        const h = candidatePool[idx];
+        const count = usage.get(h) ?? 0;
+        const pId = pidForHead(h);
+        const pCount = pId ? (pidUsage.get(pId) ?? 0) : 0;
+        const tierPenalty = tier1.includes(h) ? 0 : 0.35;
+        const score = count + pCount * 0.5 + tierPenalty;
+        if (score < bestScore) {
+          bestScore = score;
+          bestHead = h;
+          if (score === 0) break;
+        }
+      }
+
+      if (bestHead) {
+        usage.set(bestHead, (usage.get(bestHead) ?? 0) + 1);
+        let chosenPid = pidForHead(bestHead);
+        const resolvedTone = toneFromCode(bestHead);
+        p.PEPS = bestHead;
+
+        // Option 1: If chosenPid has already been used by another prospect in this class,
+        // draw an unused portrait from the 991 shipped generic portrait catalog matching (tone, bodyType)
+        if (isGenerated && (pidUsage.get(chosenPid) ?? 0) > 0) {
+          const t1Ports = portByBucket.get(`${resolvedTone}|${bodyType}|1`) ?? [];
+          const t2Ports = portByBucket.get(`${resolvedTone}|${bodyType}|2`) ?? [];
+          const unusedT1 = t1Ports.filter((x) => (pidUsage.get(x.pid) ?? 0) === 0);
+          const unusedT2 = t2Ports.filter((x) => (pidUsage.get(x.pid) ?? 0) === 0);
+          const pool = unusedT1.length > 0 ? unusedT1 : (unusedT2.length > 0 ? unusedT2 : [...t1Ports, ...t2Ports]);
+          if (pool.length > 0) {
+            const picked = pool[hash(`${base.firstName}|${base.lastName}|${i}|port`) % pool.length];
+            chosenPid = picked.pid;
+            p.pinPortrait = true;
+          }
+        }
+
+        p.PID = chosenPid;
+        if (chosenPid) pidUsage.set(chosenPid, (pidUsage.get(chosenPid) ?? 0) + 1);
+
+        const vis = (p.visuals ?? {}) as Record<string, unknown>;
+        vis.genericHeadName = bestHead;
+        vis.skinTone = resolvedTone;
+        p.visuals = vis;
+        if (isGenerated) {
+          base.race = resolvedTone;
+        }
+      }
+    }
   },
 };

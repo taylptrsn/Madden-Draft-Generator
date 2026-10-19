@@ -34,6 +34,7 @@ import { PortraitService } from './PortraitService';
 import { GEAR_SLOT_TYPES, slotOfElement, waistConflict } from './GearOptionsService';
 import { seededRng } from '../util/rng';
 import { MDC_BLOCK_SIZE, MDC_DATA_START } from '../config/paths';
+import { ProspectVarianceService, type FreakMetadata, type FreakPreset } from './ProspectVarianceService';
 
 /** Logical draft-class size the M26 template ships with (blocks 0..401). */
 const LOGICAL_CAPACITY = 402;
@@ -83,6 +84,14 @@ export interface GenOptions {
    *  seeded choice (attribute noise, faces, gear, persona, builds) while the
    *  player list, order and overalls stay the same. */
   variant?: number;
+  freakMode?: boolean;
+  freakPreset?: FreakPreset;
+  freakRate?: number;
+  freakCap?: number;
+  generationalShare?: number;
+  hybridRate?: number;
+  superFusionRate?: number;
+  freakSeed?: number;
 }
 
 /** Reference: mean top-32 caliber of a draft class, 1970-2015 (lazily computed). */
@@ -412,8 +421,11 @@ function toProspect(it: RankedItem, portraitPid?: number, gameVersion: 'm26' | '
   // Likeness: the real head when the *target game* ships it (legend scans decoded
   // from the game's bundle tables, roster cranium heads, recent lookup ids), else a
   // generic. An asset the game lacks would render as the empty NFL-shield silhouette.
+  if (player.likenessFix?.bodyType && (BODY_TYPES as readonly string[]).includes(player.likenessFix.bodyType)) {
+    prospect.bodyType = player.likenessFix.bodyType as BodyType;
+  }
   const real = LikenessService.realFace(player, gameVersion);
-  let like = LikenessService.assign(player, variant ? index + variant * 1000 : index, gameVersion);
+  let like = LikenessService.assign(player, variant ? index + variant * 1000 : index, gameVersion, String(prospect.bodyType || 'Standard'));
   // The user's likeness fix: a pinned generic head (its tone comes with it) or a
   // scan asset, applied the way a per-class face edit is. A class edit still
   // overrides this for its own class (applyEdits runs later).
@@ -424,36 +436,25 @@ function toProspect(it: RankedItem, portraitPid?: number, gameVersion: 'm26' | '
       ? { peps: fixAsset, kind: 'generic', skinTone: Number(m[1]) }
       : { peps: fixAsset, kind: 'asset', skinTone: like.skinTone };
   }
-  if (player.likenessFix?.bodyType && (BODY_TYPES as readonly string[]).includes(player.likenessFix.bodyType)) {
-    prospect.bodyType = player.likenessFix.bodyType as BodyType;
-  }
   prospect.PEPS = like.peps;
   // Menu portrait. M26: custom-portrait slot, else the generic head's PID, else the
   // real head's portrait id. M27: the real head's own portrait id (legends keep the
   // lookup PhotoID — the id space is shared between the games); generic heads get
-  // their fixed PID in assignM27Fields (0x94 is a pure function of genericHeadName).
+  // their fixed PID here and in assignM27Fields (0x94 is a pure function of genericHeadName).
   // A real head whose portrait the game no longer ships (M27 dropped most retired
   // players' regular portraits) gets a tone-matched generic portrait, not the shield.
   const genericPortrait = () => {
-    const g = like.kind === 'generic' ? like : LikenessService.generic(player, variant ? index + variant * 1000 : index, gameVersion);
+    const g = like.kind === 'generic' ? like : LikenessService.generic(player, variant ? index + variant * 1000 : index, gameVersion, String(prospect.bodyType || 'Standard'));
     return gameVersion === 'm27' ? genericHeadPid(g.peps) : (LikenessService.genericPid(g.peps, 'm26') ?? 0);
   };
   // A generic-head legend (no renderable scan) still gets his legends portrait.
   // Legends portraits are keyed by name, so only the most accomplished player of
   // the name gets it (the 2003 CB Chris Johnson is not the 2008 Titans back).
-  const legendPortrait = like.kind === 'generic' && (player.draftYear ?? 0) < 2015 && PlayerLookupService.isMostNotable(player)
+  const legendPortrait = player.source !== 'generated' && like.kind === 'generic' && (player.draftYear ?? 0) < 2015 && PlayerLookupService.isMostNotable(player)
     ? LikenessService.legendPortraitPid(player.firstName, player.lastName, gameVersion) : 0;
   const realPid = real && !(real.portraitKind === 'legend' && !PlayerLookupService.isMostNotable(player)) ? real.portraitPid : 0;
-  // Do NOT reach for the lookup's PhotoID on M27. It was tried, and it is the
-  // reason a class came back full of blank NFL shields: PortraitService only
-  // knows whether WE hold the portrait art, while the PID indexes the GAME's
-  // portrait table, and M27 ships portraits for the 1,817 players on its own
-  // roster and nobody else. Cam Newton's 4439 is not among them. realPid comes
-  // from LikenessService.portraitFor, which checks the catalog for THIS game
-  // version -- that check is the whole point, so route every portrait through
-  // it and let the rest fall to a tone-matched generic.
   prospect.PID = gameVersion === 'm27'
-    ? (real ? (realPid || genericPortrait()) : (legendPortrait || 0))
+    ? (real ? (realPid || genericPortrait()) : (legendPortrait || genericPortrait()))
     : (portraitPid ?? (like.kind === 'generic' ? (legendPortrait || genericPortrait()) : (realPid || player.photoId || genericPortrait())));
   if (gameVersion === 'm27' && !real && legendPortrait) prospect.pinPortrait = true;
   // Announcer name call: the game keys this by SURNAME (same id space in both games,
@@ -556,6 +557,7 @@ export interface PreviewRow {
   ratings: Record<string, number>;
   /** Scout's read: Madden's draft notes for this position (ScoutingNotesService). */
   scouting?: string[];
+  freak?: FreakMetadata | null;
 }
 
 /** Flatten a prospect's PlayerOnField loadout into editor slots (helmet, gloveLeft, ...). */
@@ -821,6 +823,7 @@ export const DraftClassBuilder = {
     likeness: LikenessStats;
     /** Prospect indexes rated from EA's launch roster (Launch Day lens only). */
     launchIdx: number[];
+    freakMap: Map<number, FreakMetadata>;
   } {
     const { capped, keptIdx, dropped, included, posIds } = draftPositions(players, opts);
     const portraitMap = gameVersion === 'm27' ? new Map<number, number>() : PortraitSlotService.pidMap(capped);
@@ -935,13 +938,56 @@ export const DraftClassBuilder = {
     const launchIdx = items.filter((it) => it.launch).map((it) => it.index);
 
     const built = items.map((it) => toProspect(it, portraitMap.get(it.index), gameVersion, mode, opts.variant ?? 0));
+    const prospects = built.map((b) => b.prospect);
+    const freakMap = opts.freakMode
+      ? ProspectVarianceService.applyVarianceAndFreaks(
+          prospects,
+          capped,
+          {
+            enabled: true,
+            preset: opts.freakPreset,
+            freakRate: opts.freakRate,
+            freakCap: opts.freakCap,
+            generationalShare: opts.generationalShare,
+            hybridRate: opts.hybridRate,
+            superFusionRate: opts.superFusionRate,
+            seed: opts.freakSeed ?? (opts.variant ? opts.variant * 1000 + 2027 : 2027),
+          },
+          gameVersion
+        )
+      : new Map<number, FreakMetadata>();
+
+    // Balance generic heads across the class and synchronize heads/portraits with
+    // each prospect's final post-variance bodyType ('Heavy', 'Muscular', 'Standard', 'Thin', 'Lean').
+    LikenessService.balanceClassGenericHeads(
+      prospects as unknown as Array<Record<string, unknown>>,
+      capped,
+      gameVersion,
+      opts.variant ?? 0
+    );
+    for (let i = 0; i < prospects.length; i++) {
+      const p = prospects[i];
+      const peps = String(p.PEPS || '');
+      if (/^gen_/i.test(peps) && !p.pinPortrait) {
+        const customPid = portraitMap.get(i);
+        if (gameVersion === 'm27') {
+          p.PID = genericHeadPid(peps);
+        } else if (!customPid) {
+          const legendPid = (capped[i]?.draftYear ?? 0) < 2015 && PlayerLookupService.isMostNotable(capped[i])
+            ? LikenessService.legendPortraitPid(capped[i].firstName, capped[i].lastName, gameVersion)
+            : 0;
+          p.PID = legendPid || (LikenessService.genericPid(peps, 'm26') ?? 0);
+        }
+      }
+    }
+
     const likeness: LikenessStats = {
       asset: built.filter((b) => b.kind === 'asset').length,
       generic: built.filter((b) => b.kind === 'generic').length,
       withPortrait: capped.filter((p) => p.photoId != null).length,
       customPortrait: portraitMap.size,
     };
-    return { prospects: built.map((b) => b.prospect), sourceIndices: keptIdx, truncated: dropped.length > 0, dropped, included, likeness, launchIdx };
+    return { prospects, sourceIndices: keptIdx, truncated: dropped.length > 0, dropped, included, likeness, launchIdx, freakMap };
   },
 
   /** Full JSON preview of the generated class for the UI: per-player bio, photo,
@@ -950,13 +996,13 @@ export const DraftClassBuilder = {
   preview(players: BaselinePlayer[], mode: GenMode = 'madden', opts: GenOptions = {}, gameVersion: 'm26' | 'm27' = 'm26'): PreviewResult {
     const { kept: capped, keptIdx } = fitToCapacity(players, opts.include ?? []);
     const portraitMap = gameVersion === 'm27' ? new Map<number, number>() : PortraitSlotService.pidMap(capped);
-    const { prospects, likeness, dropped, included, launchIdx } = this.buildProspects(players, mode, opts, gameVersion);
+    const { prospects, likeness, dropped, included, launchIdx, freakMap } = this.buildProspects(players, mode, opts, gameVersion);
     const launched = new Set(launchIdx);
     const rows: PreviewRow[] = prospects.map((p, i) => {
       const peps = String(p.PEPS || '').toLowerCase();
       const face: 'asset' | 'generic' | 'photo' = portraitMap.has(i)
         ? 'photo'
-        : peps.startsWith('gen_')
+        : (peps.startsWith('gen_') || capped[i]?.source === 'generated')
           ? 'generic'
           : 'asset';
       const base = capped[i];
@@ -1003,7 +1049,11 @@ export const DraftClassBuilder = {
         twoWay: TwoWayService.rolesFor(base.firstName, base.lastName, base.draftYear, Number(p.position) || 0, nflversePick(base)),
         face,
         faceSource: face === 'asset' ? (real?.source ?? 'lookup') : null,
-        skinTone: Number(base.race) >= 1 && Number(base.race) <= 8 ? Number(base.race) : 4,
+        skinTone: (() => {
+          const visTone = Number((p.visuals as { skinTone?: number } | undefined)?.skinTone);
+          if (visTone >= 1 && visTone <= 8) return visTone;
+          return Number(base.race) >= 1 && Number(base.race) <= 8 ? Number(base.race) : 4;
+        })(),
         genericHead: peps.startsWith('gen_') ? String(p.PEPS) : null,
         toneSource: base.toneSource ?? null,
         likenessFixed: !!base.likenessFixed,
@@ -1017,9 +1067,20 @@ export const DraftClassBuilder = {
         // class mixes players from many drafts, and the retro photo guard needs
         // to know when this man played.
         draftYear: base.draftYear,
-        photoUrl: PhotoLookService.bestPhotoUrl(base) || null,
+        photoUrl: base.source === 'generated' ? null : (PhotoLookService.bestPhotoUrl(base) || null),
         portrait: (() => {
-          const plpo = PortraitService.plpoFor(Number(p.PID) || 0, base.race, `${base.firstName}|${base.lastName}|${i}`);
+          const visTone = Number((p.visuals as { skinTone?: number } | undefined)?.skinTone) || base.race;
+          const pid = Number(p.PID) || 0;
+          let plpo = pid ? PortraitService.plpoForPid(pid) : null;
+          if (!plpo) {
+            plpo = PortraitService.plpoFor(
+              pid,
+              visTone,
+              `${base.firstName}|${base.lastName}|${i}`,
+              peps.startsWith('gen_') ? String(p.PEPS) : null,
+              String(p.bodyType || 'Standard')
+            );
+          }
           return plpo ? `/api/portrait/plpo/${plpo}` : null;
         })(),
         // The player's OWN in-game portrait: the game ships one keyed to HIM.
@@ -1044,7 +1105,16 @@ export const DraftClassBuilder = {
           : null,
         gear: gearSlots(p),
         ratings,
-        scouting: scoutingFor(i + 1, Number(p.position), ratings, gameVersion),
+        scouting: (() => {
+          const baseNotes = scoutingFor(i + 1, Number(p.position), ratings, gameVersion);
+          const f = freakMap?.get(i);
+          if (f && f.isFreak) {
+            const compsStr = f.historicalComps?.length ? ` · Comps: ${f.historicalComps.join(', ')}` : '';
+            return [`${f.emoji} ${f.archetypeLabel} (${f.tier.toUpperCase()}): ${f.summary}${compsStr}`, ...baseNotes];
+          }
+          return baseNotes;
+        })(),
+        freak: freakMap?.get(i) ?? null,
       };
     });
     return { rows, likeness, count: rows.length, dropped, included, launchCount: launched.size };

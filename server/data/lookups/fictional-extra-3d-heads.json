@@ -1,0 +1,2202 @@
+{
+  "heads": [
+    {
+      "assetName": "BarnhartKarsen_1263",
+      "portraitPid": 10006,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Karsen Barnhart"
+    },
+    {
+      "assetName": "BassTJ_22890",
+      "portraitPid": 2809,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "T.J. Bass"
+    },
+    {
+      "assetName": "BrownEvan_13670",
+      "portraitPid": 9719,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Evan Brown"
+    },
+    {
+      "assetName": "CabeldueBryce_16146",
+      "portraitPid": 10882,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Bryce Cabeldue"
+    },
+    {
+      "assetName": "ColbyConnor_15158",
+      "portraitPid": 10520,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Connor Colby"
+    },
+    {
+      "assetName": "ColonCastilloTrystan_20978",
+      "portraitPid": 222,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Trystan Colon"
+    },
+    {
+      "assetName": "CrumFrank_1333",
+      "portraitPid": 10046,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Frank Crum"
+    },
+    {
+      "assetName": "DedichJustin_22864",
+      "portraitPid": 10890,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Justin Dedich"
+    },
+    {
+      "assetName": "ForsythAlex_22875",
+      "portraitPid": 2144,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Alex Forsyth"
+    },
+    {
+      "assetName": "FreelandBlake_22851",
+      "portraitPid": 2146,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Blake Freeland"
+    },
+    {
+      "assetName": "GrahamMason_15237",
+      "portraitPid": 10564,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Mason Graham"
+    },
+    {
+      "assetName": "HarrisNick_21110",
+      "portraitPid": 331,
+      "tone": 1,
+      "bodyType": "Heavy",
+      "name": "Nick Harris"
+    },
+    {
+      "assetName": "AllenDavis_22840",
+      "portraitPid": 852,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "Davis Allen"
+    },
+    {
+      "assetName": "BarnerAJ_14687",
+      "portraitPid": 10005,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "A.J. Barner"
+    },
+    {
+      "assetName": "BertrandJD_14915",
+      "portraitPid": 10012,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "JD Bertrand"
+    },
+    {
+      "assetName": "BookerAustin_14875",
+      "portraitPid": 10016,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "Austin Booker"
+    },
+    {
+      "assetName": "BruenerCarson_15257",
+      "portraitPid": 10505,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "Carson Bruener"
+    },
+    {
+      "assetName": "CalcaterraGrant_22101",
+      "portraitPid": 2067,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "Grant Calcaterra"
+    },
+    {
+      "assetName": "CampbellChance_22401",
+      "portraitPid": 1247,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "Chance Campbell"
+    },
+    {
+      "assetName": "DippreCJ_15111",
+      "portraitPid": 10536,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "CJ Dippre"
+    },
+    {
+      "assetName": "EllissJonah_14764",
+      "portraitPid": 10066,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "Jonah Elliss"
+    },
+    {
+      "assetName": "EvansEthan_23274",
+      "portraitPid": 3146,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "Ethan Evans"
+    },
+    {
+      "assetName": "EvansMitchell_15103",
+      "portraitPid": 10794,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "Mitchell Evans"
+    },
+    {
+      "assetName": "FidoneIIThomas_15121",
+      "portraitPid": 10553,
+      "tone": 1,
+      "bodyType": "Muscular",
+      "name": "Thomas Fidone II"
+    },
+    {
+      "assetName": "AraizaMatt_22388",
+      "portraitPid": 1140,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Matt Araiza"
+    },
+    {
+      "assetName": "AubreyBrandon_23329",
+      "portraitPid": 10362,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Brandon Aubrey"
+    },
+    {
+      "assetName": "BagentTyson_22900",
+      "portraitPid": 4849,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Tyson Bagent"
+    },
+    {
+      "assetName": "BatesJake_1238",
+      "portraitPid": 10871,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Jake Bates"
+    },
+    {
+      "assetName": "BennettIVStetson_22714",
+      "portraitPid": 2535,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Stetson Bennett IV"
+    },
+    {
+      "assetName": "BlankenshipReed_21792",
+      "portraitPid": 2850,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Reed Blankenship"
+    },
+    {
+      "assetName": "BoswellChris_2262",
+      "portraitPid": 6353,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Chris Boswell"
+    },
+    {
+      "assetName": "BrinkmanAustin_4685",
+      "portraitPid": 11021,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Austin Brinkman"
+    },
+    {
+      "assetName": "BrownTanner_23285",
+      "portraitPid": 2957,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Tanner Brown"
+    },
+    {
+      "assetName": "BrowningJake_20329",
+      "portraitPid": 9399,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Jake Browning"
+    },
+    {
+      "assetName": "BurnipJames_4611",
+      "portraitPid": 10512,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "James Burnip"
+    },
+    {
+      "assetName": "CamardaJake_22252",
+      "portraitPid": 1243,
+      "tone": 1,
+      "bodyType": "Standard",
+      "name": "Jake Camarda"
+    },
+    {
+      "assetName": "GouldAnthony_15019",
+      "portraitPid": 10086,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Anthony Gould"
+    },
+    {
+      "assetName": "GrupeBlake_23337",
+      "portraitPid": 4804,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Blake Grupe"
+    },
+    {
+      "assetName": "HayballMatthew_1384",
+      "portraitPid": 10910,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Matthew Hayball"
+    },
+    {
+      "assetName": "McLaughlinChase_20873",
+      "portraitPid": 455,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Chase McLaughlin"
+    },
+    {
+      "assetName": "MyersJason_2772",
+      "portraitPid": 7773,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Jason Myers"
+    },
+    {
+      "assetName": "PineiroEddy_13428",
+      "portraitPid": 9024,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Eddy Pineiro"
+    },
+    {
+      "assetName": "SaulsBen_15365",
+      "portraitPid": 10721,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Ben Sauls"
+    },
+    {
+      "assetName": "TiptonMason_1356",
+      "portraitPid": 10977,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Mason Tipton"
+    },
+    {
+      "assetName": "TownsendTommy_21175",
+      "portraitPid": 620,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Tommy Townsend"
+    },
+    {
+      "assetName": "taylorTrent_12743",
+      "portraitPid": 8744,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Trent Taylor"
+    },
+    {
+      "assetName": "tuckerJustin_11814",
+      "portraitPid": 6131,
+      "tone": 1,
+      "bodyType": "Thin",
+      "name": "Justin Tucker"
+    },
+    {
+      "assetName": "AndersonAlec_22436",
+      "portraitPid": 10361,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Alec Anderson"
+    },
+    {
+      "assetName": "AndrewsJake_23117",
+      "portraitPid": 957,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Jake Andrews"
+    },
+    {
+      "assetName": "BlackYahya_15225",
+      "portraitPid": 10492,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Yahya Black"
+    },
+    {
+      "assetName": "BoydKhristian_1108",
+      "portraitPid": 10365,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Khristian Boyd"
+    },
+    {
+      "assetName": "BrewerAaron_21365",
+      "portraitPid": 1404,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Aaron Brewer"
+    },
+    {
+      "assetName": "BrownBen_22126",
+      "portraitPid": 1198,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Ben Brown"
+    },
+    {
+      "assetName": "BrunskillDaniel_12753",
+      "portraitPid": 8495,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Daniel Brunskill"
+    },
+    {
+      "assetName": "CampbellWill_15160",
+      "portraitPid": 10515,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Will Campbell"
+    },
+    {
+      "assetName": "ConnerHayden_15154",
+      "portraitPid": 10524,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Hayden Conner"
+    },
+    {
+      "assetName": "DellingerGarrett_15150",
+      "portraitPid": 10891,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Garrett Dellinger"
+    },
+    {
+      "assetName": "FairchildDylan_15168",
+      "portraitPid": 10548,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Dylan Fairchild"
+    },
+    {
+      "assetName": "FergusonReid_13039",
+      "portraitPid": 9183,
+      "tone": 2,
+      "bodyType": "Heavy",
+      "name": "Reid Ferguson"
+    },
+    {
+      "assetName": "AndersenTroy_22194",
+      "portraitPid": 1133,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Troy Andersen"
+    },
+    {
+      "assetName": "ArroyoElijah_15119",
+      "portraitPid": 10479,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Elijah Arroyo"
+    },
+    {
+      "assetName": "CochraneJack_22521",
+      "portraitPid": 3015,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Jack Cochrane"
+    },
+    {
+      "assetName": "DennisSirVocea_23003",
+      "portraitPid": 2107,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "SirVocea Dennis"
+    },
+    {
+      "assetName": "EichenbergTommy_14908",
+      "portraitPid": 10065,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Tommy Eichenberg"
+    },
+    {
+      "assetName": "FergusonTerrance_15105",
+      "portraitPid": 10552,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Terrance Ferguson"
+    },
+    {
+      "assetName": "GadsdenIIOronde_15122",
+      "portraitPid": 10558,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Oronde Gadsden"
+    },
+    {
+      "assetName": "GillotteAshton_15182",
+      "portraitPid": 10561,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Ashton Gillotte"
+    },
+    {
+      "assetName": "JacksonDMarco_22203",
+      "portraitPid": 1775,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "D'Marco Jackson"
+    },
+    {
+      "assetName": "KolarCharlie_22096",
+      "portraitPid": 1802,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Charlie Kolar"
+    },
+    {
+      "assetName": "LacheyLuke_15108",
+      "portraitPid": 10630,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Luke Lachey"
+    },
+    {
+      "assetName": "LuepkeHunter_22755",
+      "portraitPid": 2291,
+      "tone": 2,
+      "bodyType": "Muscular",
+      "name": "Hunter Luepke"
+    },
+    {
+      "assetName": "AbramsDraineKris_14954",
+      "portraitPid": 9993,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Kris Abrams-Draine"
+    },
+    {
+      "assetName": "AndreessenJoe_1317",
+      "portraitPid": 10864,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Joe Andreessen"
+    },
+    {
+      "assetName": "AshbyJulian_16153",
+      "portraitPid": 10999,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Julian Ashby"
+    },
+    {
+      "assetName": "AyomanorElic_15099",
+      "portraitPid": 10481,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Elic Ayomanor"
+    },
+    {
+      "assetName": "BechJack_15055",
+      "portraitPid": 10872,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Jack Bech"
+    },
+    {
+      "assetName": "BojorquezCorey_13684",
+      "portraitPid": 9325,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Corey Bojorquez"
+    },
+    {
+      "assetName": "BrooksJonathon_14621",
+      "portraitPid": 10022,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Jonathon Brooks"
+    },
+    {
+      "assetName": "BrownSydney_23081",
+      "portraitPid": 1901,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Sydney Brown"
+    },
+    {
+      "assetName": "BryantMyles_21264",
+      "portraitPid": 196,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Myles Bryant"
+    },
+    {
+      "assetName": "BurdenIIILuther_15095",
+      "portraitPid": 10510,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Luther Burden III"
+    },
+    {
+      "assetName": "CorrellZeke_4644",
+      "portraitPid": 11018,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Zeke Correll"
+    },
+    {
+      "assetName": "CorumBlake_14623",
+      "portraitPid": 10043,
+      "tone": 2,
+      "bodyType": "Standard",
+      "name": "Blake Corum"
+    },
+    {
+      "assetName": "ShaheedRashid_22666",
+      "portraitPid": 4928,
+      "tone": 2,
+      "bodyType": "Thin",
+      "name": "Rashid Shaheed"
+    },
+    {
+      "assetName": "WilsonRoman_14661",
+      "portraitPid": 10303,
+      "tone": 2,
+      "bodyType": "Thin",
+      "name": "Roman Wilson"
+    },
+    {
+      "assetName": "HyattJalin_22696",
+      "portraitPid": 2219,
+      "tone": 2,
+      "bodyType": "Thin",
+      "name": "Jalin Hyatt"
+    },
+    {
+      "assetName": "santosCairo_2200",
+      "portraitPid": 6576,
+      "tone": 2,
+      "bodyType": "Thin",
+      "name": "Cairo Santos"
+    },
+    {
+      "assetName": "AmegadjieKiran_1071",
+      "portraitPid": 9999,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Kiran Amegadjie"
+    },
+    {
+      "assetName": "AumavaeLauluMalaesala_22885",
+      "portraitPid": 4667,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Malaesala Aumavae-Laulu"
+    },
+    {
+      "assetName": "ClevelandBen_21641",
+      "portraitPid": 733,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Ben Cleveland"
+    },
+    {
+      "assetName": "GrayJoshua_15138",
+      "portraitPid": 10567,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Joshua Gray"
+    },
+    {
+      "assetName": "HamiltonKyonte_16147",
+      "portraitPid": 10907,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Kyonte Hamilton"
+    },
+    {
+      "assetName": "HarmonDerrick_15239",
+      "portraitPid": 10574,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Derrick Harmon"
+    },
+    {
+      "assetName": "HuberJoe_15135",
+      "portraitPid": 10596,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Joe Huber"
+    },
+    {
+      "assetName": "JacksonAJ_21997",
+      "portraitPid": 911,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Alaric Jackson"
+    },
+    {
+      "assetName": "JurgensMichael_22913",
+      "portraitPid": 10404,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Michael Jurgens"
+    },
+    {
+      "assetName": "KeeganTrevor_14744",
+      "portraitPid": 10139,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Trevor Keegan"
+    },
+    {
+      "assetName": "KinnardDarian_22114",
+      "portraitPid": 1799,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Darian Kinnard"
+    },
+    {
+      "assetName": "LeeMatt_1161",
+      "portraitPid": 10155,
+      "tone": 3,
+      "bodyType": "Heavy",
+      "name": "Matt Lee"
+    },
+    {
+      "assetName": "AllErick_14690",
+      "portraitPid": 9997,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Erick All Jr"
+    },
+    {
+      "assetName": "BartholomewGavin_15113",
+      "portraitPid": 10486,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Gavin Bartholomew"
+    },
+    {
+      "assetName": "DulcichGreg_22344",
+      "portraitPid": 1550,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Greg Dulcich"
+    },
+    {
+      "assetName": "EdwardsTJ_20591",
+      "portraitPid": 9449,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "T.J. Edwards"
+    },
+    {
+      "assetName": "GransonKylen_21624",
+      "portraitPid": 1383,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Kylen Granson"
+    },
+    {
+      "assetName": "HassaneinAhmed_15194",
+      "portraitPid": 10580,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Ahmed Hassanein"
+    },
+    {
+      "assetName": "IveyJared_15187",
+      "portraitPid": 10602,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Jared Ivey"
+    },
+    {
+      "assetName": "MartinezDamien_15047",
+      "portraitPid": 10646,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Damien Martinez"
+    },
+    {
+      "assetName": "McCulloughLiam_22504",
+      "portraitPid": 2594,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Liam McCullough"
+    },
+    {
+      "assetName": "NesbitBryson_15115",
+      "portraitPid": 10678,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Bryson Nesbit"
+    },
+    {
+      "assetName": "PaceJrIvan_22977",
+      "portraitPid": 2346,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Ivan Pace Jr"
+    },
+    {
+      "assetName": "PhillipsDelShawn_21408",
+      "portraitPid": 1501,
+      "tone": 3,
+      "bodyType": "Muscular",
+      "name": "Del'Shawn Phillips"
+    },
+    {
+      "assetName": "BarronJahdae_15277",
+      "portraitPid": 10485,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Jahdae Barron"
+    },
+    {
+      "assetName": "BorregalesAndres_15364",
+      "portraitPid": 10793,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Andres Borregales"
+    },
+    {
+      "assetName": "BowmanJrBilly_15332",
+      "portraitPid": 10496,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Billy Bowman Jr"
+    },
+    {
+      "assetName": "BrentsJulius_23062",
+      "portraitPid": 1759,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "JuJu Brents"
+    },
+    {
+      "assetName": "BrosmerMax_14792",
+      "portraitPid": 10501,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Max Brosmer"
+    },
+    {
+      "assetName": "BryantPat_15074",
+      "portraitPid": 10507,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Pat Bryant II"
+    },
+    {
+      "assetName": "ChamblissChaz_4622",
+      "portraitPid": 11019,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Chaz Chambliss"
+    },
+    {
+      "assetName": "ClarkAlijah_15355",
+      "portraitPid": 10519,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Alijah Clark"
+    },
+    {
+      "assetName": "CokerJalen_1325",
+      "portraitPid": 10036,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Jalen Coker"
+    },
+    {
+      "assetName": "ColeIIIAJ_20821",
+      "portraitPid": 220,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "A.J. Cole"
+    },
+    {
+      "assetName": "ColemanBrandon_14730",
+      "portraitPid": 10037,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Brandon Coleman"
+    },
+    {
+      "assetName": "DavisMalik_22566",
+      "portraitPid": 2706,
+      "tone": 3,
+      "bodyType": "Standard",
+      "name": "Malik Davis"
+    },
+    {
+      "assetName": "BondIsaiah_15098",
+      "portraitPid": 10494,
+      "tone": 3,
+      "bodyType": "Thin",
+      "name": "Isaiah Bond"
+    },
+    {
+      "assetName": "FranklinTroy_14647",
+      "portraitPid": 10077,
+      "tone": 3,
+      "bodyType": "Thin",
+      "name": "Troy Franklin"
+    },
+    {
+      "assetName": "HornJrJimmy_14772",
+      "portraitPid": 10592,
+      "tone": 3,
+      "bodyType": "Thin",
+      "name": "Jimmy Horn Jr"
+    },
+    {
+      "assetName": "JobeJosh_22212",
+      "portraitPid": 1778,
+      "tone": 3,
+      "bodyType": "Thin",
+      "name": "Josh Jobe"
+    },
+    {
+      "assetName": "MitchellCameron_23042",
+      "portraitPid": 2315,
+      "tone": 3,
+      "bodyType": "Thin",
+      "name": "Cameron Mitchell"
+    },
+    {
+      "assetName": "PalmerTrey_22776",
+      "portraitPid": 2608,
+      "tone": 3,
+      "bodyType": "Thin",
+      "name": "Trey Palmer"
+    },
+    {
+      "assetName": "PearsallRicky_14657",
+      "portraitPid": 10206,
+      "tone": 3,
+      "bodyType": "Thin",
+      "name": "Ricky Pearsall"
+    },
+    {
+      "assetName": "RobinsonMicah_16156",
+      "portraitPid": 10997,
+      "tone": 3,
+      "bodyType": "Thin",
+      "name": "Micah Robinson"
+    },
+    {
+      "assetName": "AdamsIsaiah_14716",
+      "portraitPid": 9994,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Isaiah Adams"
+    },
+    {
+      "assetName": "BanksJrKelvin_15161",
+      "portraitPid": 10483,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Kelvin Banks Jr"
+    },
+    {
+      "assetName": "BanksCaleb_16292",
+      "portraitPid": 11328,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Caleb Banks"
+    },
+    {
+      "assetName": "BarrettNick_16401",
+      "portraitPid": 11142,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Nick Barrett"
+    },
+    {
+      "assetName": "BatesRyan_20538",
+      "portraitPid": 9383,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Ryan Bates"
+    },
+    {
+      "assetName": "BeerntsenEvan_10181",
+      "portraitPid": 11276,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Evan Beerntsen"
+    },
+    {
+      "assetName": "BellMarkel_16333",
+      "portraitPid": 11190,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Markel Bell"
+    },
+    {
+      "assetName": "BenedetTheo_4711",
+      "portraitPid": 11061,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Theo Benedet"
+    },
+    {
+      "assetName": "BennyRayshaun_16175",
+      "portraitPid": 11277,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Rayshaun Benny"
+    },
+    {
+      "assetName": "BisontisChase_16419",
+      "portraitPid": 11137,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Chase Bisontis"
+    },
+    {
+      "assetName": "BowryJude_16251",
+      "portraitPid": 11103,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Jude Bowry"
+    },
+    {
+      "assetName": "BrownLogan_15134",
+      "portraitPid": 10504,
+      "tone": 4,
+      "bodyType": "Heavy",
+      "name": "Logan Brown"
+    },
+    {
+      "assetName": "AllenBraelon_14631",
+      "portraitPid": 9996,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "Braelon Allen"
+    },
+    {
+      "assetName": "AllenCJ_16172",
+      "portraitPid": 11157,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "CJ Allen"
+    },
+    {
+      "assetName": "BaileyDavid_1887",
+      "portraitPid": 11226,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "David Bailey"
+    },
+    {
+      "assetName": "BainJrRueben_16334",
+      "portraitPid": 11128,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "Rueben Bain Jr."
+    },
+    {
+      "assetName": "BarhamJaishawn_16331",
+      "portraitPid": 11170,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "Jaishawn Barham"
+    },
+    {
+      "assetName": "BarnoAmare_22138",
+      "portraitPid": 1154,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "Amare Barno"
+    },
+    {
+      "assetName": "BaronTyler_15185",
+      "portraitPid": 10484,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "Tyler Baron"
+    },
+    {
+      "assetName": "BlasingameKhari_20826",
+      "portraitPid": 100,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "Khari Blasingame"
+    },
+    {
+      "assetName": "BoettcherBryce_16383",
+      "portraitPid": 11158,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "Bryce Boettcher"
+    },
+    {
+      "assetName": "BredesonMax_16178",
+      "portraitPid": 11329,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "Max Bredeson"
+    },
+    {
+      "assetName": "BrooksBritish_1391",
+      "portraitPid": 10879,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "British Brooks"
+    },
+    {
+      "assetName": "BuchananTeddye_15256",
+      "portraitPid": 10508,
+      "tone": 4,
+      "bodyType": "Muscular",
+      "name": "Teddye Buchanan"
+    },
+    {
+      "assetName": "AbneyIIKeith_16233",
+      "portraitPid": 11234,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Keith Abney II"
+    },
+    {
+      "assetName": "AjiakeAustin_4742",
+      "portraitPid": 11412,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Austin Ajiake"
+    },
+    {
+      "assetName": "AllarDrew_16211",
+      "portraitPid": 11303,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Drew Allar"
+    },
+    {
+      "assetName": "AllenCyrus_16325",
+      "portraitPid": 11150,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Cyrus Allen"
+    },
+    {
+      "assetName": "AllenKaytron_16213",
+      "portraitPid": 11165,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Kaytron Allen"
+    },
+    {
+      "assetName": "AltmyerLuke_16295",
+      "portraitPid": 11335,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Luke Altmyer"
+    },
+    {
+      "assetName": "AndersenNick_10029",
+      "portraitPid": 11457,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Nick Andersen"
+    },
+    {
+      "assetName": "AnthonyJrVincent_1886",
+      "portraitPid": 11413,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Vincent Anthony Jr."
+    },
+    {
+      "assetName": "AnthonyDaijahn_1137",
+      "portraitPid": 10000,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Daijahn Anthony"
+    },
+    {
+      "assetName": "AvingerNoah_10089",
+      "portraitPid": 11414,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Noah Avinger"
+    },
+    {
+      "assetName": "BaileyWesley_10133",
+      "portraitPid": 11458,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Wesley Bailey"
+    },
+    {
+      "assetName": "BaldwinJohnathan_4786",
+      "portraitPid": 11415,
+      "tone": 4,
+      "bodyType": "Standard",
+      "name": "Johnathan Baldwin"
+    },
+    {
+      "assetName": "BlackKorie_16151",
+      "portraitPid": 10875,
+      "tone": 4,
+      "bodyType": "Thin",
+      "name": "Korie Black"
+    },
+    {
+      "assetName": "ScottTyler_22780",
+      "portraitPid": 2386,
+      "tone": 4,
+      "bodyType": "Thin",
+      "name": "Tyler Scott"
+    },
+    {
+      "assetName": "ThorntonTyquan_22371",
+      "portraitPid": 1985,
+      "tone": 4,
+      "bodyType": "Thin",
+      "name": "Tyquan Thornton"
+    },
+    {
+      "assetName": "WigginsNate_14924",
+      "portraitPid": 10293,
+      "tone": 4,
+      "bodyType": "Thin",
+      "name": "Nate Wiggins"
+    },
+    {
+      "assetName": "rossJohn_12539",
+      "portraitPid": 8711,
+      "tone": 4,
+      "bodyType": "Thin",
+      "name": "John Ross"
+    },
+    {
+      "assetName": "BriggsJowon_1165",
+      "portraitPid": 10368,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Jowon Briggs"
+    },
+    {
+      "assetName": "BroughtonVernon_15217",
+      "portraitPid": 10502,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Vernon Broughton"
+    },
+    {
+      "assetName": "CarmanJackson_21864",
+      "portraitPid": 775,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Jackson Carman"
+    },
+    {
+      "assetName": "EboigbeJustin_14873",
+      "portraitPid": 10062,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Justin Eboigbe"
+    },
+    {
+      "assetName": "EzirimJosiah_1164",
+      "portraitPid": 10068,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Josiah Ezirim"
+    },
+    {
+      "assetName": "HaynesChristian_14707",
+      "portraitPid": 10105,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Christian Haynes"
+    },
+    {
+      "assetName": "JerrellMichael_1120",
+      "portraitPid": 10401,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Michael Jerrell"
+    },
+    {
+      "assetName": "LeverettNick_21975",
+      "portraitPid": 1107,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Nick Leverett"
+    },
+    {
+      "assetName": "MonkJacob_1092",
+      "portraitPid": 10185,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Jacob Monk"
+    },
+    {
+      "assetName": "MorrisWanya_22869",
+      "portraitPid": 2321,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Wanya Morris"
+    },
+    {
+      "assetName": "NewtonJerZhan_14751",
+      "portraitPid": 10193,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Jer'Zhan Newton"
+    },
+    {
+      "assetName": "NiangLucas_21296",
+      "portraitPid": 485,
+      "tone": 5,
+      "bodyType": "Heavy",
+      "name": "Lucas Niang"
+    },
+    {
+      "assetName": "CarterAbdul_15198",
+      "portraitPid": 10516,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Abdul Carter"
+    },
+    {
+      "assetName": "CarterBarrett_15246",
+      "portraitPid": 10517,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Barrett Carter"
+    },
+    {
+      "assetName": "CoxJabril_21496",
+      "portraitPid": 1050,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Jabril Cox"
+    },
+    {
+      "assetName": "FordJaylan_14912",
+      "portraitPid": 10075,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Jaylan Ford"
+    },
+    {
+      "assetName": "GrayCedric_14909",
+      "portraitPid": 10088,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Cedric Gray"
+    },
+    {
+      "assetName": "GreenMike_15200",
+      "portraitPid": 10568,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Mike Green"
+    },
+    {
+      "assetName": "HigginsElijah_22779",
+      "portraitPid": 2209,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Elijah Higgins"
+    },
+    {
+      "assetName": "HopperTyRon_14910",
+      "portraitPid": 10110,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Ty'Ron Hopper"
+    },
+    {
+      "assetName": "HudsonKhaleke_21146",
+      "portraitPid": 371,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Khaleke Hudson"
+    },
+    {
+      "assetName": "JohnsonDJ_22983",
+      "portraitPid": 2235,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "DJ Johnson"
+    },
+    {
+      "assetName": "KingKobe_15272",
+      "portraitPid": 10625,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Kobe King"
+    },
+    {
+      "assetName": "KromahJamree_1398",
+      "portraitPid": 10930,
+      "tone": 5,
+      "bodyType": "Muscular",
+      "name": "Jamree Kromah"
+    },
+    {
+      "assetName": "AmadiUgochukwu_20623",
+      "portraitPid": 9368,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Ugo Amadi"
+    },
+    {
+      "assetName": "BlueJaydon_15051",
+      "portraitPid": 10493,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Jaydon Blue"
+    },
+    {
+      "assetName": "BradeBeau_14952",
+      "portraitPid": 10019,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Beau Brade"
+    },
+    {
+      "assetName": "BrownIIIBobby_21922",
+      "portraitPid": 1592,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Bobby Brown III"
+    },
+    {
+      "assetName": "BryantCobee_15310",
+      "portraitPid": 10506,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Cobee Bryant"
+    },
+    {
+      "assetName": "BullardJavon_14944",
+      "portraitPid": 10024,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Javon Bullard"
+    },
+    {
+      "assetName": "CarterIIMichael_21697",
+      "portraitPid": 1348,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Michael Carter II"
+    },
+    {
+      "assetName": "CineLewis_22397",
+      "portraitPid": 1270,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Lewis Cine"
+    },
+    {
+      "assetName": "DavisTyler_14866",
+      "portraitPid": 10380,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Tyler Davis"
+    },
+    {
+      "assetName": "EmmanworiNick_15359",
+      "portraitPid": 10543,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Nick Emmanwori"
+    },
+    {
+      "assetName": "EtienneTrevor_15050",
+      "portraitPid": 10545,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Trevor Etienne"
+    },
+    {
+      "assetName": "GordonIIOllie_15049",
+      "portraitPid": 10563,
+      "tone": 5,
+      "bodyType": "Standard",
+      "name": "Ollie Gordon II"
+    },
+    {
+      "assetName": "AustinAlex_23080",
+      "portraitPid": 965,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Alex Austin"
+    },
+    {
+      "assetName": "GoldenMatthew_15096",
+      "portraitPid": 10562,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Matthew Golden"
+    },
+    {
+      "assetName": "JamesDJ_14943",
+      "portraitPid": 10120,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "DJ James"
+    },
+    {
+      "assetName": "KentDonte_14995",
+      "portraitPid": 10928,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Donte Kent"
+    },
+    {
+      "assetName": "LambertSmithKeAndre_15073",
+      "portraitPid": 10631,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "KeAndre Lambert-Smith"
+    },
+    {
+      "assetName": "MeltonBo_22084",
+      "portraitPid": 1850,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Bo Melton"
+    },
+    {
+      "assetName": "PhillipsAndru_14968",
+      "portraitPid": 10208,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Dru Phillips"
+    },
+    {
+      "assetName": "PritchettNehemiah_14963",
+      "portraitPid": 10215,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Nehemiah Pritchett"
+    },
+    {
+      "assetName": "SmithAinias_14664",
+      "portraitPid": 10249,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Ainias Smith"
+    },
+    {
+      "assetName": "SmithJaylin_15323",
+      "portraitPid": 10736,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Jaylin Smith"
+    },
+    {
+      "assetName": "StrongDorian_15295",
+      "portraitPid": 10744,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Dorian Strong"
+    },
+    {
+      "assetName": "TaylorJaSir_22283",
+      "portraitPid": 2641,
+      "tone": 5,
+      "bodyType": "Thin",
+      "name": "Ja'Sir Taylor"
+    },
+    {
+      "assetName": "AkingbesoteTommy_15233",
+      "portraitPid": 10473,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Tommy Akingbesote"
+    },
+    {
+      "assetName": "AlexanderDarius_15214",
+      "portraitPid": 10474,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Darius Alexander"
+    },
+    {
+      "assetName": "AndersonSpencer_22891",
+      "portraitPid": 2757,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Spencer Anderson"
+    },
+    {
+      "assetName": "BrinsonWarren_15212",
+      "portraitPid": 10498,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Warren Brinson"
+    },
+    {
+      "assetName": "BrooksKarl_22943",
+      "portraitPid": 2912,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Karl Brooks"
+    },
+    {
+      "assetName": "CarterDeWayne_14867",
+      "portraitPid": 10030,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "DeWayne Carter"
+    },
+    {
+      "assetName": "CharlesSaahdiq_20970",
+      "portraitPid": 209,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Saahdiq Charles"
+    },
+    {
+      "assetName": "CollinsAlfred_15206",
+      "portraitPid": 10521,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Alfred Collins"
+    },
+    {
+      "assetName": "CrumedyJaden_14887",
+      "portraitPid": 10045,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Jaden Crumedy"
+    },
+    {
+      "assetName": "EdwardsMike_20457",
+      "portraitPid": 9448,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Mike Edwards"
+    },
+    {
+      "assetName": "ErseryAireontae_15128",
+      "portraitPid": 10544,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Aireontae Ersery"
+    },
+    {
+      "assetName": "FarmerJoshua_15240",
+      "portraitPid": 10895,
+      "tone": 6,
+      "bodyType": "Heavy",
+      "name": "Joshua Farmer"
+    },
+    {
+      "assetName": "BarnesZaire_23265",
+      "portraitPid": 2805,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Zaire Barnes"
+    },
+    {
+      "assetName": "BarrettMichael_14914",
+      "portraitPid": 10007,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Michael Barrett"
+    },
+    {
+      "assetName": "BellJaheim_14681",
+      "portraitPid": 10010,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Jaheim Bell"
+    },
+    {
+      "assetName": "BurchJordan_15178",
+      "portraitPid": 10509,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Jordan Burch"
+    },
+    {
+      "assetName": "DimukejeVictor_21869",
+      "portraitPid": 2708,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Victor Dimukeje"
+    },
+    {
+      "assetName": "DodsonTyrel_20597",
+      "portraitPid": 9441,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Tyrel Dodson"
+    },
+    {
+      "assetName": "EzeiruakuDonovan_15171",
+      "portraitPid": 10547,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Donovan Ezeiruaku"
+    },
+    {
+      "assetName": "FanninJrHarold_15120",
+      "portraitPid": 10549,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Harold Fannin Jr"
+    },
+    {
+      "assetName": "FoskeyIsaiah_22917",
+      "portraitPid": 2145,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Isaiah Foskey"
+    },
+    {
+      "assetName": "GilliamReggie_21398",
+      "portraitPid": 1432,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Reggie Gilliam"
+    },
+    {
+      "assetName": "GriffithJonas_21986",
+      "portraitPid": 880,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Jonas Griffith"
+    },
+    {
+      "assetName": "HamptonNick_22979",
+      "portraitPid": 2180,
+      "tone": 6,
+      "bodyType": "Muscular",
+      "name": "Nick Hampton"
+    },
+    {
+      "assetName": "AlfordDee_22628",
+      "portraitPid": 6051,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Dee Alford"
+    },
+    {
+      "assetName": "AliRasheen_14638",
+      "portraitPid": 9995,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Rasheen Ali"
+    },
+    {
+      "assetName": "AmosTrey_15287",
+      "portraitPid": 10477,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Trey Amos"
+    },
+    {
+      "assetName": "BakerJrDarrell_22275",
+      "portraitPid": 2798,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Darrell Baker Jr"
+    },
+    {
+      "assetName": "BishopJrBeanie_1369",
+      "portraitPid": 10874,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Beanie Bishop Jr"
+    },
+    {
+      "assetName": "BridgesTrikweze_16155",
+      "portraitPid": 10877,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Trikweze Bridges"
+    },
+    {
+      "assetName": "BrownDyami_21585",
+      "portraitPid": 1349,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Dyami Brown"
+    },
+    {
+      "assetName": "BurgessTerrell_21150",
+      "portraitPid": 197,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Terrell Burgess"
+    },
+    {
+      "assetName": "BurksTreylon_22069",
+      "portraitPid": 1226,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Treylon Burks"
+    },
+    {
+      "assetName": "ButlerPercy_22450",
+      "portraitPid": 1239,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Percy Butler"
+    },
+    {
+      "assetName": "CarliesJaylon_1089",
+      "portraitPid": 10028,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Jaylon Carlies"
+    },
+    {
+      "assetName": "CarsonCaelen_14945",
+      "portraitPid": 10029,
+      "tone": 6,
+      "bodyType": "Standard",
+      "name": "Caelen Carson"
+    },
+    {
+      "assetName": "DortchGreg_20574",
+      "portraitPid": 9442,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "Greg Dortch"
+    },
+    {
+      "assetName": "GipsonXavier_22815",
+      "portraitPid": 10462,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "Xavier Gipson"
+    },
+    {
+      "assetName": "HunterTravis_15101",
+      "portraitPid": 10599,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "Travis Hunter"
+    },
+    {
+      "assetName": "IngramJaMarcus_1248",
+      "portraitPid": 10916,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "Ja'Marcus Ingram"
+    },
+    {
+      "assetName": "MinorKobee_16154",
+      "portraitPid": 10861,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "Kobee Minor"
+    },
+    {
+      "assetName": "NewtonJosh_14940",
+      "portraitPid": 10194,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "Josh Newton"
+    },
+    {
+      "assetName": "SmithArian_15087",
+      "portraitPid": 10734,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "Arian Smith"
+    },
+    {
+      "assetName": "SmithWadeChau_14966",
+      "portraitPid": 10252,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "Chau Smith-Wade"
+    },
+    {
+      "assetName": "WalleyJustin_15320",
+      "portraitPid": 10767,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "Justin Walley"
+    },
+    {
+      "assetName": "TurpinKaVontae_22599",
+      "portraitPid": 10451,
+      "tone": 6,
+      "bodyType": "Thin",
+      "name": "KaVontae Turpin"
+    },
+    {
+      "assetName": "AdamsTony_22642",
+      "portraitPid": 2723,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Tony Adams"
+    },
+    {
+      "assetName": "AdebaworeAdetomiwa_22928",
+      "portraitPid": 818,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Adetomiwa Adebawore"
+    },
+    {
+      "assetName": "BeltonAnthony_15127",
+      "portraitPid": 10489,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Anthony Belton"
+    },
+    {
+      "assetName": "BiggersZeek_15234",
+      "portraitPid": 10491,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Zeek Biggers"
+    },
+    {
+      "assetName": "BookerTyler_15162",
+      "portraitPid": 10495,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Tyler Booker"
+    },
+    {
+      "assetName": "BryantMarcus_16149",
+      "portraitPid": 10998,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Marcus Bryant"
+    },
+    {
+      "assetName": "CarterJaTyre_22421",
+      "portraitPid": 1255,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Ja'Tyre Carter"
+    },
+    {
+      "assetName": "ChatmanElijah_22965",
+      "portraitPid": 10883,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Elijah Chatman"
+    },
+    {
+      "assetName": "ConerlyJrJosh_15163",
+      "portraitPid": 10523,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Josh Conerly Jr"
+    },
+    {
+      "assetName": "CottonSrLester_20380",
+      "portraitPid": 3034,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Lester Cotton"
+    },
+    {
+      "assetName": "DanielsBraeden_22909",
+      "portraitPid": 2077,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Braeden Daniels"
+    },
+    {
+      "assetName": "DorlusBrandon_14768",
+      "portraitPid": 10058,
+      "tone": 7,
+      "bodyType": "Heavy",
+      "name": "Brandon Dorlus"
+    },
+    {
+      "assetName": "AbdullahYasir_22984",
+      "portraitPid": 8369,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Yasir Abdullah"
+    },
+    {
+      "assetName": "AnudikeUzomahFelix_22916",
+      "portraitPid": 958,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Felix Anudike-Uzomah"
+    },
+    {
+      "assetName": "AsamoahIIBrian_22190",
+      "portraitPid": 1145,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Brian Asamoah II"
+    },
+    {
+      "assetName": "AsanteEugene_15252",
+      "portraitPid": 10480,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Eugene Asante"
+    },
+    {
+      "assetName": "BassaJeffrey_15250",
+      "portraitPid": 10487,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Jeffrey Bassa"
+    },
+    {
+      "assetName": "BethuneTatum_14922",
+      "portraitPid": 10013,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Tatum Bethune"
+    },
+    {
+      "assetName": "BraswellChris_14895",
+      "portraitPid": 10021,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Chris Braswell"
+    },
+    {
+      "assetName": "DeLoachKalen_1284",
+      "portraitPid": 10054,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Kalen DeLoach"
+    },
+    {
+      "assetName": "GrandersonCarl_20417",
+      "portraitPid": 9475,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Carl Granderson"
+    },
+    {
+      "assetName": "HigginsJay_15261",
+      "portraitPid": 10586,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Jay Higgins IV"
+    },
+    {
+      "assetName": "HillJamal_1104",
+      "portraitPid": 10396,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Jamal Hill"
+    },
+    {
+      "assetName": "HyppoliteIIRuben_16144",
+      "portraitPid": 10915,
+      "tone": 7,
+      "bodyType": "Muscular",
+      "name": "Ruben Hyppolite II"
+    },
+    {
+      "assetName": "AbanikandaIsrael_22741",
+      "portraitPid": 361,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Israel Abanikanda"
+    },
+    {
+      "assetName": "AiyukBrandon_21069",
+      "portraitPid": 71,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Brandon Aiyuk"
+    },
+    {
+      "assetName": "AllenLeQuint_15052",
+      "portraitPid": 10476,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "LeQuint Allen Jr"
+    },
+    {
+      "assetName": "AlShaairAzeez_20688",
+      "portraitPid": 9361,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Azeez Al-Shaair"
+    },
+    {
+      "assetName": "AndersonJrWill_22702",
+      "portraitPid": 856,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Will Anderson Jr"
+    },
+    {
+      "assetName": "GriffinStephen_14927",
+      "portraitPid": 10001,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Stephen Griffin"
+    },
+    {
+      "assetName": "BarnesKrys_21409",
+      "portraitPid": 1395,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Krys Barnes"
+    },
+    {
+      "assetName": "BashamJrCarlos_21503",
+      "portraitPid": 1608,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Boogie Basham Jr"
+    },
+    {
+      "assetName": "BellMarkquese_22229",
+      "portraitPid": 1170,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Markquese Bell"
+    },
+    {
+      "assetName": "BennettJakorian_23083",
+      "portraitPid": 1421,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Jakorian Bennett"
+    },
+    {
+      "assetName": "BensonTrey_14622",
+      "portraitPid": 10011,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Trey Benson"
+    },
+    {
+      "assetName": "BigsbyTank_22733",
+      "portraitPid": 2539,
+      "tone": 7,
+      "bodyType": "Standard",
+      "name": "Tank Bigsby"
+    },
+    {
+      "assetName": "BlackmonMekhi_23039",
+      "portraitPid": 1551,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Mekhi Blackmon"
+    },
+    {
+      "assetName": "BurkeDenzel_15297",
+      "portraitPid": 10511,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Denzel Burke"
+    },
+    {
+      "assetName": "ClarkKeiTrel_23054",
+      "portraitPid": 2022,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Kei'Trel Clark"
+    },
+    {
+      "assetName": "CowingJacob_14663",
+      "portraitPid": 10044,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Jacob Cowing"
+    },
+    {
+      "assetName": "FeltonTai_15075",
+      "portraitPid": 10551,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Tai Felton"
+    },
+    {
+      "assetName": "FrazierZah_15301",
+      "portraitPid": 10795,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Zah Frazier"
+    },
+    {
+      "assetName": "GreenRenardo_14985",
+      "portraitPid": 10090,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Renardo Green"
+    },
+    {
+      "assetName": "JonesElijah_1074",
+      "portraitPid": 10132,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Elijah Jones"
+    },
+    {
+      "assetName": "JonesJarrian_14956",
+      "portraitPid": 10133,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Jarrian Jones"
+    },
+    {
+      "assetName": "KellyKyuBlu_23040",
+      "portraitPid": 2276,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Kyu Blu Kelly"
+    },
+    {
+      "assetName": "KendrickDerion_22207",
+      "portraitPid": 1797,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Derion Kendrick"
+    },
+    {
+      "assetName": "KoneBilhal_15304",
+      "portraitPid": 10628,
+      "tone": 7,
+      "bodyType": "Thin",
+      "name": "Bilhal Kone"
+    }
+  ]
+}

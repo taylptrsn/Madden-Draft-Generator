@@ -1,0 +1,7932 @@
+{
+  "portraits": [
+    {
+      "pid": 3346,
+      "plpo": "plpo_generic_7_M_G_005",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 0.97,
+      "isModern": true
+    },
+    {
+      "pid": 3347,
+      "plpo": "plpo_generic_7_M_N_005",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.625,
+      "isModern": true
+    },
+    {
+      "pid": 3348,
+      "plpo": "plpo_generic_7_M_N_006",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.478,
+      "isModern": true
+    },
+    {
+      "pid": 3349,
+      "plpo": "plpo_generic_7_T_B_006",
+      "tone": 7,
+      "build": "T",
+      "neckRatio": 1.583,
+      "isModern": true
+    },
+    {
+      "pid": 3350,
+      "plpo": "plpo_generic_6_B_G_03",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.72,
+      "isModern": true
+    },
+    {
+      "pid": 3351,
+      "plpo": "plpo_generic_2_B_S_007",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.237,
+      "isModern": true
+    },
+    {
+      "pid": 3352,
+      "plpo": "plpo_generic_3_B_B_01",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.135,
+      "isModern": true
+    },
+    {
+      "pid": 3353,
+      "plpo": "plpo_generic_3_B_N_02",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.389,
+      "isModern": true
+    },
+    {
+      "pid": 3354,
+      "plpo": "plpo_generic_4_T_N_007",
+      "tone": 4,
+      "build": "T",
+      "neckRatio": 1.147,
+      "isModern": true
+    },
+    {
+      "pid": 3355,
+      "plpo": "plpo_generic_5_B_G_01",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.63,
+      "isModern": true
+    },
+    {
+      "pid": 3356,
+      "plpo": "plpo_generic_5_B_S_003",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.162,
+      "isModern": true
+    },
+    {
+      "pid": 3357,
+      "plpo": "plpo_generic_6_B_G_04",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.057,
+      "isModern": true
+    },
+    {
+      "pid": 3358,
+      "plpo": "plpo_generic_6_B_N_0010",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 2.048,
+      "isModern": true
+    },
+    {
+      "pid": 3359,
+      "plpo": "plpo_generic_1_B_N_0012",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.316,
+      "isModern": true
+    },
+    {
+      "pid": 3360,
+      "plpo": "plpo_generic_1_B_N_03",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.514,
+      "isModern": true
+    },
+    {
+      "pid": 3362,
+      "plpo": "plpo_generic_2_B_N_0012",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.231,
+      "isModern": true
+    },
+    {
+      "pid": 3363,
+      "plpo": "plpo_generic_2_B_N_01",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.225,
+      "isModern": true
+    },
+    {
+      "pid": 3364,
+      "plpo": "plpo_generic_2_B_S_006",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.314,
+      "isModern": true
+    },
+    {
+      "pid": 3365,
+      "plpo": "plpo_generic_2_H_B_005",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.211,
+      "isModern": true
+    },
+    {
+      "pid": 3366,
+      "plpo": "plpo_generic_2_M_N_05",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.417,
+      "isModern": true
+    },
+    {
+      "pid": 3367,
+      "plpo": "plpo_generic_3_B_B_009",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.265,
+      "isModern": true
+    },
+    {
+      "pid": 3368,
+      "plpo": "plpo_generic_3_B_N_007",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.25,
+      "isModern": true
+    },
+    {
+      "pid": 3369,
+      "plpo": "plpo_generic_3_B_N_01",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.194,
+      "isModern": true
+    },
+    {
+      "pid": 3370,
+      "plpo": "plpo_generic_3_B_S_011",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.357,
+      "isModern": true
+    },
+    {
+      "pid": 3371,
+      "plpo": "plpo_generic_4_B_B_004",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 0.872,
+      "isModern": true
+    },
+    {
+      "pid": 3372,
+      "plpo": "plpo_generic_4_B_BM_01",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 1.054,
+      "isModern": true
+    },
+    {
+      "pid": 3373,
+      "plpo": "plpo_generic_4_B_N_003",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 3374,
+      "plpo": "plpo_generic_4_H_N_003",
+      "tone": 4,
+      "build": "H",
+      "neckRatio": 1.378,
+      "isModern": true
+    },
+    {
+      "pid": 3375,
+      "plpo": "plpo_generic_4_T_G_01",
+      "tone": 4,
+      "build": "T",
+      "neckRatio": 1.152,
+      "isModern": true
+    },
+    {
+      "pid": 3377,
+      "plpo": "plpo_generic_5_B_N_03",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.6,
+      "isModern": true
+    },
+    {
+      "pid": 3378,
+      "plpo": "plpo_generic_5_T_G_01",
+      "tone": 5,
+      "build": "T",
+      "neckRatio": 1.958,
+      "isModern": true
+    },
+    {
+      "pid": 3380,
+      "plpo": "plpo_generic_1_B_N_011",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.293,
+      "isModern": true
+    },
+    {
+      "pid": 3381,
+      "plpo": "plpo_generic_2_B_B_005",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 2.208,
+      "isModern": true
+    },
+    {
+      "pid": 3382,
+      "plpo": "plpo_generic_2_B_N_0013",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.31,
+      "isModern": true
+    },
+    {
+      "pid": 3383,
+      "plpo": "plpo_generic_2_B_N_0014",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 0.848,
+      "isModern": true
+    },
+    {
+      "pid": 3384,
+      "plpo": "plpo_generic_2_B_N_02",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.342,
+      "isModern": true
+    },
+    {
+      "pid": 3385,
+      "plpo": "plpo_generic_7_B_G_004",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.8,
+      "isModern": true
+    },
+    {
+      "pid": 3386,
+      "plpo": "plpo_generic_4_B_N_004",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 0.905,
+      "isModern": true
+    },
+    {
+      "pid": 3400,
+      "plpo": "plpo_generic_6_B_N_007",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.667,
+      "isModern": true
+    },
+    {
+      "pid": 3401,
+      "plpo": "plpo_generic_7_B_N_015",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 2.056,
+      "isModern": true
+    },
+    {
+      "pid": 3402,
+      "plpo": "plpo_generic_6_B_G_05",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.077,
+      "isModern": true
+    },
+    {
+      "pid": 3403,
+      "plpo": "plpo_generic_6_B_G_06",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 2.294,
+      "isModern": true
+    },
+    {
+      "pid": 3404,
+      "plpo": "plpo_generic_2_B_N_0017",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.132,
+      "isModern": true
+    },
+    {
+      "pid": 3405,
+      "plpo": "plpo_generic_2_B_N_0016",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 0.806,
+      "isModern": true
+    },
+    {
+      "pid": 3406,
+      "plpo": "plpo_generic_6_B_N_0011",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.25,
+      "isModern": true
+    },
+    {
+      "pid": 3407,
+      "plpo": "plpo_generic_2_B_N_0018",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.188,
+      "isModern": true
+    },
+    {
+      "pid": 3410,
+      "plpo": "plpo_generic_6_B_N_009",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 0.946,
+      "isModern": true
+    },
+    {
+      "pid": 3422,
+      "plpo": "plpo_generic_4_B_MS_01",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 3423,
+      "plpo": "plpo_generic_1_005",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 3424,
+      "plpo": "plpo_generic_1_006",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 3425,
+      "plpo": "plpo_generic_5_073",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 3426,
+      "plpo": "plpo_generic_5_074",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 3427,
+      "plpo": "plpo_generic_5_075",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.419,
+      "isModern": false
+    },
+    {
+      "pid": 3428,
+      "plpo": "plpo_generic_5_076",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.912,
+      "isModern": false
+    },
+    {
+      "pid": 3429,
+      "plpo": "plpo_generic_5_077",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.357,
+      "isModern": false
+    },
+    {
+      "pid": 3430,
+      "plpo": "plpo_generic_5_078",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.897,
+      "isModern": false
+    },
+    {
+      "pid": 3431,
+      "plpo": "plpo_generic_5_079",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.067,
+      "isModern": false
+    },
+    {
+      "pid": 3432,
+      "plpo": "plpo_generic_5_080",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.853,
+      "isModern": false
+    },
+    {
+      "pid": 3433,
+      "plpo": "plpo_generic_5_081",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.4,
+      "isModern": false
+    },
+    {
+      "pid": 3434,
+      "plpo": "plpo_generic_5_082",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 3435,
+      "plpo": "plpo_generic_5_083",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.077,
+      "isModern": false
+    },
+    {
+      "pid": 3436,
+      "plpo": "plpo_generic_5_084",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 3437,
+      "plpo": "plpo_generic_5_085",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.133,
+      "isModern": false
+    },
+    {
+      "pid": 3438,
+      "plpo": "plpo_generic_5_086",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.75,
+      "isModern": false
+    },
+    {
+      "pid": 3439,
+      "plpo": "plpo_generic_5_087",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.613,
+      "isModern": false
+    },
+    {
+      "pid": 3440,
+      "plpo": "plpo_generic_5_088",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.559,
+      "isModern": false
+    },
+    {
+      "pid": 3441,
+      "plpo": "plpo_generic_5_089",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.941,
+      "isModern": false
+    },
+    {
+      "pid": 3442,
+      "plpo": "plpo_generic_5_090",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.829,
+      "isModern": false
+    },
+    {
+      "pid": 3443,
+      "plpo": "plpo_generic_5_091",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.615,
+      "isModern": false
+    },
+    {
+      "pid": 3444,
+      "plpo": "plpo_generic_5_092",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.345,
+      "isModern": false
+    },
+    {
+      "pid": 3445,
+      "plpo": "plpo_generic_5_093",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.097,
+      "isModern": false
+    },
+    {
+      "pid": 3446,
+      "plpo": "plpo_generic_5_094",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.179,
+      "isModern": false
+    },
+    {
+      "pid": 3447,
+      "plpo": "plpo_generic_6_023",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 3448,
+      "plpo": "plpo_generic_6_024",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.931,
+      "isModern": false
+    },
+    {
+      "pid": 3449,
+      "plpo": "plpo_generic_6_025",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 3450,
+      "plpo": "plpo_generic_6_026",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.107,
+      "isModern": false
+    },
+    {
+      "pid": 3451,
+      "plpo": "plpo_generic_6_027",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.207,
+      "isModern": false
+    },
+    {
+      "pid": 3452,
+      "plpo": "plpo_generic_6_028",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.471,
+      "isModern": false
+    },
+    {
+      "pid": 3453,
+      "plpo": "plpo_generic_6_029",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.618,
+      "isModern": false
+    },
+    {
+      "pid": 3454,
+      "plpo": "plpo_generic_6_030",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.656,
+      "isModern": false
+    },
+    {
+      "pid": 3455,
+      "plpo": "plpo_generic_1_B_G_01",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.432,
+      "isModern": true
+    },
+    {
+      "pid": 3456,
+      "plpo": "plpo_generic_6_032",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.758,
+      "isModern": false
+    },
+    {
+      "pid": 3457,
+      "plpo": "plpo_generic_6_033",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.742,
+      "isModern": false
+    },
+    {
+      "pid": 3458,
+      "plpo": "plpo_generic_6_034",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 3459,
+      "plpo": "plpo_generic_6_035",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 3460,
+      "plpo": "plpo_generic_6_036",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.688,
+      "isModern": false
+    },
+    {
+      "pid": 3461,
+      "plpo": "plpo_generic_6_037",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.862,
+      "isModern": false
+    },
+    {
+      "pid": 3462,
+      "plpo": "plpo_generic_6_038",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.625,
+      "isModern": false
+    },
+    {
+      "pid": 3463,
+      "plpo": "plpo_generic_6_039",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.9,
+      "isModern": false
+    },
+    {
+      "pid": 3464,
+      "plpo": "plpo_generic_6_040",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.762,
+      "isModern": false
+    },
+    {
+      "pid": 3465,
+      "plpo": "plpo_generic_7_H_G_02",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 0.848,
+      "isModern": true
+    },
+    {
+      "pid": 3466,
+      "plpo": "plpo_generic_6_B_G_005",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.56,
+      "isModern": true
+    },
+    {
+      "pid": 3467,
+      "plpo": "plpo_generic_6_041",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.576,
+      "isModern": false
+    },
+    {
+      "pid": 3468,
+      "plpo": "plpo_generic_7_BMH_GS_005",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.258,
+      "isModern": true
+    },
+    {
+      "pid": 3469,
+      "plpo": "plpo_generic_6_042",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.143,
+      "isModern": false
+    },
+    {
+      "pid": 3470,
+      "plpo": "plpo_generic_6_043",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.036,
+      "isModern": false
+    },
+    {
+      "pid": 3471,
+      "plpo": "plpo_generic_6_044",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.81,
+      "isModern": false
+    },
+    {
+      "pid": 3472,
+      "plpo": "plpo_generic_6_045",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.931,
+      "isModern": false
+    },
+    {
+      "pid": 3473,
+      "plpo": "plpo_generic_7_H_BD_03",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.522,
+      "isModern": true
+    },
+    {
+      "pid": 3474,
+      "plpo": "plpo_generic_7_H_BMS_013",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.233,
+      "isModern": true
+    },
+    {
+      "pid": 3475,
+      "plpo": "plpo_generic_7_H_G_001",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.639,
+      "isModern": true
+    },
+    {
+      "pid": 3476,
+      "plpo": "plpo_generic_6_046",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.4,
+      "isModern": false
+    },
+    {
+      "pid": 3477,
+      "plpo": "plpo_generic_7_H_G_004",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.043,
+      "isModern": true
+    },
+    {
+      "pid": 3478,
+      "plpo": "plpo_generic_6_047",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.241,
+      "isModern": false
+    },
+    {
+      "pid": 3479,
+      "plpo": "plpo_generic_7_H_G_006",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.912,
+      "isModern": true
+    },
+    {
+      "pid": 3480,
+      "plpo": "plpo_generic_7_H_G_009",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.028,
+      "isModern": true
+    },
+    {
+      "pid": 3481,
+      "plpo": "plpo_generic_6_048",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.423,
+      "isModern": false
+    },
+    {
+      "pid": 3482,
+      "plpo": "plpo_generic_6_049",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.44,
+      "isModern": false
+    },
+    {
+      "pid": 3483,
+      "plpo": "plpo_generic_6_050",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.034,
+      "isModern": false
+    },
+    {
+      "pid": 3484,
+      "plpo": "plpo_generic_6_051",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.067,
+      "isModern": false
+    },
+    {
+      "pid": 3485,
+      "plpo": "plpo_generic_6_052",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.933,
+      "isModern": false
+    },
+    {
+      "pid": 3486,
+      "plpo": "plpo_generic_6_053",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3487,
+      "plpo": "plpo_generic_6_054",
+      "tone": 6,
+      "build": "T",
+      "neckRatio": 1.281,
+      "isModern": false
+    },
+    {
+      "pid": 3488,
+      "plpo": "plpo_generic_6_055",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.655,
+      "isModern": false
+    },
+    {
+      "pid": 3489,
+      "plpo": "plpo_generic_6_056",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.767,
+      "isModern": false
+    },
+    {
+      "pid": 3490,
+      "plpo": "plpo_generic_6_057",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 3491,
+      "plpo": "plpo_generic_6_M_N_009",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.25,
+      "isModern": true
+    },
+    {
+      "pid": 3492,
+      "plpo": "plpo_generic_6_058",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.625,
+      "isModern": false
+    },
+    {
+      "pid": 3493,
+      "plpo": "plpo_generic_6_059",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.963,
+      "isModern": false
+    },
+    {
+      "pid": 3494,
+      "plpo": "plpo_generic_6_060",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.167,
+      "isModern": false
+    },
+    {
+      "pid": 3495,
+      "plpo": "plpo_generic_6_061",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.423,
+      "isModern": false
+    },
+    {
+      "pid": 3496,
+      "plpo": "plpo_generic_6_062",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.231,
+      "isModern": false
+    },
+    {
+      "pid": 3497,
+      "plpo": "plpo_generic_6_063",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.25,
+      "isModern": false
+    },
+    {
+      "pid": 3498,
+      "plpo": "plpo_generic_6_064",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.625,
+      "isModern": false
+    },
+    {
+      "pid": 3499,
+      "plpo": "plpo_generic_6_065",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.391,
+      "isModern": false
+    },
+    {
+      "pid": 3500,
+      "plpo": "plpo_generic_6_066",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.417,
+      "isModern": false
+    },
+    {
+      "pid": 3501,
+      "plpo": "plpo_generic_6_067",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 3502,
+      "plpo": "plpo_generic_6_068",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 3503,
+      "plpo": "plpo_generic_6_069",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.867,
+      "isModern": false
+    },
+    {
+      "pid": 3504,
+      "plpo": "plpo_generic_6_070",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.034,
+      "isModern": false
+    },
+    {
+      "pid": 3505,
+      "plpo": "plpo_generic_6_071",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.75,
+      "isModern": false
+    },
+    {
+      "pid": 3506,
+      "plpo": "plpo_generic_6_072",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.742,
+      "isModern": false
+    },
+    {
+      "pid": 3507,
+      "plpo": "plpo_generic_6_073",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.969,
+      "isModern": false
+    },
+    {
+      "pid": 3508,
+      "plpo": "plpo_generic_6_074",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.5,
+      "isModern": false
+    },
+    {
+      "pid": 3509,
+      "plpo": "plpo_generic_6_075",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.714,
+      "isModern": false
+    },
+    {
+      "pid": 3510,
+      "plpo": "plpo_generic_6_076",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.581,
+      "isModern": false
+    },
+    {
+      "pid": 3511,
+      "plpo": "plpo_generic_6_077",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 3512,
+      "plpo": "plpo_generic_6_078",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 3513,
+      "plpo": "plpo_generic_6_079",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.034,
+      "isModern": false
+    },
+    {
+      "pid": 3514,
+      "plpo": "plpo_generic_6_080",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.107,
+      "isModern": false
+    },
+    {
+      "pid": 3515,
+      "plpo": "plpo_generic_6_081",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.296,
+      "isModern": false
+    },
+    {
+      "pid": 3516,
+      "plpo": "plpo_generic_6_082",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.48,
+      "isModern": false
+    },
+    {
+      "pid": 3517,
+      "plpo": "plpo_generic_6_083",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.875,
+      "isModern": false
+    },
+    {
+      "pid": 3518,
+      "plpo": "plpo_generic_6_084",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 3519,
+      "plpo": "plpo_generic_6_085",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.875,
+      "isModern": false
+    },
+    {
+      "pid": 3520,
+      "plpo": "plpo_generic_6_086",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.848,
+      "isModern": false
+    },
+    {
+      "pid": 3521,
+      "plpo": "plpo_generic_6_087",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.103,
+      "isModern": false
+    },
+    {
+      "pid": 3522,
+      "plpo": "plpo_generic_7_M_MB_009",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 0.943,
+      "isModern": true
+    },
+    {
+      "pid": 3523,
+      "plpo": "plpo_generic_6_088",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.033,
+      "isModern": false
+    },
+    {
+      "pid": 3524,
+      "plpo": "plpo_generic_6_089",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.647,
+      "isModern": false
+    },
+    {
+      "pid": 3525,
+      "plpo": "plpo_generic_6_090",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.758,
+      "isModern": false
+    },
+    {
+      "pid": 3526,
+      "plpo": "plpo_generic_6_091",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.967,
+      "isModern": false
+    },
+    {
+      "pid": 3527,
+      "plpo": "plpo_generic_6_092",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.074,
+      "isModern": false
+    },
+    {
+      "pid": 3528,
+      "plpo": "plpo_generic_6_093",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.906,
+      "isModern": false
+    },
+    {
+      "pid": 3529,
+      "plpo": "plpo_generic_6_094",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 3530,
+      "plpo": "plpo_generic_6_095",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.758,
+      "isModern": false
+    },
+    {
+      "pid": 3531,
+      "plpo": "plpo_generic_6_096",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 3532,
+      "plpo": "plpo_generic_6_097",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.969,
+      "isModern": false
+    },
+    {
+      "pid": 3533,
+      "plpo": "plpo_generic_6_098",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 3534,
+      "plpo": "plpo_generic_7_001",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.688,
+      "isModern": false
+    },
+    {
+      "pid": 3535,
+      "plpo": "plpo_generic_7_002",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.28,
+      "isModern": false
+    },
+    {
+      "pid": 3536,
+      "plpo": "plpo_generic_7_003",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.871,
+      "isModern": false
+    },
+    {
+      "pid": 3537,
+      "plpo": "plpo_generic_7_004",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.097,
+      "isModern": false
+    },
+    {
+      "pid": 3538,
+      "plpo": "plpo_generic_7_005",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 3539,
+      "plpo": "plpo_generic_7_006",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.107,
+      "isModern": false
+    },
+    {
+      "pid": 3540,
+      "plpo": "plpo_generic_7_007",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.069,
+      "isModern": false
+    },
+    {
+      "pid": 3541,
+      "plpo": "plpo_generic_7_008",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.458,
+      "isModern": false
+    },
+    {
+      "pid": 3542,
+      "plpo": "plpo_generic_7_009",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.867,
+      "isModern": false
+    },
+    {
+      "pid": 3543,
+      "plpo": "plpo_generic_7_010",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 3544,
+      "plpo": "plpo_generic_7_011",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.613,
+      "isModern": false
+    },
+    {
+      "pid": 3545,
+      "plpo": "plpo_generic_7_012",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.576,
+      "isModern": false
+    },
+    {
+      "pid": 3546,
+      "plpo": "plpo_generic_7_013",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 3547,
+      "plpo": "plpo_generic_7_014",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.719,
+      "isModern": false
+    },
+    {
+      "pid": 3548,
+      "plpo": "plpo_generic_7_015",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 3549,
+      "plpo": "plpo_generic_7_016",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3550,
+      "plpo": "plpo_generic_7_017",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.897,
+      "isModern": false
+    },
+    {
+      "pid": 3551,
+      "plpo": "plpo_generic_7_018",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.083,
+      "isModern": false
+    },
+    {
+      "pid": 3552,
+      "plpo": "plpo_generic_7_019",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.103,
+      "isModern": false
+    },
+    {
+      "pid": 3553,
+      "plpo": "plpo_generic_7_020",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.56,
+      "isModern": false
+    },
+    {
+      "pid": 3554,
+      "plpo": "plpo_generic_7_B_B_001",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.188,
+      "isModern": true
+    },
+    {
+      "pid": 3555,
+      "plpo": "plpo_generic_7_BMT_BM_012",
+      "tone": 7,
+      "build": "BMT",
+      "neckRatio": 1.696,
+      "isModern": true
+    },
+    {
+      "pid": 3556,
+      "plpo": "plpo_generic_7_021",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.241,
+      "isModern": false
+    },
+    {
+      "pid": 3557,
+      "plpo": "plpo_generic_7_022",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.735,
+      "isModern": false
+    },
+    {
+      "pid": 3558,
+      "plpo": "plpo_generic_7_023",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 3559,
+      "plpo": "plpo_generic_7_024",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.733,
+      "isModern": false
+    },
+    {
+      "pid": 3560,
+      "plpo": "plpo_generic_7_025",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.515,
+      "isModern": false
+    },
+    {
+      "pid": 3561,
+      "plpo": "plpo_generic_7_026",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 3562,
+      "plpo": "plpo_generic_7_027",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3563,
+      "plpo": "plpo_generic_7_028",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.758,
+      "isModern": false
+    },
+    {
+      "pid": 3564,
+      "plpo": "plpo_generic_7_029",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.75,
+      "isModern": false
+    },
+    {
+      "pid": 3565,
+      "plpo": "plpo_generic_7_030",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 3566,
+      "plpo": "plpo_generic_7_B_N_06",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.114,
+      "isModern": true
+    },
+    {
+      "pid": 3567,
+      "plpo": "plpo_generic_7_031",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.719,
+      "isModern": false
+    },
+    {
+      "pid": 3568,
+      "plpo": "plpo_generic_7_032",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.719,
+      "isModern": false
+    },
+    {
+      "pid": 3569,
+      "plpo": "plpo_generic_7_033",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.579,
+      "isModern": false
+    },
+    {
+      "pid": 3570,
+      "plpo": "plpo_generic_7_034",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.364,
+      "isModern": false
+    },
+    {
+      "pid": 3571,
+      "plpo": "plpo_generic_7_M_GS_015",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.773,
+      "isModern": true
+    },
+    {
+      "pid": 3572,
+      "plpo": "plpo_generic_7_035",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.926,
+      "isModern": false
+    },
+    {
+      "pid": 3573,
+      "plpo": "plpo_generic_7_036",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.893,
+      "isModern": false
+    },
+    {
+      "pid": 3574,
+      "plpo": "plpo_generic_7_037",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.903,
+      "isModern": false
+    },
+    {
+      "pid": 3575,
+      "plpo": "plpo_generic_7_038",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.074,
+      "isModern": false
+    },
+    {
+      "pid": 3576,
+      "plpo": "plpo_generic_7_039",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.069,
+      "isModern": false
+    },
+    {
+      "pid": 3577,
+      "plpo": "plpo_generic_7_040",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.735,
+      "isModern": false
+    },
+    {
+      "pid": 3578,
+      "plpo": "plpo_generic_7_041",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.933,
+      "isModern": false
+    },
+    {
+      "pid": 3579,
+      "plpo": "plpo_generic_7_042",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.148,
+      "isModern": false
+    },
+    {
+      "pid": 3580,
+      "plpo": "plpo_generic_7_043",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.111,
+      "isModern": false
+    },
+    {
+      "pid": 3581,
+      "plpo": "plpo_generic_7_BMH_MG_001",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.435,
+      "isModern": true
+    },
+    {
+      "pid": 3582,
+      "plpo": "plpo_generic_7_044",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.115,
+      "isModern": false
+    },
+    {
+      "pid": 3583,
+      "plpo": "plpo_generic_7_045",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.545,
+      "isModern": false
+    },
+    {
+      "pid": 3584,
+      "plpo": "plpo_generic_7_046",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 3585,
+      "plpo": "plpo_generic_7_047",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.485,
+      "isModern": false
+    },
+    {
+      "pid": 3586,
+      "plpo": "plpo_generic_7_048",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 3587,
+      "plpo": "plpo_generic_7_049",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 3588,
+      "plpo": "plpo_generic_7_050",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 3589,
+      "plpo": "plpo_generic_7_051",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 3590,
+      "plpo": "plpo_generic_7_052",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.636,
+      "isModern": false
+    },
+    {
+      "pid": 3591,
+      "plpo": "plpo_generic_7_053",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.679,
+      "isModern": false
+    },
+    {
+      "pid": 3592,
+      "plpo": "plpo_generic_7_054",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.968,
+      "isModern": false
+    },
+    {
+      "pid": 3593,
+      "plpo": "plpo_generic_7_055",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.138,
+      "isModern": false
+    },
+    {
+      "pid": 3594,
+      "plpo": "plpo_generic_7_056",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.871,
+      "isModern": false
+    },
+    {
+      "pid": 3595,
+      "plpo": "plpo_generic_7_057",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.806,
+      "isModern": false
+    },
+    {
+      "pid": 3596,
+      "plpo": "plpo_generic_7_058",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.903,
+      "isModern": false
+    },
+    {
+      "pid": 3597,
+      "plpo": "plpo_generic_7_059",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.969,
+      "isModern": false
+    },
+    {
+      "pid": 3598,
+      "plpo": "plpo_generic_7_060",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.931,
+      "isModern": false
+    },
+    {
+      "pid": 3599,
+      "plpo": "plpo_generic_7_061",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3600,
+      "plpo": "plpo_generic_7_062",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.593,
+      "isModern": false
+    },
+    {
+      "pid": 3601,
+      "plpo": "plpo_generic_7_063",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.103,
+      "isModern": false
+    },
+    {
+      "pid": 3602,
+      "plpo": "plpo_generic_7_064",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.069,
+      "isModern": false
+    },
+    {
+      "pid": 3603,
+      "plpo": "plpo_generic_7_065",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.909,
+      "isModern": false
+    },
+    {
+      "pid": 3604,
+      "plpo": "plpo_generic_7_066",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.844,
+      "isModern": false
+    },
+    {
+      "pid": 3605,
+      "plpo": "plpo_generic_7_067",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.871,
+      "isModern": false
+    },
+    {
+      "pid": 3606,
+      "plpo": "plpo_generic_7_068",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.545,
+      "isModern": false
+    },
+    {
+      "pid": 3607,
+      "plpo": "plpo_generic_7_069",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.848,
+      "isModern": false
+    },
+    {
+      "pid": 3608,
+      "plpo": "plpo_generic_7_070",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3609,
+      "plpo": "plpo_generic_7_071",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.933,
+      "isModern": false
+    },
+    {
+      "pid": 3610,
+      "plpo": "plpo_generic_7_072",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.8,
+      "isModern": false
+    },
+    {
+      "pid": 3611,
+      "plpo": "plpo_generic_7_H_N_01",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.565,
+      "isModern": true
+    },
+    {
+      "pid": 3612,
+      "plpo": "plpo_generic_7_073",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 3613,
+      "plpo": "plpo_generic_7_074",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3614,
+      "plpo": "plpo_generic_7_075",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.788,
+      "isModern": false
+    },
+    {
+      "pid": 3615,
+      "plpo": "plpo_generic_7_076",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 3616,
+      "plpo": "plpo_generic_7_077",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.735,
+      "isModern": false
+    },
+    {
+      "pid": 3617,
+      "plpo": "plpo_generic_7_078",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.824,
+      "isModern": false
+    },
+    {
+      "pid": 3618,
+      "plpo": "plpo_generic_7_079",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.12,
+      "isModern": false
+    },
+    {
+      "pid": 3619,
+      "plpo": "plpo_generic_7_080",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.714,
+      "isModern": false
+    },
+    {
+      "pid": 3620,
+      "plpo": "plpo_generic_7_081",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.719,
+      "isModern": false
+    },
+    {
+      "pid": 3621,
+      "plpo": "plpo_generic_7_082",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.636,
+      "isModern": false
+    },
+    {
+      "pid": 3622,
+      "plpo": "plpo_generic_7_083",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.033,
+      "isModern": false
+    },
+    {
+      "pid": 3623,
+      "plpo": "plpo_generic_7_084",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 3624,
+      "plpo": "plpo_generic_7_085",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.848,
+      "isModern": false
+    },
+    {
+      "pid": 3625,
+      "plpo": "plpo_generic_7_086",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 3626,
+      "plpo": "plpo_generic_7_087",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 3627,
+      "plpo": "plpo_generic_7_088",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.033,
+      "isModern": false
+    },
+    {
+      "pid": 3628,
+      "plpo": "plpo_generic_7_089",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.9,
+      "isModern": false
+    },
+    {
+      "pid": 3629,
+      "plpo": "plpo_generic_7_090",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.758,
+      "isModern": false
+    },
+    {
+      "pid": 3630,
+      "plpo": "plpo_generic_7_091",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.697,
+      "isModern": false
+    },
+    {
+      "pid": 3631,
+      "plpo": "plpo_generic_7_092",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.71,
+      "isModern": false
+    },
+    {
+      "pid": 3632,
+      "plpo": "plpo_generic_7_093",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.727,
+      "isModern": false
+    },
+    {
+      "pid": 3633,
+      "plpo": "plpo_generic_7_094",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 3634,
+      "plpo": "plpo_generic_7_095",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 3635,
+      "plpo": "plpo_generic_7_096",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.656,
+      "isModern": false
+    },
+    {
+      "pid": 3636,
+      "plpo": "plpo_generic_7_097",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.545,
+      "isModern": false
+    },
+    {
+      "pid": 3637,
+      "plpo": "plpo_generic_7_098",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.292,
+      "isModern": false
+    },
+    {
+      "pid": 3638,
+      "plpo": "plpo_generic_6_M_N_01",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.345,
+      "isModern": true
+    },
+    {
+      "pid": 3639,
+      "plpo": "plpo_generic_7_099",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 3.0,
+      "isModern": false
+    },
+    {
+      "pid": 3640,
+      "plpo": "plpo_generic_7_B_N_08",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.31,
+      "isModern": true
+    },
+    {
+      "pid": 3641,
+      "plpo": "plpo_generic_7_100",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 3642,
+      "plpo": "plpo_generic_7_101",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 3643,
+      "plpo": "plpo_generic_7_102",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 3644,
+      "plpo": "plpo_generic_7_103",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.688,
+      "isModern": false
+    },
+    {
+      "pid": 3645,
+      "plpo": "plpo_generic_7_104",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.636,
+      "isModern": false
+    },
+    {
+      "pid": 3646,
+      "plpo": "plpo_generic_7_105",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 3647,
+      "plpo": "plpo_generic_7_106",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.906,
+      "isModern": false
+    },
+    {
+      "pid": 3648,
+      "plpo": "plpo_generic_7_107",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.71,
+      "isModern": false
+    },
+    {
+      "pid": 3649,
+      "plpo": "plpo_generic_7_108",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 3650,
+      "plpo": "plpo_generic_7_109",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.909,
+      "isModern": false
+    },
+    {
+      "pid": 3651,
+      "plpo": "plpo_generic_7_BMH_S_008",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.48,
+      "isModern": true
+    },
+    {
+      "pid": 3652,
+      "plpo": "plpo_generic_7_110",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 3653,
+      "plpo": "plpo_generic_7_111",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.375,
+      "isModern": false
+    },
+    {
+      "pid": 3654,
+      "plpo": "plpo_generic_7_112",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.143,
+      "isModern": false
+    },
+    {
+      "pid": 3655,
+      "plpo": "plpo_generic_7_113",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 3656,
+      "plpo": "plpo_generic_7_114",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.1,
+      "isModern": false
+    },
+    {
+      "pid": 3657,
+      "plpo": "plpo_generic_7_BMH_MG_008",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.636,
+      "isModern": true
+    },
+    {
+      "pid": 3658,
+      "plpo": "plpo_generic_7_115",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.094,
+      "isModern": false
+    },
+    {
+      "pid": 3659,
+      "plpo": "plpo_generic_7_116",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.697,
+      "isModern": false
+    },
+    {
+      "pid": 3660,
+      "plpo": "plpo_generic_6_H_G_01",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.615,
+      "isModern": true
+    },
+    {
+      "pid": 3661,
+      "plpo": "plpo_generic_7_117",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.848,
+      "isModern": false
+    },
+    {
+      "pid": 3662,
+      "plpo": "plpo_generic_2_B_B_006",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.515,
+      "isModern": true
+    },
+    {
+      "pid": 3663,
+      "plpo": "plpo_generic_6_H_MS_01",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 0.795,
+      "isModern": true
+    },
+    {
+      "pid": 3664,
+      "plpo": "plpo_generic_6_H_N_001",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.226,
+      "isModern": true
+    },
+    {
+      "pid": 3665,
+      "plpo": "plpo_generic_6_H_N_01",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.147,
+      "isModern": true
+    },
+    {
+      "pid": 3666,
+      "plpo": "plpo_generic_2_B_N_0010",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.175,
+      "isModern": true
+    },
+    {
+      "pid": 3667,
+      "plpo": "plpo_generic_2_B_N_0011",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 2.217,
+      "isModern": true
+    },
+    {
+      "pid": 3668,
+      "plpo": "plpo_generic_7_121",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.241,
+      "isModern": false
+    },
+    {
+      "pid": 3669,
+      "plpo": "plpo_generic_6_H_N_20",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 3670,
+      "plpo": "plpo_generic_7_122",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.208,
+      "isModern": false
+    },
+    {
+      "pid": 3671,
+      "plpo": "plpo_generic_2_B_N_0015",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.028,
+      "isModern": true
+    },
+    {
+      "pid": 3672,
+      "plpo": "plpo_generic_7_124",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.52,
+      "isModern": false
+    },
+    {
+      "pid": 3673,
+      "plpo": "plpo_generic_2_B_N_03",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.225,
+      "isModern": true
+    },
+    {
+      "pid": 3674,
+      "plpo": "plpo_generic_7_H_N_006",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.64,
+      "isModern": true
+    },
+    {
+      "pid": 3675,
+      "plpo": "plpo_generic_7_126",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.933,
+      "isModern": false
+    },
+    {
+      "pid": 3676,
+      "plpo": "plpo_generic_7_127",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.7,
+      "isModern": false
+    },
+    {
+      "pid": 3677,
+      "plpo": "plpo_generic_7_128",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.103,
+      "isModern": false
+    },
+    {
+      "pid": 3678,
+      "plpo": "plpo_generic_7_129",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.28,
+      "isModern": false
+    },
+    {
+      "pid": 3679,
+      "plpo": "plpo_generic_7_130",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.833,
+      "isModern": false
+    },
+    {
+      "pid": 3680,
+      "plpo": "plpo_generic_7_131",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 3.474,
+      "isModern": false
+    },
+    {
+      "pid": 3681,
+      "plpo": "plpo_generic_7_132",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.875,
+      "isModern": false
+    },
+    {
+      "pid": 3682,
+      "plpo": "plpo_generic_7_133",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 3683,
+      "plpo": "plpo_generic_7_134",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.875,
+      "isModern": false
+    },
+    {
+      "pid": 3684,
+      "plpo": "plpo_generic_7_135",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.909,
+      "isModern": false
+    },
+    {
+      "pid": 3685,
+      "plpo": "plpo_generic_7_136",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3686,
+      "plpo": "plpo_generic_7_137",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 3687,
+      "plpo": "plpo_generic_7_138",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.107,
+      "isModern": false
+    },
+    {
+      "pid": 3688,
+      "plpo": "plpo_generic_7_139",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.839,
+      "isModern": false
+    },
+    {
+      "pid": 3689,
+      "plpo": "plpo_generic_7_140",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.143,
+      "isModern": false
+    },
+    {
+      "pid": 3690,
+      "plpo": "plpo_generic_7_141",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.036,
+      "isModern": false
+    },
+    {
+      "pid": 3691,
+      "plpo": "plpo_generic_7_142",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.967,
+      "isModern": false
+    },
+    {
+      "pid": 3692,
+      "plpo": "plpo_generic_7_143",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 3693,
+      "plpo": "plpo_generic_7_144",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.667,
+      "isModern": false
+    },
+    {
+      "pid": 3694,
+      "plpo": "plpo_generic_7_145",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.069,
+      "isModern": false
+    },
+    {
+      "pid": 3696,
+      "plpo": "plpo_generic_7_B_N_07",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.04,
+      "isModern": true
+    },
+    {
+      "pid": 3697,
+      "plpo": "plpo_generic_7_146",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.844,
+      "isModern": false
+    },
+    {
+      "pid": 3698,
+      "plpo": "plpo_generic_7_147",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.065,
+      "isModern": false
+    },
+    {
+      "pid": 3699,
+      "plpo": "plpo_generic_7_148",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 3700,
+      "plpo": "plpo_generic_7_149",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.793,
+      "isModern": false
+    },
+    {
+      "pid": 3701,
+      "plpo": "plpo_generic_7_150",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.957,
+      "isModern": false
+    },
+    {
+      "pid": 3702,
+      "plpo": "plpo_generic_7_151",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.824,
+      "isModern": false
+    },
+    {
+      "pid": 3703,
+      "plpo": "plpo_generic_7_152",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 3704,
+      "plpo": "plpo_generic_6_M_N_02",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 0.9,
+      "isModern": true
+    },
+    {
+      "pid": 3705,
+      "plpo": "plpo_generic_7_153",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 3706,
+      "plpo": "plpo_generic_7_154",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.5,
+      "isModern": false
+    },
+    {
+      "pid": 3707,
+      "plpo": "plpo_generic_7_155",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.968,
+      "isModern": false
+    },
+    {
+      "pid": 3708,
+      "plpo": "plpo_generic_7_156",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 3709,
+      "plpo": "plpo_generic_7_157",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.214,
+      "isModern": false
+    },
+    {
+      "pid": 3710,
+      "plpo": "plpo_generic_7_158",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.444,
+      "isModern": false
+    },
+    {
+      "pid": 3711,
+      "plpo": "plpo_generic_6_M_MB_011",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.321,
+      "isModern": true
+    },
+    {
+      "pid": 3712,
+      "plpo": "plpo_generic_7_159",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 3713,
+      "plpo": "plpo_generic_7_160",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.179,
+      "isModern": false
+    },
+    {
+      "pid": 3714,
+      "plpo": "plpo_generic_7_161",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 3715,
+      "plpo": "plpo_generic_7_162",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 3716,
+      "plpo": "plpo_generic_7_163",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 3717,
+      "plpo": "plpo_generic_7_164",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.48,
+      "isModern": false
+    },
+    {
+      "pid": 3718,
+      "plpo": "plpo_generic_2_B_S_009",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.135,
+      "isModern": true
+    },
+    {
+      "pid": 3719,
+      "plpo": "plpo_generic_6_002",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 3720,
+      "plpo": "plpo_generic_6_003",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.364,
+      "isModern": false
+    },
+    {
+      "pid": 3721,
+      "plpo": "plpo_generic_7_BMT_M_009",
+      "tone": 7,
+      "build": "BMT",
+      "neckRatio": 1.36,
+      "isModern": true
+    },
+    {
+      "pid": 3722,
+      "plpo": "plpo_generic_6_004",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.636,
+      "isModern": false
+    },
+    {
+      "pid": 3723,
+      "plpo": "plpo_generic_6_005",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 3724,
+      "plpo": "plpo_generic_6_006",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.647,
+      "isModern": false
+    },
+    {
+      "pid": 3725,
+      "plpo": "plpo_generic_6_007",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.657,
+      "isModern": false
+    },
+    {
+      "pid": 3726,
+      "plpo": "plpo_generic_6_008",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.548,
+      "isModern": false
+    },
+    {
+      "pid": 3727,
+      "plpo": "plpo_generic_6_009",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3728,
+      "plpo": "plpo_generic_6_010",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.167,
+      "isModern": false
+    },
+    {
+      "pid": 3729,
+      "plpo": "plpo_generic_6_011",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3730,
+      "plpo": "plpo_generic_6_012",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 3731,
+      "plpo": "plpo_generic_6_013",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.031,
+      "isModern": false
+    },
+    {
+      "pid": 3732,
+      "plpo": "plpo_generic_6_014",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.375,
+      "isModern": false
+    },
+    {
+      "pid": 3733,
+      "plpo": "plpo_generic_6_015",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 3734,
+      "plpo": "plpo_generic_6_016",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.857,
+      "isModern": false
+    },
+    {
+      "pid": 3735,
+      "plpo": "plpo_generic_6_017",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.912,
+      "isModern": false
+    },
+    {
+      "pid": 3736,
+      "plpo": "plpo_generic_6_018",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3737,
+      "plpo": "plpo_generic_6_T_N_009",
+      "tone": 6,
+      "build": "T",
+      "neckRatio": 1.286,
+      "isModern": true
+    },
+    {
+      "pid": 3738,
+      "plpo": "plpo_generic_6_019",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 3739,
+      "plpo": "plpo_generic_6_020",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.871,
+      "isModern": false
+    },
+    {
+      "pid": 3740,
+      "plpo": "plpo_generic_6_021",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 3741,
+      "plpo": "plpo_generic_6_022",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.185,
+      "isModern": false
+    },
+    {
+      "pid": 3742,
+      "plpo": "plpo_generic_6_023",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 3743,
+      "plpo": "plpo_generic_6_024",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.931,
+      "isModern": false
+    },
+    {
+      "pid": 3744,
+      "plpo": "plpo_generic_6_025",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 3745,
+      "plpo": "plpo_generic_6_026",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.107,
+      "isModern": false
+    },
+    {
+      "pid": 3746,
+      "plpo": "plpo_generic_6_027",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.207,
+      "isModern": false
+    },
+    {
+      "pid": 3747,
+      "plpo": "plpo_generic_6_028",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.471,
+      "isModern": false
+    },
+    {
+      "pid": 3748,
+      "plpo": "plpo_generic_6_029",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.618,
+      "isModern": false
+    },
+    {
+      "pid": 3749,
+      "plpo": "plpo_generic_6_030",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.656,
+      "isModern": false
+    },
+    {
+      "pid": 3750,
+      "plpo": "plpo_generic_6_031",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.514,
+      "isModern": false
+    },
+    {
+      "pid": 3751,
+      "plpo": "plpo_generic_6_032",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.758,
+      "isModern": false
+    },
+    {
+      "pid": 3752,
+      "plpo": "plpo_generic_6_033",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.742,
+      "isModern": false
+    },
+    {
+      "pid": 3753,
+      "plpo": "plpo_generic_6_034",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 3754,
+      "plpo": "plpo_generic_6_035",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 3755,
+      "plpo": "plpo_generic_6_B_MS_01",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.909,
+      "isModern": true
+    },
+    {
+      "pid": 3756,
+      "plpo": "plpo_generic_2_BMH_S_003",
+      "tone": 2,
+      "build": "BMH",
+      "neckRatio": 1.073,
+      "isModern": true
+    },
+    {
+      "pid": 3757,
+      "plpo": "plpo_generic_6_B_N_01",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 2.158,
+      "isModern": true
+    },
+    {
+      "pid": 3758,
+      "plpo": "plpo_generic_6_B_N_02",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.062,
+      "isModern": true
+    },
+    {
+      "pid": 3759,
+      "plpo": "plpo_generic_6_B_N_03",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.162,
+      "isModern": true
+    },
+    {
+      "pid": 3760,
+      "plpo": "plpo_generic_6_B_N_004",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.061,
+      "isModern": true
+    },
+    {
+      "pid": 3761,
+      "plpo": "plpo_generic_6_BHM_BM_004",
+      "tone": 6,
+      "build": "BHM",
+      "neckRatio": 1.258,
+      "isModern": true
+    },
+    {
+      "pid": 3762,
+      "plpo": "plpo_generic_6_BHM_G_002",
+      "tone": 6,
+      "build": "BHM",
+      "neckRatio": 1.346,
+      "isModern": true
+    },
+    {
+      "pid": 3763,
+      "plpo": "plpo_generic_6_BM_MG_008",
+      "tone": 6,
+      "build": "BM",
+      "neckRatio": 1.652,
+      "isModern": true
+    },
+    {
+      "pid": 3764,
+      "plpo": "plpo_generic_6_BM_N_009",
+      "tone": 6,
+      "build": "BM",
+      "neckRatio": 1.194,
+      "isModern": true
+    },
+    {
+      "pid": 3765,
+      "plpo": "plpo_generic_6_BMH_G_010",
+      "tone": 6,
+      "build": "BMH",
+      "neckRatio": 1.727,
+      "isModern": true
+    },
+    {
+      "pid": 3766,
+      "plpo": "plpo_generic_6_BTM_BM_001",
+      "tone": 6,
+      "build": "BTM",
+      "neckRatio": 1.281,
+      "isModern": true
+    },
+    {
+      "pid": 3767,
+      "plpo": "plpo_generic_6_H_B_002",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.161,
+      "isModern": true
+    },
+    {
+      "pid": 3768,
+      "plpo": "plpo_generic_6_H_BD_01",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.034,
+      "isModern": true
+    },
+    {
+      "pid": 3769,
+      "plpo": "plpo_generic_6_T_G_005",
+      "tone": 6,
+      "build": "T",
+      "neckRatio": 0.972,
+      "isModern": true
+    },
+    {
+      "pid": 3770,
+      "plpo": "plpo_generic_6_T_MG_006",
+      "tone": 6,
+      "build": "T",
+      "neckRatio": 1.267,
+      "isModern": true
+    },
+    {
+      "pid": 3771,
+      "plpo": "plpo_generic_2_BMH_S_004",
+      "tone": 2,
+      "build": "BMH",
+      "neckRatio": 1.286,
+      "isModern": true
+    },
+    {
+      "pid": 3772,
+      "plpo": "plpo_generic_7_B_B_009",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.292,
+      "isModern": true
+    },
+    {
+      "pid": 3773,
+      "plpo": "plpo_generic_6_038",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.625,
+      "isModern": false
+    },
+    {
+      "pid": 3774,
+      "plpo": "plpo_generic_6_039",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.9,
+      "isModern": false
+    },
+    {
+      "pid": 3775,
+      "plpo": "plpo_generic_6_040",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.762,
+      "isModern": false
+    },
+    {
+      "pid": 3776,
+      "plpo": "plpo_generic_6_041",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.576,
+      "isModern": false
+    },
+    {
+      "pid": 3777,
+      "plpo": "plpo_generic_7_B_G_009",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 0.895,
+      "isModern": true
+    },
+    {
+      "pid": 3778,
+      "plpo": "plpo_generic_7_BHM_N_004",
+      "tone": 7,
+      "build": "BHM",
+      "neckRatio": 1.31,
+      "isModern": true
+    },
+    {
+      "pid": 3779,
+      "plpo": "plpo_generic_6_042",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.143,
+      "isModern": false
+    },
+    {
+      "pid": 3780,
+      "plpo": "plpo_generic_6_043",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.036,
+      "isModern": false
+    },
+    {
+      "pid": 3781,
+      "plpo": "plpo_generic_6_044",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.81,
+      "isModern": false
+    },
+    {
+      "pid": 3782,
+      "plpo": "plpo_generic_7_B_G_005",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.292,
+      "isModern": true
+    },
+    {
+      "pid": 3783,
+      "plpo": "plpo_generic_6_045",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.931,
+      "isModern": false
+    },
+    {
+      "pid": 3784,
+      "plpo": "plpo_generic_6_046",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.4,
+      "isModern": false
+    },
+    {
+      "pid": 3785,
+      "plpo": "plpo_generic_6_047",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.241,
+      "isModern": false
+    },
+    {
+      "pid": 3786,
+      "plpo": "plpo_generic_6_048",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.423,
+      "isModern": false
+    },
+    {
+      "pid": 3787,
+      "plpo": "plpo_generic_7_T_N_009",
+      "tone": 7,
+      "build": "T",
+      "neckRatio": 1.615,
+      "isModern": true
+    },
+    {
+      "pid": 3788,
+      "plpo": "plpo_generic_6_049",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.44,
+      "isModern": false
+    },
+    {
+      "pid": 3789,
+      "plpo": "plpo_generic_7_B_G_008",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 0.946,
+      "isModern": true
+    },
+    {
+      "pid": 3790,
+      "plpo": "plpo_generic_6_050",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.034,
+      "isModern": false
+    },
+    {
+      "pid": 3791,
+      "plpo": "plpo_generic_6_051",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.067,
+      "isModern": false
+    },
+    {
+      "pid": 3792,
+      "plpo": "plpo_generic_6_052",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.933,
+      "isModern": false
+    },
+    {
+      "pid": 3793,
+      "plpo": "plpo_generic_6_053",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3794,
+      "plpo": "plpo_generic_6_054",
+      "tone": 6,
+      "build": "T",
+      "neckRatio": 1.281,
+      "isModern": false
+    },
+    {
+      "pid": 3795,
+      "plpo": "plpo_generic_6_055",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.655,
+      "isModern": false
+    },
+    {
+      "pid": 3796,
+      "plpo": "plpo_generic_6_056",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.767,
+      "isModern": false
+    },
+    {
+      "pid": 3797,
+      "plpo": "plpo_generic_6_057",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 3798,
+      "plpo": "plpo_generic_7_B_N_003",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.412,
+      "isModern": true
+    },
+    {
+      "pid": 3799,
+      "plpo": "plpo_generic_6_058",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.625,
+      "isModern": false
+    },
+    {
+      "pid": 3800,
+      "plpo": "plpo_generic_6_059",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.963,
+      "isModern": false
+    },
+    {
+      "pid": 3801,
+      "plpo": "plpo_generic_6_060",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.167,
+      "isModern": false
+    },
+    {
+      "pid": 3802,
+      "plpo": "plpo_generic_6_061",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.423,
+      "isModern": false
+    },
+    {
+      "pid": 3803,
+      "plpo": "plpo_generic_6_062",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.231,
+      "isModern": false
+    },
+    {
+      "pid": 3804,
+      "plpo": "plpo_generic_6_063",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.25,
+      "isModern": false
+    },
+    {
+      "pid": 3805,
+      "plpo": "plpo_generic_6_064",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.625,
+      "isModern": false
+    },
+    {
+      "pid": 3806,
+      "plpo": "plpo_generic_2_H_G_02",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.345,
+      "isModern": true
+    },
+    {
+      "pid": 3807,
+      "plpo": "plpo_generic_7_M_BD_01",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.226,
+      "isModern": true
+    },
+    {
+      "pid": 3808,
+      "plpo": "plpo_generic_7_M_BD_02",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.789,
+      "isModern": true
+    },
+    {
+      "pid": 3809,
+      "plpo": "plpo_generic_7_M_BM_014",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.88,
+      "isModern": true
+    },
+    {
+      "pid": 3810,
+      "plpo": "plpo_generic_7_M_G_004",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.308,
+      "isModern": true
+    },
+    {
+      "pid": 3811,
+      "plpo": "plpo_generic_2_M_B_01",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 3812,
+      "plpo": "plpo_generic_6_067",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 3813,
+      "plpo": "plpo_generic_6_068",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 3814,
+      "plpo": "plpo_generic_6_069",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.867,
+      "isModern": false
+    },
+    {
+      "pid": 3815,
+      "plpo": "plpo_generic_6_070",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.034,
+      "isModern": false
+    },
+    {
+      "pid": 3816,
+      "plpo": "plpo_generic_2_M_B_02",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.333,
+      "isModern": true
+    },
+    {
+      "pid": 3817,
+      "plpo": "plpo_generic_6_072",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.742,
+      "isModern": false
+    },
+    {
+      "pid": 3818,
+      "plpo": "plpo_generic_6_073",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.969,
+      "isModern": false
+    },
+    {
+      "pid": 3819,
+      "plpo": "plpo_generic_7_BMH_MG_020",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.357,
+      "isModern": true
+    },
+    {
+      "pid": 3820,
+      "plpo": "plpo_generic_6_074",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.5,
+      "isModern": false
+    },
+    {
+      "pid": 3821,
+      "plpo": "plpo_generic_2_T_N_01",
+      "tone": 2,
+      "build": "T",
+      "neckRatio": 1.351,
+      "isModern": true
+    },
+    {
+      "pid": 3822,
+      "plpo": "plpo_generic_6_076",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.581,
+      "isModern": false
+    },
+    {
+      "pid": 3823,
+      "plpo": "plpo_generic_6_077",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 3824,
+      "plpo": "plpo_generic_2_T_N_02",
+      "tone": 2,
+      "build": "T",
+      "neckRatio": 1.233,
+      "isModern": true
+    },
+    {
+      "pid": 3825,
+      "plpo": "plpo_generic_7_T_G_007",
+      "tone": 7,
+      "build": "T",
+      "neckRatio": 1.591,
+      "isModern": true
+    },
+    {
+      "pid": 3826,
+      "plpo": "plpo_generic_6_079",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.034,
+      "isModern": false
+    },
+    {
+      "pid": 3827,
+      "plpo": "plpo_generic_6_080",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.107,
+      "isModern": false
+    },
+    {
+      "pid": 3828,
+      "plpo": "plpo_generic_7_B_N_007",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.219,
+      "isModern": true
+    },
+    {
+      "pid": 3829,
+      "plpo": "plpo_generic_6_081",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.296,
+      "isModern": false
+    },
+    {
+      "pid": 3830,
+      "plpo": "plpo_generic_7_B_N_009",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.4,
+      "isModern": true
+    },
+    {
+      "pid": 3831,
+      "plpo": "plpo_generic_6_082",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.48,
+      "isModern": false
+    },
+    {
+      "pid": 3832,
+      "plpo": "plpo_generic_7_B_S_004",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.029,
+      "isModern": true
+    },
+    {
+      "pid": 3833,
+      "plpo": "plpo_generic_6_083",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.875,
+      "isModern": false
+    },
+    {
+      "pid": 3834,
+      "plpo": "plpo_generic_6_084",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 3835,
+      "plpo": "plpo_generic_6_085",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.875,
+      "isModern": false
+    },
+    {
+      "pid": 3836,
+      "plpo": "plpo_generic_6_086",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.848,
+      "isModern": false
+    },
+    {
+      "pid": 3837,
+      "plpo": "plpo_generic_6_087",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.103,
+      "isModern": false
+    },
+    {
+      "pid": 3838,
+      "plpo": "plpo_generic_6_088",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.033,
+      "isModern": false
+    },
+    {
+      "pid": 3839,
+      "plpo": "plpo_generic_6_089",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.647,
+      "isModern": false
+    },
+    {
+      "pid": 3840,
+      "plpo": "plpo_generic_6_090",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.758,
+      "isModern": false
+    },
+    {
+      "pid": 3841,
+      "plpo": "plpo_generic_6_091",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.967,
+      "isModern": false
+    },
+    {
+      "pid": 3842,
+      "plpo": "plpo_generic_7_M_N_001",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.333,
+      "isModern": true
+    },
+    {
+      "pid": 3843,
+      "plpo": "plpo_generic_6_092",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 2.074,
+      "isModern": false
+    },
+    {
+      "pid": 3844,
+      "plpo": "plpo_generic_7_M_S_004",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": true
+    },
+    {
+      "pid": 3845,
+      "plpo": "plpo_generic_7_M_MB_010",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 0.9,
+      "isModern": true
+    },
+    {
+      "pid": 3846,
+      "plpo": "plpo_generic_7_T_N_001",
+      "tone": 7,
+      "build": "T",
+      "neckRatio": 1.379,
+      "isModern": true
+    },
+    {
+      "pid": 3847,
+      "plpo": "plpo_generic_6_093",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.906,
+      "isModern": false
+    },
+    {
+      "pid": 3848,
+      "plpo": "plpo_generic_6_094",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 3849,
+      "plpo": "plpo_generic_6_095",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.758,
+      "isModern": false
+    },
+    {
+      "pid": 3850,
+      "plpo": "plpo_generic_6_096",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 3851,
+      "plpo": "plpo_generic_7_BHM_MG_001",
+      "tone": 7,
+      "build": "BHM",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 3852,
+      "plpo": "plpo_generic_7_T_G_004",
+      "tone": 7,
+      "build": "T",
+      "neckRatio": 2.053,
+      "isModern": true
+    },
+    {
+      "pid": 3853,
+      "plpo": "plpo_generic_3_H_B_01",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 1.067,
+      "isModern": true
+    },
+    {
+      "pid": 3854,
+      "plpo": "plpo_generic_3_H_N_01",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 1.462,
+      "isModern": true
+    },
+    {
+      "pid": 3855,
+      "plpo": "plpo_generic_7_002",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.28,
+      "isModern": false
+    },
+    {
+      "pid": 3856,
+      "plpo": "plpo_generic_3_T_N_01",
+      "tone": 3,
+      "build": "T",
+      "neckRatio": 1.167,
+      "isModern": true
+    },
+    {
+      "pid": 3857,
+      "plpo": "plpo_generic_7_BHM_MG_022",
+      "tone": 7,
+      "build": "BHM",
+      "neckRatio": 1.172,
+      "isModern": true
+    },
+    {
+      "pid": 3858,
+      "plpo": "plpo_generic_7_BMH_B_006",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.212,
+      "isModern": true
+    },
+    {
+      "pid": 3859,
+      "plpo": "plpo_generic_7_004",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.097,
+      "isModern": false
+    },
+    {
+      "pid": 3860,
+      "plpo": "plpo_generic_7_BTM_B_021",
+      "tone": 7,
+      "build": "BTM",
+      "neckRatio": 1.176,
+      "isModern": true
+    },
+    {
+      "pid": 3861,
+      "plpo": "plpo_generic_7_BTM_MG_006",
+      "tone": 7,
+      "build": "BTM",
+      "neckRatio": 1.033,
+      "isModern": true
+    },
+    {
+      "pid": 3862,
+      "plpo": "plpo_generic_7_BTM_N_007",
+      "tone": 7,
+      "build": "BTM",
+      "neckRatio": 1.074,
+      "isModern": true
+    },
+    {
+      "pid": 3863,
+      "plpo": "plpo_generic_7_005",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 3864,
+      "plpo": "plpo_generic_7_006",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.107,
+      "isModern": false
+    },
+    {
+      "pid": 3865,
+      "plpo": "plpo_generic_7_007",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.069,
+      "isModern": false
+    },
+    {
+      "pid": 3866,
+      "plpo": "plpo_generic_7_BHM_N_002",
+      "tone": 7,
+      "build": "BHM",
+      "neckRatio": 1.5,
+      "isModern": true
+    },
+    {
+      "pid": 3867,
+      "plpo": "plpo_generic_7_008",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 2.458,
+      "isModern": false
+    },
+    {
+      "pid": 3868,
+      "plpo": "plpo_generic_7_009",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.867,
+      "isModern": false
+    },
+    {
+      "pid": 3869,
+      "plpo": "plpo_generic_7_M_N_024",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.4,
+      "isModern": true
+    },
+    {
+      "pid": 3870,
+      "plpo": "plpo_generic_7_T_S_004",
+      "tone": 7,
+      "build": "T",
+      "neckRatio": 1.9,
+      "isModern": true
+    },
+    {
+      "pid": 3871,
+      "plpo": "plpo_generic_4_H_N_002",
+      "tone": 4,
+      "build": "H",
+      "neckRatio": 1.5,
+      "isModern": true
+    },
+    {
+      "pid": 3872,
+      "plpo": "plpo_generic_4_H_N_004",
+      "tone": 4,
+      "build": "H",
+      "neckRatio": 0.892,
+      "isModern": true
+    },
+    {
+      "pid": 3873,
+      "plpo": "plpo_generic_5_001",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 3874,
+      "plpo": "plpo_generic_5_002",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.629,
+      "isModern": false
+    },
+    {
+      "pid": 3875,
+      "plpo": "plpo_generic_4_M_M_005",
+      "tone": 4,
+      "build": "M",
+      "neckRatio": 1.72,
+      "isModern": true
+    },
+    {
+      "pid": 3876,
+      "plpo": "plpo_generic_3_M_N_01",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 2.08,
+      "isModern": true
+    },
+    {
+      "pid": 3877,
+      "plpo": "plpo_generic_5_003",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.939,
+      "isModern": false
+    },
+    {
+      "pid": 3878,
+      "plpo": "plpo_generic_5_004",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 1.968,
+      "isModern": false
+    },
+    {
+      "pid": 3879,
+      "plpo": "plpo_generic_3_H_B_008",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 1.061,
+      "isModern": true
+    },
+    {
+      "pid": 3880,
+      "plpo": "plpo_generic_3_H_BD_01",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 0.895,
+      "isModern": true
+    },
+    {
+      "pid": 3881,
+      "plpo": "plpo_generic_3_H_MS_01",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 1.122,
+      "isModern": true
+    },
+    {
+      "pid": 3882,
+      "plpo": "plpo_generic_4_B_G_003",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 1.121,
+      "isModern": true
+    },
+    {
+      "pid": 3883,
+      "plpo": "plpo_generic_4_B_G_004",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 0.925,
+      "isModern": true
+    },
+    {
+      "pid": 3884,
+      "plpo": "plpo_generic_4_B_M_01",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 1.276,
+      "isModern": true
+    },
+    {
+      "pid": 3885,
+      "plpo": "plpo_generic_5_008",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.829,
+      "isModern": false
+    },
+    {
+      "pid": 3886,
+      "plpo": "plpo_generic_5_009",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.771,
+      "isModern": false
+    },
+    {
+      "pid": 3887,
+      "plpo": "plpo_generic_5_010",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.576,
+      "isModern": false
+    },
+    {
+      "pid": 3888,
+      "plpo": "plpo_generic_5_011",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 3889,
+      "plpo": "plpo_generic_5_012",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.5,
+      "isModern": false
+    },
+    {
+      "pid": 3890,
+      "plpo": "plpo_generic_5_013",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.767,
+      "isModern": false
+    },
+    {
+      "pid": 3891,
+      "plpo": "plpo_generic_5_014",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.562,
+      "isModern": false
+    },
+    {
+      "pid": 3892,
+      "plpo": "plpo_generic_5_015",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.625,
+      "isModern": false
+    },
+    {
+      "pid": 3893,
+      "plpo": "plpo_generic_5_016",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.688,
+      "isModern": false
+    },
+    {
+      "pid": 3894,
+      "plpo": "plpo_generic_5_017",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.794,
+      "isModern": false
+    },
+    {
+      "pid": 3895,
+      "plpo": "plpo_generic_4_M_BD_02",
+      "tone": 4,
+      "build": "M",
+      "neckRatio": 1.211,
+      "isModern": true
+    },
+    {
+      "pid": 3896,
+      "plpo": "plpo_generic_5_018",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.565,
+      "isModern": false
+    },
+    {
+      "pid": 3897,
+      "plpo": "plpo_generic_5_019",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.652,
+      "isModern": false
+    },
+    {
+      "pid": 3898,
+      "plpo": "plpo_generic_5_020",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.871,
+      "isModern": false
+    },
+    {
+      "pid": 3899,
+      "plpo": "plpo_generic_5_021",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.867,
+      "isModern": false
+    },
+    {
+      "pid": 3900,
+      "plpo": "plpo_generic_4_B_N_002",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 0.8,
+      "isModern": true
+    },
+    {
+      "pid": 3901,
+      "plpo": "plpo_generic_4_B_MS_03",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 0.86,
+      "isModern": true
+    },
+    {
+      "pid": 3902,
+      "plpo": "plpo_generic_4_H_BD_01",
+      "tone": 4,
+      "build": "H",
+      "neckRatio": 0.938,
+      "isModern": true
+    },
+    {
+      "pid": 3903,
+      "plpo": "plpo_generic_4_BM_B_001",
+      "tone": 4,
+      "build": "BM",
+      "neckRatio": 1.444,
+      "isModern": true
+    },
+    {
+      "pid": 3904,
+      "plpo": "plpo_generic_5_023",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.8,
+      "isModern": false
+    },
+    {
+      "pid": 3905,
+      "plpo": "plpo_generic_4_M_N_001",
+      "tone": 4,
+      "build": "M",
+      "neckRatio": 1.406,
+      "isModern": true
+    },
+    {
+      "pid": 3906,
+      "plpo": "plpo_generic_4_M_N_01",
+      "tone": 4,
+      "build": "M",
+      "neckRatio": 1.303,
+      "isModern": true
+    },
+    {
+      "pid": 3907,
+      "plpo": "plpo_generic_4_B_N_02",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 1.31,
+      "isModern": true
+    },
+    {
+      "pid": 3908,
+      "plpo": "plpo_generic_4_T_N_006",
+      "tone": 4,
+      "build": "T",
+      "neckRatio": 1.429,
+      "isModern": true
+    },
+    {
+      "pid": 3909,
+      "plpo": "plpo_generic_4_BHM_S_01",
+      "tone": 4,
+      "build": "BHM",
+      "neckRatio": 0.949,
+      "isModern": true
+    },
+    {
+      "pid": 3910,
+      "plpo": "plpo_generic_3_T_N_004",
+      "tone": 3,
+      "build": "T",
+      "neckRatio": 1.125,
+      "isModern": true
+    },
+    {
+      "pid": 3911,
+      "plpo": "plpo_generic_4_B_MS_02",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 1.348,
+      "isModern": true
+    },
+    {
+      "pid": 3912,
+      "plpo": "plpo_generic_4_H_N_005",
+      "tone": 4,
+      "build": "H",
+      "neckRatio": 1.057,
+      "isModern": true
+    },
+    {
+      "pid": 3913,
+      "plpo": "plpo_generic_4_B_N_01",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 0.809,
+      "isModern": true
+    },
+    {
+      "pid": 3914,
+      "plpo": "plpo_generic_5_028",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.214,
+      "isModern": false
+    },
+    {
+      "pid": 3915,
+      "plpo": "plpo_generic_3_H_S_001",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 1.222,
+      "isModern": true
+    },
+    {
+      "pid": 3916,
+      "plpo": "plpo_generic_5_029",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.387,
+      "isModern": false
+    },
+    {
+      "pid": 3917,
+      "plpo": "plpo_generic_5_M_N_02",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 0.974,
+      "isModern": true
+    },
+    {
+      "pid": 3918,
+      "plpo": "plpo_generic_5_030",
+      "tone": 5,
+      "build": "T",
+      "neckRatio": 1.242,
+      "isModern": false
+    },
+    {
+      "pid": 3919,
+      "plpo": "plpo_generic_5_H_MG_006",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.138,
+      "isModern": true
+    },
+    {
+      "pid": 3920,
+      "plpo": "plpo_generic_5_031",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.241,
+      "isModern": false
+    },
+    {
+      "pid": 3921,
+      "plpo": "plpo_generic_5_032",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.829,
+      "isModern": false
+    },
+    {
+      "pid": 3922,
+      "plpo": "plpo_generic_5_033",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 3923,
+      "plpo": "plpo_generic_5_034",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.543,
+      "isModern": false
+    },
+    {
+      "pid": 3924,
+      "plpo": "plpo_generic_5_B_G_02",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.079,
+      "isModern": true
+    },
+    {
+      "pid": 3925,
+      "plpo": "plpo_generic_5_036",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.912,
+      "isModern": false
+    },
+    {
+      "pid": 3926,
+      "plpo": "plpo_generic_5_B_N_02",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.826,
+      "isModern": true
+    },
+    {
+      "pid": 3927,
+      "plpo": "plpo_generic_5_038",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3928,
+      "plpo": "plpo_generic_5_039",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.71,
+      "isModern": false
+    },
+    {
+      "pid": 3929,
+      "plpo": "plpo_generic_5_040",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.714,
+      "isModern": false
+    },
+    {
+      "pid": 3930,
+      "plpo": "plpo_generic_5_041",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 3931,
+      "plpo": "plpo_generic_5_042",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.697,
+      "isModern": false
+    },
+    {
+      "pid": 3932,
+      "plpo": "plpo_generic_5_043",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.038,
+      "isModern": false
+    },
+    {
+      "pid": 3933,
+      "plpo": "plpo_generic_5_044",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.457,
+      "isModern": false
+    },
+    {
+      "pid": 3934,
+      "plpo": "plpo_generic_5_045",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.583,
+      "isModern": false
+    },
+    {
+      "pid": 3935,
+      "plpo": "plpo_generic_5_046",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.676,
+      "isModern": false
+    },
+    {
+      "pid": 3936,
+      "plpo": "plpo_generic_5_047",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 3937,
+      "plpo": "plpo_generic_5_BHM_M_002",
+      "tone": 5,
+      "build": "BHM",
+      "neckRatio": 1.147,
+      "isModern": true
+    },
+    {
+      "pid": 3938,
+      "plpo": "plpo_generic_5_BHTM_GS_001",
+      "tone": 5,
+      "build": "BHTM",
+      "neckRatio": 1.273,
+      "isModern": true
+    },
+    {
+      "pid": 3939,
+      "plpo": "plpo_generic_5_BTM_N_004",
+      "tone": 5,
+      "build": "BTM",
+      "neckRatio": 2.368,
+      "isModern": true
+    },
+    {
+      "pid": 3940,
+      "plpo": "plpo_generic_5_048",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.455,
+      "isModern": false
+    },
+    {
+      "pid": 3941,
+      "plpo": "plpo_generic_5_049",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 3942,
+      "plpo": "plpo_generic_5_M_N_009",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.077,
+      "isModern": true
+    },
+    {
+      "pid": 3943,
+      "plpo": "plpo_generic_5_B_S_002",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 3944,
+      "plpo": "plpo_generic_5_050",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 3945,
+      "plpo": "plpo_generic_5_B_BD_02",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.423,
+      "isModern": true
+    },
+    {
+      "pid": 3946,
+      "plpo": "plpo_generic_5_B_BD_03",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.158,
+      "isModern": true
+    },
+    {
+      "pid": 3947,
+      "plpo": "plpo_generic_5_B_N_01",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.958,
+      "isModern": true
+    },
+    {
+      "pid": 3948,
+      "plpo": "plpo_generic_5_H_BD_01",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 1.269,
+      "isModern": true
+    },
+    {
+      "pid": 3949,
+      "plpo": "plpo_generic_5_H_BD_02",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 1.167,
+      "isModern": true
+    },
+    {
+      "pid": 3950,
+      "plpo": "plpo_generic_5_H_N_01",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 1.5,
+      "isModern": true
+    },
+    {
+      "pid": 3951,
+      "plpo": "plpo_generic_5_051",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.875,
+      "isModern": false
+    },
+    {
+      "pid": 3952,
+      "plpo": "plpo_generic_5_H_S_010",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 1.161,
+      "isModern": true
+    },
+    {
+      "pid": 3953,
+      "plpo": "plpo_generic_5_053",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.75,
+      "isModern": false
+    },
+    {
+      "pid": 3954,
+      "plpo": "plpo_generic_5_054",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.625,
+      "isModern": false
+    },
+    {
+      "pid": 3955,
+      "plpo": "plpo_generic_5_B_MS_02",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.167,
+      "isModern": true
+    },
+    {
+      "pid": 3956,
+      "plpo": "plpo_generic_5_055",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.528,
+      "isModern": false
+    },
+    {
+      "pid": 3957,
+      "plpo": "plpo_generic_5_M_BD_02",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.03,
+      "isModern": true
+    },
+    {
+      "pid": 3958,
+      "plpo": "plpo_generic_5_M_M_005",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.132,
+      "isModern": true
+    },
+    {
+      "pid": 3959,
+      "plpo": "plpo_generic_5_056",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.611,
+      "isModern": false
+    },
+    {
+      "pid": 3960,
+      "plpo": "plpo_generic_5_057",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.385,
+      "isModern": false
+    },
+    {
+      "pid": 3961,
+      "plpo": "plpo_generic_5_058",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.069,
+      "isModern": false
+    },
+    {
+      "pid": 3962,
+      "plpo": "plpo_generic_5_059",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.647,
+      "isModern": false
+    },
+    {
+      "pid": 3963,
+      "plpo": "plpo_generic_5_T_GM_003",
+      "tone": 5,
+      "build": "T",
+      "neckRatio": 1.05,
+      "isModern": true
+    },
+    {
+      "pid": 3964,
+      "plpo": "plpo_generic_5_060",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.618,
+      "isModern": false
+    },
+    {
+      "pid": 3965,
+      "plpo": "plpo_generic_6_B_G_01",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.286,
+      "isModern": true
+    },
+    {
+      "pid": 3966,
+      "plpo": "plpo_generic_5_061",
+      "tone": 5,
+      "build": "T",
+      "neckRatio": 1.324,
+      "isModern": false
+    },
+    {
+      "pid": 3967,
+      "plpo": "plpo_generic_5_062",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.485,
+      "isModern": false
+    },
+    {
+      "pid": 3968,
+      "plpo": "plpo_generic_5_063",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 3969,
+      "plpo": "plpo_generic_5_064",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.733,
+      "isModern": false
+    },
+    {
+      "pid": 3970,
+      "plpo": "plpo_generic_5_M_B_001",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.48,
+      "isModern": true
+    },
+    {
+      "pid": 3971,
+      "plpo": "plpo_generic_5_065",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.514,
+      "isModern": false
+    },
+    {
+      "pid": 3972,
+      "plpo": "plpo_generic_5_066",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 3973,
+      "plpo": "plpo_generic_5_067",
+      "tone": 5,
+      "build": "B",
+      "neckRatio": 1.543,
+      "isModern": false
+    },
+    {
+      "pid": 3974,
+      "plpo": "plpo_generic_5_068",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.714,
+      "isModern": false
+    },
+    {
+      "pid": 3975,
+      "plpo": "plpo_generic_6_B_N_003",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.028,
+      "isModern": true
+    },
+    {
+      "pid": 3976,
+      "plpo": "plpo_generic_5_069",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.103,
+      "isModern": false
+    },
+    {
+      "pid": 3977,
+      "plpo": "plpo_generic_5_M_N_01",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.108,
+      "isModern": true
+    },
+    {
+      "pid": 3978,
+      "plpo": "plpo_generic_5_070",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.806,
+      "isModern": false
+    },
+    {
+      "pid": 3979,
+      "plpo": "plpo_generic_5_071",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.9,
+      "isModern": false
+    },
+    {
+      "pid": 3980,
+      "plpo": "plpo_generic_5_072",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 2.154,
+      "isModern": false
+    },
+    {
+      "pid": 3981,
+      "plpo": "plpo_generic_1_001",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 3982,
+      "plpo": "plpo_generic_1_002",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.844,
+      "isModern": false
+    },
+    {
+      "pid": 3983,
+      "plpo": "plpo_generic_1_003",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 3984,
+      "plpo": "plpo_generic_1_004",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.75,
+      "isModern": false
+    },
+    {
+      "pid": 3985,
+      "plpo": "plpo_generic_1_005",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 3986,
+      "plpo": "plpo_generic_1_006",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 3987,
+      "plpo": "plpo_generic_1_007",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 3988,
+      "plpo": "plpo_generic_1_008",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 3989,
+      "plpo": "plpo_generic_1_009",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.556,
+      "isModern": false
+    },
+    {
+      "pid": 3990,
+      "plpo": "plpo_generic_1_010",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.647,
+      "isModern": false
+    },
+    {
+      "pid": 3991,
+      "plpo": "plpo_generic_1_011",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 3992,
+      "plpo": "plpo_generic_1_012",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.543,
+      "isModern": false
+    },
+    {
+      "pid": 3993,
+      "plpo": "plpo_generic_1_013",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.406,
+      "isModern": false
+    },
+    {
+      "pid": 3994,
+      "plpo": "plpo_generic_1_014",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.364,
+      "isModern": false
+    },
+    {
+      "pid": 3995,
+      "plpo": "plpo_generic_1_015",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 3996,
+      "plpo": "plpo_generic_1_016",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.515,
+      "isModern": false
+    },
+    {
+      "pid": 3997,
+      "plpo": "plpo_generic_1_017",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.559,
+      "isModern": false
+    },
+    {
+      "pid": 3998,
+      "plpo": "plpo_generic_1_018",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 3999,
+      "plpo": "plpo_generic_1_019",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.647,
+      "isModern": false
+    },
+    {
+      "pid": 4000,
+      "plpo": "plpo_generic_1_020",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.966,
+      "isModern": false
+    },
+    {
+      "pid": 4001,
+      "plpo": "plpo_generic_1_021",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 2.138,
+      "isModern": false
+    },
+    {
+      "pid": 4002,
+      "plpo": "plpo_generic_1_022",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 2.222,
+      "isModern": false
+    },
+    {
+      "pid": 4003,
+      "plpo": "plpo_generic_1_023",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.933,
+      "isModern": false
+    },
+    {
+      "pid": 4004,
+      "plpo": "plpo_generic_1_024",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 2.296,
+      "isModern": false
+    },
+    {
+      "pid": 4005,
+      "plpo": "plpo_generic_1_025",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 4006,
+      "plpo": "plpo_generic_1_026",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 4007,
+      "plpo": "plpo_generic_1_027",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 4008,
+      "plpo": "plpo_generic_1_028",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 4009,
+      "plpo": "plpo_generic_1_029",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.686,
+      "isModern": false
+    },
+    {
+      "pid": 4010,
+      "plpo": "plpo_generic_1_030",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.897,
+      "isModern": false
+    },
+    {
+      "pid": 4011,
+      "plpo": "plpo_generic_1_031",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 4012,
+      "plpo": "plpo_generic_1_034",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 4013,
+      "plpo": "plpo_generic_1_035",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.688,
+      "isModern": false
+    },
+    {
+      "pid": 4014,
+      "plpo": "plpo_generic_1_036",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 4015,
+      "plpo": "plpo_generic_1_037",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 4016,
+      "plpo": "plpo_generic_1_038",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 4017,
+      "plpo": "plpo_generic_1_039",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.722,
+      "isModern": false
+    },
+    {
+      "pid": 4018,
+      "plpo": "plpo_generic_1_040",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 4019,
+      "plpo": "plpo_generic_1_041",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 4020,
+      "plpo": "plpo_generic_2_001",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 4021,
+      "plpo": "plpo_generic_2_002",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.429,
+      "isModern": false
+    },
+    {
+      "pid": 4022,
+      "plpo": "plpo_generic_2_003",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.656,
+      "isModern": false
+    },
+    {
+      "pid": 4023,
+      "plpo": "plpo_generic_2_004",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 4024,
+      "plpo": "plpo_generic_2_005",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.037,
+      "isModern": false
+    },
+    {
+      "pid": 4025,
+      "plpo": "plpo_generic_2_006",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.676,
+      "isModern": false
+    },
+    {
+      "pid": 4026,
+      "plpo": "plpo_generic_2_007",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.304,
+      "isModern": false
+    },
+    {
+      "pid": 4027,
+      "plpo": "plpo_generic_2_008",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.154,
+      "isModern": false
+    },
+    {
+      "pid": 4028,
+      "plpo": "plpo_generic_2_009",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.926,
+      "isModern": false
+    },
+    {
+      "pid": 4029,
+      "plpo": "plpo_generic_2_010",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.333,
+      "isModern": false
+    },
+    {
+      "pid": 4030,
+      "plpo": "plpo_generic_2_011",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.767,
+      "isModern": false
+    },
+    {
+      "pid": 4031,
+      "plpo": "plpo_generic_2_012",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 4032,
+      "plpo": "plpo_generic_2_013",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.929,
+      "isModern": false
+    },
+    {
+      "pid": 4033,
+      "plpo": "plpo_generic_2_014",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.269,
+      "isModern": false
+    },
+    {
+      "pid": 4034,
+      "plpo": "plpo_generic_2_015",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.774,
+      "isModern": false
+    },
+    {
+      "pid": 4035,
+      "plpo": "plpo_generic_2_016",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.697,
+      "isModern": false
+    },
+    {
+      "pid": 4036,
+      "plpo": "plpo_generic_2_017",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.75,
+      "isModern": false
+    },
+    {
+      "pid": 4037,
+      "plpo": "plpo_generic_2_018",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 4038,
+      "plpo": "plpo_generic_2_019",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.824,
+      "isModern": false
+    },
+    {
+      "pid": 4039,
+      "plpo": "plpo_generic_2_020",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.909,
+      "isModern": false
+    },
+    {
+      "pid": 4040,
+      "plpo": "plpo_generic_2_021",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.686,
+      "isModern": false
+    },
+    {
+      "pid": 4041,
+      "plpo": "plpo_generic_2_022",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 4042,
+      "plpo": "plpo_generic_2_023",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.844,
+      "isModern": false
+    },
+    {
+      "pid": 4043,
+      "plpo": "plpo_generic_2_024",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 4044,
+      "plpo": "plpo_generic_2_025",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.543,
+      "isModern": false
+    },
+    {
+      "pid": 4045,
+      "plpo": "plpo_generic_2_026",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.636,
+      "isModern": false
+    },
+    {
+      "pid": 4046,
+      "plpo": "plpo_generic_2_027",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.806,
+      "isModern": false
+    },
+    {
+      "pid": 4047,
+      "plpo": "plpo_generic_2_028",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.514,
+      "isModern": false
+    },
+    {
+      "pid": 4048,
+      "plpo": "plpo_generic_2_029",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.559,
+      "isModern": false
+    },
+    {
+      "pid": 4049,
+      "plpo": "plpo_generic_2_030",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.543,
+      "isModern": false
+    },
+    {
+      "pid": 4050,
+      "plpo": "plpo_generic_2_031",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 4051,
+      "plpo": "plpo_generic_2_032",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.618,
+      "isModern": false
+    },
+    {
+      "pid": 4052,
+      "plpo": "plpo_generic_2_033",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.514,
+      "isModern": false
+    },
+    {
+      "pid": 4053,
+      "plpo": "plpo_generic_2_034",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.794,
+      "isModern": false
+    },
+    {
+      "pid": 4054,
+      "plpo": "plpo_generic_2_035",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 4055,
+      "plpo": "plpo_generic_2_036",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 4056,
+      "plpo": "plpo_generic_2_037",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 4057,
+      "plpo": "plpo_generic_2_038",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.931,
+      "isModern": false
+    },
+    {
+      "pid": 4058,
+      "plpo": "plpo_generic_1_B_B_005",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.395,
+      "isModern": true
+    },
+    {
+      "pid": 4059,
+      "plpo": "plpo_generic_6_B_N_005",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.281,
+      "isModern": true
+    },
+    {
+      "pid": 4060,
+      "plpo": "plpo_generic_1_B_N_01",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.395,
+      "isModern": true
+    },
+    {
+      "pid": 4061,
+      "plpo": "plpo_generic_1_B_N_02",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 2.095,
+      "isModern": true
+    },
+    {
+      "pid": 4062,
+      "plpo": "plpo_generic_1_B_N_007",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.769,
+      "isModern": true
+    },
+    {
+      "pid": 4063,
+      "plpo": "plpo_generic_1_B_N_010",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.457,
+      "isModern": true
+    },
+    {
+      "pid": 4064,
+      "plpo": "plpo_generic_1_B_S_001",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.282,
+      "isModern": true
+    },
+    {
+      "pid": 4065,
+      "plpo": "plpo_generic_1_B_S_002",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.389,
+      "isModern": true
+    },
+    {
+      "pid": 4066,
+      "plpo": "plpo_generic_6_B_N_006",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 4067,
+      "plpo": "plpo_generic_6_B_N_008",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.636,
+      "isModern": true
+    },
+    {
+      "pid": 4068,
+      "plpo": "plpo_generic_2_042",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 4069,
+      "plpo": "plpo_generic_6_B_S_02",
+      "tone": 6,
+      "build": "B",
+      "neckRatio": 1.226,
+      "isModern": true
+    },
+    {
+      "pid": 4070,
+      "plpo": "plpo_generic_6_BHM_B_01",
+      "tone": 6,
+      "build": "BHM",
+      "neckRatio": 0.784,
+      "isModern": true
+    },
+    {
+      "pid": 4071,
+      "plpo": "plpo_generic_1_BM_MB_005",
+      "tone": 1,
+      "build": "BM",
+      "neckRatio": 1.263,
+      "isModern": true
+    },
+    {
+      "pid": 4072,
+      "plpo": "plpo_generic_2_045",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.735,
+      "isModern": false
+    },
+    {
+      "pid": 4073,
+      "plpo": "plpo_generic_1_H_B_009",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 2.536,
+      "isModern": true
+    },
+    {
+      "pid": 4074,
+      "plpo": "plpo_generic_1_H_BD_01",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.171,
+      "isModern": true
+    },
+    {
+      "pid": 4075,
+      "plpo": "plpo_generic_1_H_BD_02",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.343,
+      "isModern": true
+    },
+    {
+      "pid": 4076,
+      "plpo": "plpo_generic_6_H_BM_02",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.182,
+      "isModern": true
+    },
+    {
+      "pid": 4077,
+      "plpo": "plpo_generic_6_H_N_006",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 0.78,
+      "isModern": true
+    },
+    {
+      "pid": 4078,
+      "plpo": "plpo_generic_1_H_N_015",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.306,
+      "isModern": true
+    },
+    {
+      "pid": 4079,
+      "plpo": "plpo_generic_1_H_S_003",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.25,
+      "isModern": true
+    },
+    {
+      "pid": 4080,
+      "plpo": "plpo_generic_6_M_G_01",
+      "tone": 6,
+      "build": "M",
+      "neckRatio": 1.212,
+      "isModern": true
+    },
+    {
+      "pid": 4081,
+      "plpo": "plpo_generic_1_H_S_008",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.472,
+      "isModern": true
+    },
+    {
+      "pid": 4082,
+      "plpo": "plpo_generic_6_N_MG_009",
+      "tone": 6,
+      "build": "N",
+      "neckRatio": 1.071,
+      "isModern": true
+    },
+    {
+      "pid": 4083,
+      "plpo": "plpo_generic_1_M_N_02",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.308,
+      "isModern": true
+    },
+    {
+      "pid": 4084,
+      "plpo": "plpo_generic_7_B_B_002",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.25,
+      "isModern": true
+    },
+    {
+      "pid": 4085,
+      "plpo": "plpo_generic_2_051",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.906,
+      "isModern": false
+    },
+    {
+      "pid": 4087,
+      "plpo": "plpo_generic_7_B_N_0010",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.028,
+      "isModern": true
+    },
+    {
+      "pid": 4088,
+      "plpo": "plpo_generic_1_M_S_011",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.806,
+      "isModern": true
+    },
+    {
+      "pid": 4089,
+      "plpo": "plpo_generic_2_BMH_S_002",
+      "tone": 2,
+      "build": "BMH",
+      "neckRatio": 1.767,
+      "isModern": true
+    },
+    {
+      "pid": 4090,
+      "plpo": "plpo_generic_7_B_N_0012",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.2,
+      "isModern": true
+    },
+    {
+      "pid": 4091,
+      "plpo": "plpo_generic_7_B_N_0013",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.133,
+      "isModern": true
+    },
+    {
+      "pid": 4092,
+      "plpo": "plpo_generic_7_B_N_0014",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.423,
+      "isModern": true
+    },
+    {
+      "pid": 4093,
+      "plpo": "plpo_generic_7_B_N_011",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.185,
+      "isModern": true
+    },
+    {
+      "pid": 4094,
+      "plpo": "plpo_generic_2_BMH_S_010",
+      "tone": 2,
+      "build": "BMH",
+      "neckRatio": 1.057,
+      "isModern": true
+    },
+    {
+      "pid": 4095,
+      "plpo": "plpo_generic_2_058",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.969,
+      "isModern": false
+    },
+    {
+      "pid": 4096,
+      "plpo": "plpo_generic_2_059",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.848,
+      "isModern": false
+    },
+    {
+      "pid": 4097,
+      "plpo": "plpo_generic_2_060",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.906,
+      "isModern": false
+    },
+    {
+      "pid": 4098,
+      "plpo": "plpo_generic_2_061",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.296,
+      "isModern": false
+    },
+    {
+      "pid": 4099,
+      "plpo": "plpo_generic_2_062",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.686,
+      "isModern": false
+    },
+    {
+      "pid": 4100,
+      "plpo": "plpo_generic_2_063",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.882,
+      "isModern": false
+    },
+    {
+      "pid": 4101,
+      "plpo": "plpo_generic_3_001",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.727,
+      "isModern": false
+    },
+    {
+      "pid": 4102,
+      "plpo": "plpo_generic_3_002",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 4103,
+      "plpo": "plpo_generic_3_003",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.424,
+      "isModern": false
+    },
+    {
+      "pid": 4104,
+      "plpo": "plpo_generic_3_004",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.545,
+      "isModern": false
+    },
+    {
+      "pid": 4105,
+      "plpo": "plpo_generic_3_005",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 4106,
+      "plpo": "plpo_generic_3_006",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 4107,
+      "plpo": "plpo_generic_3_007",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.767,
+      "isModern": false
+    },
+    {
+      "pid": 4108,
+      "plpo": "plpo_generic_3_008",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.741,
+      "isModern": false
+    },
+    {
+      "pid": 4109,
+      "plpo": "plpo_generic_3_009",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 4110,
+      "plpo": "plpo_generic_3_010",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.724,
+      "isModern": false
+    },
+    {
+      "pid": 4111,
+      "plpo": "plpo_generic_3_011",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.625,
+      "isModern": false
+    },
+    {
+      "pid": 4112,
+      "plpo": "plpo_generic_3_012",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.839,
+      "isModern": false
+    },
+    {
+      "pid": 4113,
+      "plpo": "plpo_generic_3_013",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.069,
+      "isModern": false
+    },
+    {
+      "pid": 4114,
+      "plpo": "plpo_generic_3_014",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.385,
+      "isModern": false
+    },
+    {
+      "pid": 4115,
+      "plpo": "plpo_generic_3_015",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.448,
+      "isModern": false
+    },
+    {
+      "pid": 4116,
+      "plpo": "plpo_generic_3_016",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.929,
+      "isModern": false
+    },
+    {
+      "pid": 4117,
+      "plpo": "plpo_generic_3_017",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.545,
+      "isModern": false
+    },
+    {
+      "pid": 4118,
+      "plpo": "plpo_generic_3_018",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 4119,
+      "plpo": "plpo_generic_3_019",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.371,
+      "isModern": false
+    },
+    {
+      "pid": 4120,
+      "plpo": "plpo_generic_3_020",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.559,
+      "isModern": false
+    },
+    {
+      "pid": 4121,
+      "plpo": "plpo_generic_3_021",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.839,
+      "isModern": false
+    },
+    {
+      "pid": 4122,
+      "plpo": "plpo_generic_3_022",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 4123,
+      "plpo": "plpo_generic_3_023",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 4124,
+      "plpo": "plpo_generic_3_024",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 4125,
+      "plpo": "plpo_generic_3_025",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 4126,
+      "plpo": "plpo_generic_3_026",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 4127,
+      "plpo": "plpo_generic_3_027",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.697,
+      "isModern": false
+    },
+    {
+      "pid": 4128,
+      "plpo": "plpo_generic_3_028",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.735,
+      "isModern": false
+    },
+    {
+      "pid": 4129,
+      "plpo": "plpo_generic_3_029",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 4130,
+      "plpo": "plpo_generic_3_030",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.844,
+      "isModern": false
+    },
+    {
+      "pid": 4131,
+      "plpo": "plpo_generic_3_031",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 4132,
+      "plpo": "plpo_generic_3_032",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.179,
+      "isModern": false
+    },
+    {
+      "pid": 4133,
+      "plpo": "plpo_generic_3_033",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 4134,
+      "plpo": "plpo_generic_3_034",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.346,
+      "isModern": false
+    },
+    {
+      "pid": 4135,
+      "plpo": "plpo_generic_2_H_B_004",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.606,
+      "isModern": true
+    },
+    {
+      "pid": 4136,
+      "plpo": "plpo_generic_3_035",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 1.964,
+      "isModern": false
+    },
+    {
+      "pid": 4137,
+      "plpo": "plpo_generic_3_036",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.81,
+      "isModern": false
+    },
+    {
+      "pid": 4138,
+      "plpo": "plpo_generic_3_037",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.824,
+      "isModern": false
+    },
+    {
+      "pid": 4139,
+      "plpo": "plpo_generic_3_038",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 4140,
+      "plpo": "plpo_generic_2_M_S_001",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.75,
+      "isModern": true
+    },
+    {
+      "pid": 4141,
+      "plpo": "plpo_generic_1_001",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 4142,
+      "plpo": "plpo_generic_1_002",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.844,
+      "isModern": false
+    },
+    {
+      "pid": 4143,
+      "plpo": "plpo_generic_1_003",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 4144,
+      "plpo": "plpo_generic_2_H_BD_03",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.514,
+      "isModern": true
+    },
+    {
+      "pid": 4145,
+      "plpo": "plpo_generic_1_004",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.75,
+      "isModern": false
+    },
+    {
+      "pid": 4146,
+      "plpo": "plpo_generic_1_005",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 4147,
+      "plpo": "plpo_generic_1_006",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 4148,
+      "plpo": "plpo_generic_1_007",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 4149,
+      "plpo": "plpo_generic_1_008",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 4150,
+      "plpo": "plpo_generic_1_009",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.556,
+      "isModern": false
+    },
+    {
+      "pid": 4151,
+      "plpo": "plpo_generic_1_010",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.647,
+      "isModern": false
+    },
+    {
+      "pid": 4152,
+      "plpo": "plpo_generic_1_011",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 4153,
+      "plpo": "plpo_generic_1_012",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.543,
+      "isModern": false
+    },
+    {
+      "pid": 4154,
+      "plpo": "plpo_generic_1_013",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.406,
+      "isModern": false
+    },
+    {
+      "pid": 4155,
+      "plpo": "plpo_generic_1_014",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.364,
+      "isModern": false
+    },
+    {
+      "pid": 4156,
+      "plpo": "plpo_generic_1_015",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 4157,
+      "plpo": "plpo_generic_1_016",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.515,
+      "isModern": false
+    },
+    {
+      "pid": 4158,
+      "plpo": "plpo_generic_1_017",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.559,
+      "isModern": false
+    },
+    {
+      "pid": 4159,
+      "plpo": "plpo_generic_1_018",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 4160,
+      "plpo": "plpo_generic_1_019",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.647,
+      "isModern": false
+    },
+    {
+      "pid": 4161,
+      "plpo": "plpo_generic_1_020",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.966,
+      "isModern": false
+    },
+    {
+      "pid": 4162,
+      "plpo": "plpo_generic_1_021",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 2.138,
+      "isModern": false
+    },
+    {
+      "pid": 4163,
+      "plpo": "plpo_generic_1_022",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 2.222,
+      "isModern": false
+    },
+    {
+      "pid": 4164,
+      "plpo": "plpo_generic_1_023",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.933,
+      "isModern": false
+    },
+    {
+      "pid": 4165,
+      "plpo": "plpo_generic_1_024",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 2.296,
+      "isModern": false
+    },
+    {
+      "pid": 4166,
+      "plpo": "plpo_generic_1_025",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.781,
+      "isModern": false
+    },
+    {
+      "pid": 4167,
+      "plpo": "plpo_generic_1_026",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 4168,
+      "plpo": "plpo_generic_1_027",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 4169,
+      "plpo": "plpo_generic_1_028",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 4170,
+      "plpo": "plpo_generic_1_029",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.686,
+      "isModern": false
+    },
+    {
+      "pid": 4171,
+      "plpo": "plpo_generic_1_030",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.897,
+      "isModern": false
+    },
+    {
+      "pid": 4172,
+      "plpo": "plpo_generic_1_031",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 4173,
+      "plpo": "plpo_generic_1_034",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 4174,
+      "plpo": "plpo_generic_1_035",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.688,
+      "isModern": false
+    },
+    {
+      "pid": 4175,
+      "plpo": "plpo_generic_1_036",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 4176,
+      "plpo": "plpo_generic_1_037",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 4177,
+      "plpo": "plpo_generic_1_038",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 4178,
+      "plpo": "plpo_generic_1_039",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.722,
+      "isModern": false
+    },
+    {
+      "pid": 4179,
+      "plpo": "plpo_generic_1_040",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 4180,
+      "plpo": "plpo_generic_1_041",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 4181,
+      "plpo": "plpo_generic_2_001",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 4182,
+      "plpo": "plpo_generic_2_002",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.429,
+      "isModern": false
+    },
+    {
+      "pid": 4183,
+      "plpo": "plpo_generic_2_003",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.656,
+      "isModern": false
+    },
+    {
+      "pid": 4184,
+      "plpo": "plpo_generic_2_B_BD_03",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.027,
+      "isModern": true
+    },
+    {
+      "pid": 4185,
+      "plpo": "plpo_generic_2_004",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 4186,
+      "plpo": "plpo_generic_2_B_N_006",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.393,
+      "isModern": true
+    },
+    {
+      "pid": 4187,
+      "plpo": "plpo_generic_7_B_N_012",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 0.969,
+      "isModern": true
+    },
+    {
+      "pid": 4188,
+      "plpo": "plpo_generic_2_B_N_009",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.378,
+      "isModern": true
+    },
+    {
+      "pid": 4189,
+      "plpo": "plpo_generic_2_B_S_001",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.2,
+      "isModern": true
+    },
+    {
+      "pid": 4190,
+      "plpo": "plpo_generic_2_B_S_005",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.053,
+      "isModern": true
+    },
+    {
+      "pid": 4191,
+      "plpo": "plpo_generic_7_B_N_013",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.167,
+      "isModern": true
+    },
+    {
+      "pid": 4192,
+      "plpo": "plpo_generic_2_BMH_G_009",
+      "tone": 2,
+      "build": "BMH",
+      "neckRatio": 1.053,
+      "isModern": true
+    },
+    {
+      "pid": 4193,
+      "plpo": "plpo_generic_2_H_B_010",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.359,
+      "isModern": true
+    },
+    {
+      "pid": 4194,
+      "plpo": "plpo_generic_2_006",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.676,
+      "isModern": false
+    },
+    {
+      "pid": 4195,
+      "plpo": "plpo_generic_2_H_G_01",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.342,
+      "isModern": true
+    },
+    {
+      "pid": 4196,
+      "plpo": "plpo_generic_2_H_GM_004",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 0.865,
+      "isModern": true
+    },
+    {
+      "pid": 4197,
+      "plpo": "plpo_generic_2_H_MB_012",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.029,
+      "isModern": true
+    },
+    {
+      "pid": 4198,
+      "plpo": "plpo_generic_7_B_N_014",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.542,
+      "isModern": true
+    },
+    {
+      "pid": 4199,
+      "plpo": "plpo_generic_2_H_N_006",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.029,
+      "isModern": true
+    },
+    {
+      "pid": 4200,
+      "plpo": "plpo_generic_2_H_N_007",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 0.905,
+      "isModern": true
+    },
+    {
+      "pid": 4201,
+      "plpo": "plpo_generic_2_H_N_009",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.121,
+      "isModern": true
+    },
+    {
+      "pid": 4202,
+      "plpo": "plpo_generic_7_B_N_016",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.462,
+      "isModern": true
+    },
+    {
+      "pid": 4203,
+      "plpo": "plpo_generic_2_M_N_007",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.469,
+      "isModern": true
+    },
+    {
+      "pid": 4204,
+      "plpo": "plpo_generic_2_M_S_011",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.472,
+      "isModern": true
+    },
+    {
+      "pid": 4205,
+      "plpo": "plpo_generic_7_B_N_017",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.762,
+      "isModern": true
+    },
+    {
+      "pid": 4206,
+      "plpo": "plpo_generic_7_B_N_018",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.429,
+      "isModern": true
+    },
+    {
+      "pid": 4207,
+      "plpo": "plpo_generic_7_B_N_019",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.276,
+      "isModern": true
+    },
+    {
+      "pid": 4208,
+      "plpo": "plpo_generic_2_T_S_007",
+      "tone": 2,
+      "build": "T",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 4209,
+      "plpo": "plpo_generic_3_B_B_001",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.778,
+      "isModern": true
+    },
+    {
+      "pid": 4210,
+      "plpo": "plpo_generic_3_B_BD_02",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.229,
+      "isModern": true
+    },
+    {
+      "pid": 4211,
+      "plpo": "plpo_generic_7_B_N_09",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.13,
+      "isModern": true
+    },
+    {
+      "pid": 4212,
+      "plpo": "plpo_generic_7_B_S_005",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.44,
+      "isModern": true
+    },
+    {
+      "pid": 4213,
+      "plpo": "plpo_generic_3_B_N_004",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.081,
+      "isModern": true
+    },
+    {
+      "pid": 4215,
+      "plpo": "plpo_generic_7_H_B_010",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.061,
+      "isModern": true
+    },
+    {
+      "pid": 4216,
+      "plpo": "plpo_generic_2_015",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.774,
+      "isModern": false
+    },
+    {
+      "pid": 4217,
+      "plpo": "plpo_generic_2_016",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.697,
+      "isModern": false
+    },
+    {
+      "pid": 4218,
+      "plpo": "plpo_generic_2_017",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.75,
+      "isModern": false
+    },
+    {
+      "pid": 4219,
+      "plpo": "plpo_generic_2_018",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 4220,
+      "plpo": "plpo_generic_2_019",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.824,
+      "isModern": false
+    },
+    {
+      "pid": 4221,
+      "plpo": "plpo_generic_2_020",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.909,
+      "isModern": false
+    },
+    {
+      "pid": 4222,
+      "plpo": "plpo_generic_7_M_B_01",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.583,
+      "isModern": true
+    },
+    {
+      "pid": 4223,
+      "plpo": "plpo_generic_2_022",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 4224,
+      "plpo": "plpo_generic_2_023",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.844,
+      "isModern": false
+    },
+    {
+      "pid": 4225,
+      "plpo": "plpo_generic_2_024",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.5,
+      "isModern": false
+    },
+    {
+      "pid": 4226,
+      "plpo": "plpo_generic_2_025",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.543,
+      "isModern": false
+    },
+    {
+      "pid": 4227,
+      "plpo": "plpo_generic_3_BMT_S_003",
+      "tone": 3,
+      "build": "BMT",
+      "neckRatio": 1.485,
+      "isModern": true
+    },
+    {
+      "pid": 4228,
+      "plpo": "plpo_generic_2_027",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.806,
+      "isModern": false
+    },
+    {
+      "pid": 4229,
+      "plpo": "plpo_generic_2_028",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.514,
+      "isModern": false
+    },
+    {
+      "pid": 4230,
+      "plpo": "plpo_generic_2_029",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.559,
+      "isModern": false
+    },
+    {
+      "pid": 4231,
+      "plpo": "plpo_generic_2_030",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.543,
+      "isModern": false
+    },
+    {
+      "pid": 4232,
+      "plpo": "plpo_generic_2_031",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 4233,
+      "plpo": "plpo_generic_2_032",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.618,
+      "isModern": false
+    },
+    {
+      "pid": 4234,
+      "plpo": "plpo_generic_2_033",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.514,
+      "isModern": false
+    },
+    {
+      "pid": 4235,
+      "plpo": "plpo_generic_2_034",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.794,
+      "isModern": false
+    },
+    {
+      "pid": 4236,
+      "plpo": "plpo_generic_2_035",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 4237,
+      "plpo": "plpo_generic_2_036",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 4238,
+      "plpo": "plpo_generic_2_037",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.667,
+      "isModern": false
+    },
+    {
+      "pid": 4239,
+      "plpo": "plpo_generic_2_038",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.931,
+      "isModern": false
+    },
+    {
+      "pid": 4240,
+      "plpo": "plpo_generic_2_039",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.727,
+      "isModern": false
+    },
+    {
+      "pid": 4241,
+      "plpo": "plpo_generic_2_040",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.686,
+      "isModern": false
+    },
+    {
+      "pid": 4242,
+      "plpo": "plpo_generic_2_041",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 4243,
+      "plpo": "plpo_generic_2_042",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 4244,
+      "plpo": "plpo_generic_2_043",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.065,
+      "isModern": false
+    },
+    {
+      "pid": 4245,
+      "plpo": "plpo_generic_2_044",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 4246,
+      "plpo": "plpo_generic_2_045",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.735,
+      "isModern": false
+    },
+    {
+      "pid": 4247,
+      "plpo": "plpo_generic_2_046",
+      "tone": 2,
+      "build": "B",
+      "neckRatio": 1.618,
+      "isModern": false
+    },
+    {
+      "pid": 4248,
+      "plpo": "plpo_generic_2_047",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.966,
+      "isModern": false
+    },
+    {
+      "pid": 4249,
+      "plpo": "plpo_generic_2_048",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.077,
+      "isModern": false
+    },
+    {
+      "pid": 4250,
+      "plpo": "plpo_generic_2_049",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.794,
+      "isModern": false
+    },
+    {
+      "pid": 4251,
+      "plpo": "plpo_generic_2_050",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.758,
+      "isModern": false
+    },
+    {
+      "pid": 4252,
+      "plpo": "plpo_generic_2_051",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.906,
+      "isModern": false
+    },
+    {
+      "pid": 4253,
+      "plpo": "plpo_generic_2_052",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.906,
+      "isModern": false
+    },
+    {
+      "pid": 4254,
+      "plpo": "plpo_generic_2_053",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.069,
+      "isModern": false
+    },
+    {
+      "pid": 4255,
+      "plpo": "plpo_generic_2_054",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.903,
+      "isModern": false
+    },
+    {
+      "pid": 4256,
+      "plpo": "plpo_generic_2_055",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 4257,
+      "plpo": "plpo_generic_2_056",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.839,
+      "isModern": false
+    },
+    {
+      "pid": 4258,
+      "plpo": "plpo_generic_2_057",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 4259,
+      "plpo": "plpo_generic_2_058",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.969,
+      "isModern": false
+    },
+    {
+      "pid": 4260,
+      "plpo": "plpo_generic_2_059",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.848,
+      "isModern": false
+    },
+    {
+      "pid": 4261,
+      "plpo": "plpo_generic_2_060",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.906,
+      "isModern": false
+    },
+    {
+      "pid": 4262,
+      "plpo": "plpo_generic_2_061",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 2.296,
+      "isModern": false
+    },
+    {
+      "pid": 4263,
+      "plpo": "plpo_generic_2_062",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.686,
+      "isModern": false
+    },
+    {
+      "pid": 4264,
+      "plpo": "plpo_generic_2_063",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.882,
+      "isModern": false
+    },
+    {
+      "pid": 4265,
+      "plpo": "plpo_generic_3_001",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.727,
+      "isModern": false
+    },
+    {
+      "pid": 4266,
+      "plpo": "plpo_generic_3_002",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 4267,
+      "plpo": "plpo_generic_3_003",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.424,
+      "isModern": false
+    },
+    {
+      "pid": 4268,
+      "plpo": "plpo_generic_3_004",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.545,
+      "isModern": false
+    },
+    {
+      "pid": 4269,
+      "plpo": "plpo_generic_3_005",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 4270,
+      "plpo": "plpo_generic_3_006",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 4271,
+      "plpo": "plpo_generic_3_007",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.767,
+      "isModern": false
+    },
+    {
+      "pid": 4272,
+      "plpo": "plpo_generic_3_008",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.741,
+      "isModern": false
+    },
+    {
+      "pid": 4273,
+      "plpo": "plpo_generic_3_009",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.588,
+      "isModern": false
+    },
+    {
+      "pid": 4274,
+      "plpo": "plpo_generic_3_010",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.724,
+      "isModern": false
+    },
+    {
+      "pid": 4275,
+      "plpo": "plpo_generic_3_011",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.625,
+      "isModern": false
+    },
+    {
+      "pid": 4276,
+      "plpo": "plpo_generic_3_012",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.839,
+      "isModern": false
+    },
+    {
+      "pid": 4277,
+      "plpo": "plpo_generic_3_013",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.069,
+      "isModern": false
+    },
+    {
+      "pid": 4278,
+      "plpo": "plpo_generic_3_014",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.385,
+      "isModern": false
+    },
+    {
+      "pid": 4279,
+      "plpo": "plpo_generic_3_015",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.448,
+      "isModern": false
+    },
+    {
+      "pid": 4280,
+      "plpo": "plpo_generic_3_016",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.929,
+      "isModern": false
+    },
+    {
+      "pid": 4281,
+      "plpo": "plpo_generic_3_017",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.545,
+      "isModern": false
+    },
+    {
+      "pid": 4282,
+      "plpo": "plpo_generic_3_018",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.529,
+      "isModern": false
+    },
+    {
+      "pid": 4283,
+      "plpo": "plpo_generic_3_019",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.371,
+      "isModern": false
+    },
+    {
+      "pid": 4284,
+      "plpo": "plpo_generic_3_020",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.559,
+      "isModern": false
+    },
+    {
+      "pid": 4285,
+      "plpo": "plpo_generic_3_021",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.839,
+      "isModern": false
+    },
+    {
+      "pid": 4286,
+      "plpo": "plpo_generic_3_022",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.879,
+      "isModern": false
+    },
+    {
+      "pid": 4287,
+      "plpo": "plpo_generic_2_M_N_04",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 1.056,
+      "isModern": true
+    },
+    {
+      "pid": 4288,
+      "plpo": "plpo_generic_3_023",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.812,
+      "isModern": false
+    },
+    {
+      "pid": 4289,
+      "plpo": "plpo_generic_3_024",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 4290,
+      "plpo": "plpo_generic_3_025",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.0,
+      "isModern": false
+    },
+    {
+      "pid": 4291,
+      "plpo": "plpo_generic_3_026",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.765,
+      "isModern": false
+    },
+    {
+      "pid": 4292,
+      "plpo": "plpo_generic_3_027",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.697,
+      "isModern": false
+    },
+    {
+      "pid": 4293,
+      "plpo": "plpo_generic_3_028",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.735,
+      "isModern": false
+    },
+    {
+      "pid": 4294,
+      "plpo": "plpo_generic_3_029",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 4295,
+      "plpo": "plpo_generic_3_030",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.844,
+      "isModern": false
+    },
+    {
+      "pid": 4296,
+      "plpo": "plpo_generic_3_031",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 4297,
+      "plpo": "plpo_generic_3_032",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.179,
+      "isModern": false
+    },
+    {
+      "pid": 4298,
+      "plpo": "plpo_generic_3_033",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 4299,
+      "plpo": "plpo_generic_3_034",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.346,
+      "isModern": false
+    },
+    {
+      "pid": 4300,
+      "plpo": "plpo_generic_3_035",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 1.964,
+      "isModern": false
+    },
+    {
+      "pid": 4301,
+      "plpo": "plpo_generic_3_036",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 2.81,
+      "isModern": false
+    },
+    {
+      "pid": 4302,
+      "plpo": "plpo_generic_3_037",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.824,
+      "isModern": false
+    },
+    {
+      "pid": 4303,
+      "plpo": "plpo_generic_3_038",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 1.935,
+      "isModern": false
+    },
+    {
+      "pid": 4304,
+      "plpo": "plpo_generic_1_001",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.938,
+      "isModern": false
+    },
+    {
+      "pid": 4305,
+      "plpo": "plpo_generic_1_002",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.844,
+      "isModern": false
+    },
+    {
+      "pid": 4306,
+      "plpo": "plpo_generic_1_003",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.606,
+      "isModern": false
+    },
+    {
+      "pid": 4307,
+      "plpo": "plpo_generic_1_004",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.75,
+      "isModern": false
+    },
+    {
+      "pid": 4308,
+      "plpo": "plpo_generic_1_005",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.706,
+      "isModern": false
+    },
+    {
+      "pid": 4309,
+      "plpo": "plpo_generic_1_006",
+      "tone": 1,
+      "build": "M",
+      "neckRatio": 1.818,
+      "isModern": false
+    },
+    {
+      "pid": 4310,
+      "plpo": "plpo_generic_1_007",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 4311,
+      "plpo": "plpo_generic_1_008",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.571,
+      "isModern": false
+    },
+    {
+      "pid": 4312,
+      "plpo": "plpo_generic_1_009",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.556,
+      "isModern": false
+    },
+    {
+      "pid": 4313,
+      "plpo": "plpo_generic_1_H_N_010",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 0.974,
+      "isModern": true
+    },
+    {
+      "pid": 4314,
+      "plpo": "plpo_generic_1_010",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.647,
+      "isModern": false
+    },
+    {
+      "pid": 4315,
+      "plpo": "plpo_generic_1_011",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.594,
+      "isModern": false
+    },
+    {
+      "pid": 4316,
+      "plpo": "plpo_generic_1_012",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.543,
+      "isModern": false
+    },
+    {
+      "pid": 4317,
+      "plpo": "plpo_generic_1_013",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.406,
+      "isModern": false
+    },
+    {
+      "pid": 4318,
+      "plpo": "plpo_generic_CarterLandry",
+      "tone": 4,
+      "build": "T",
+      "neckRatio": 0.596,
+      "isModern": false
+    },
+    {
+      "pid": 10308,
+      "plpo": "plpo_generic_1_B_N_010",
+      "tone": 1,
+      "build": "B",
+      "neckRatio": 1.457,
+      "isModern": true
+    },
+    {
+      "pid": 10309,
+      "plpo": "plpo_generic_1_H_N_010",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 0.974,
+      "isModern": true
+    },
+    {
+      "pid": 10310,
+      "plpo": "plpo_generic_1_H_N_015",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.306,
+      "isModern": true
+    },
+    {
+      "pid": 10311,
+      "plpo": "plpo_generic_1_H_S_003",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.25,
+      "isModern": true
+    },
+    {
+      "pid": 10312,
+      "plpo": "plpo_generic_1_H_S_008",
+      "tone": 1,
+      "build": "H",
+      "neckRatio": 1.472,
+      "isModern": true
+    },
+    {
+      "pid": 10313,
+      "plpo": "plpo_generic_2_BMH_003",
+      "tone": 2,
+      "build": "BMH",
+      "neckRatio": 1.515,
+      "isModern": true
+    },
+    {
+      "pid": 10314,
+      "plpo": "plpo_generic_2_BMH_G_009",
+      "tone": 2,
+      "build": "BMH",
+      "neckRatio": 1.053,
+      "isModern": true
+    },
+    {
+      "pid": 10315,
+      "plpo": "plpo_generic_2_BMH_S_010",
+      "tone": 2,
+      "build": "BMH",
+      "neckRatio": 1.057,
+      "isModern": true
+    },
+    {
+      "pid": 10316,
+      "plpo": "plpo_generic_2_H_N_006",
+      "tone": 2,
+      "build": "H",
+      "neckRatio": 1.029,
+      "isModern": true
+    },
+    {
+      "pid": 10317,
+      "plpo": "plpo_generic_2_M_N_22",
+      "tone": 2,
+      "build": "M",
+      "neckRatio": 0.881,
+      "isModern": true
+    },
+    {
+      "pid": 10318,
+      "plpo": "plpo_generic_2_T_S_007",
+      "tone": 2,
+      "build": "T",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 10319,
+      "plpo": "plpo_generic_3_B_BD_02",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.229,
+      "isModern": true
+    },
+    {
+      "pid": 10320,
+      "plpo": "plpo_generic_3_B_N_004",
+      "tone": 3,
+      "build": "B",
+      "neckRatio": 1.081,
+      "isModern": true
+    },
+    {
+      "pid": 10321,
+      "plpo": "plpo_generic_3_H_BD_01",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 0.895,
+      "isModern": true
+    },
+    {
+      "pid": 10322,
+      "plpo": "plpo_generic_3_H_B_008",
+      "tone": 3,
+      "build": "H",
+      "neckRatio": 1.061,
+      "isModern": true
+    },
+    {
+      "pid": 10323,
+      "plpo": "plpo_generic_3_M_N_01",
+      "tone": 3,
+      "build": "M",
+      "neckRatio": 2.08,
+      "isModern": true
+    },
+    {
+      "pid": 10324,
+      "plpo": "plpo_generic_3_T_N_004",
+      "tone": 3,
+      "build": "T",
+      "neckRatio": 1.125,
+      "isModern": true
+    },
+    {
+      "pid": 10325,
+      "plpo": "plpo_generic_4_B_N_005",
+      "tone": 4,
+      "build": "B",
+      "neckRatio": 1.864,
+      "isModern": true
+    },
+    {
+      "pid": 10326,
+      "plpo": "plpo_generic_4_M_M_005",
+      "tone": 4,
+      "build": "M",
+      "neckRatio": 1.72,
+      "isModern": true
+    },
+    {
+      "pid": 10327,
+      "plpo": "plpo_generic_5_H_BD_01",
+      "tone": 5,
+      "build": "H",
+      "neckRatio": 1.269,
+      "isModern": true
+    },
+    {
+      "pid": 10328,
+      "plpo": "plpo_generic_5_M_BD_02",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.03,
+      "isModern": true
+    },
+    {
+      "pid": 10329,
+      "plpo": "plpo_generic_5_M_M_005",
+      "tone": 5,
+      "build": "M",
+      "neckRatio": 1.132,
+      "isModern": true
+    },
+    {
+      "pid": 10330,
+      "plpo": "plpo_generic_6_BHM_G_002",
+      "tone": 6,
+      "build": "BHM",
+      "neckRatio": 1.346,
+      "isModern": true
+    },
+    {
+      "pid": 10331,
+      "plpo": "plpo_generic_6_H_B_002",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.161,
+      "isModern": true
+    },
+    {
+      "pid": 10332,
+      "plpo": "plpo_generic_6_H_G_012",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.167,
+      "isModern": true
+    },
+    {
+      "pid": 10333,
+      "plpo": "plpo_generic_6_H_MS_01",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 0.795,
+      "isModern": true
+    },
+    {
+      "pid": 10334,
+      "plpo": "plpo_generic_6_H_N_001",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.226,
+      "isModern": true
+    },
+    {
+      "pid": 10335,
+      "plpo": "plpo_generic_6_H_N_01",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.147,
+      "isModern": true
+    },
+    {
+      "pid": 10336,
+      "plpo": "plpo_generic_6_H_N_20",
+      "tone": 6,
+      "build": "H",
+      "neckRatio": 1.0,
+      "isModern": true
+    },
+    {
+      "pid": 10337,
+      "plpo": "plpo_generic_7_BHM_MG_022",
+      "tone": 7,
+      "build": "BHM",
+      "neckRatio": 1.172,
+      "isModern": true
+    },
+    {
+      "pid": 10338,
+      "plpo": "plpo_generic_7_BHM_N_004",
+      "tone": 7,
+      "build": "BHM",
+      "neckRatio": 1.31,
+      "isModern": true
+    },
+    {
+      "pid": 10339,
+      "plpo": "plpo_generic_7_BMH_B_006",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.212,
+      "isModern": true
+    },
+    {
+      "pid": 10340,
+      "plpo": "plpo_generic_7_BMH_GS_011",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.161,
+      "isModern": true
+    },
+    {
+      "pid": 10341,
+      "plpo": "plpo_generic_7_BMH_MG_001",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.435,
+      "isModern": true
+    },
+    {
+      "pid": 10342,
+      "plpo": "plpo_generic_7_BMH_MG_008",
+      "tone": 7,
+      "build": "BMH",
+      "neckRatio": 1.636,
+      "isModern": true
+    },
+    {
+      "pid": 10343,
+      "plpo": "plpo_generic_7_BMT_BM_012",
+      "tone": 7,
+      "build": "BMT",
+      "neckRatio": 1.696,
+      "isModern": true
+    },
+    {
+      "pid": 10344,
+      "plpo": "plpo_generic_7_BMT_M_009",
+      "tone": 7,
+      "build": "BMT",
+      "neckRatio": 1.36,
+      "isModern": true
+    },
+    {
+      "pid": 10345,
+      "plpo": "plpo_generic_7_BTM_N_007",
+      "tone": 7,
+      "build": "BTM",
+      "neckRatio": 1.074,
+      "isModern": true
+    },
+    {
+      "pid": 10346,
+      "plpo": "plpo_generic_7_B_B_005",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 0.875,
+      "isModern": true
+    },
+    {
+      "pid": 10347,
+      "plpo": "plpo_generic_7_B_B_009",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.292,
+      "isModern": true
+    },
+    {
+      "pid": 10348,
+      "plpo": "plpo_generic_7_B_G_007",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.464,
+      "isModern": true
+    },
+    {
+      "pid": 10349,
+      "plpo": "plpo_generic_7_B_N_08",
+      "tone": 7,
+      "build": "B",
+      "neckRatio": 1.31,
+      "isModern": true
+    },
+    {
+      "pid": 10350,
+      "plpo": "plpo_generic_7_H_BMS_013",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.233,
+      "isModern": true
+    },
+    {
+      "pid": 10351,
+      "plpo": "plpo_generic_7_H_G_004",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.043,
+      "isModern": true
+    },
+    {
+      "pid": 10352,
+      "plpo": "plpo_generic_7_H_G_02",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 0.848,
+      "isModern": true
+    },
+    {
+      "pid": 10353,
+      "plpo": "plpo_generic_7_M_BD_02",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.789,
+      "isModern": true
+    },
+    {
+      "pid": 10354,
+      "plpo": "plpo_generic_7_M_MG_025",
+      "tone": 7,
+      "build": "M",
+      "neckRatio": 1.72,
+      "isModern": true
+    },
+    {
+      "pid": 10355,
+      "plpo": "plpo_generic_4_T_N_007",
+      "tone": 4,
+      "build": "T",
+      "neckRatio": 1.147,
+      "isModern": true
+    },
+    {
+      "pid": 10356,
+      "plpo": "plpo_generic_7_T_N_001",
+      "tone": 7,
+      "build": "T",
+      "neckRatio": 1.379,
+      "isModern": true
+    },
+    {
+      "pid": 10357,
+      "plpo": "plpo_generic_7_H_G_009",
+      "tone": 7,
+      "build": "H",
+      "neckRatio": 1.028,
+      "isModern": true
+    }
+  ]
+}

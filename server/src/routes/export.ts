@@ -3,6 +3,7 @@ import type { BaselinePlayer } from '../types/player';
 import fs from 'fs';
 import path from 'path';
 import { DraftClassBuilder, GenOptions, parseGenMode } from '../services/DraftClassBuilder';
+import { ProspectVarianceService, type FreakPreset } from '../services/ProspectVarianceService';
 import { PortraitModService } from '../services/PortraitModService';
 import { PortraitPackService } from '../services/PortraitPackService';
 import { FranchiseService } from '../services/FranchiseService';
@@ -25,7 +26,7 @@ r.post('/export/mdc', async (req, res) => {
   const gearEdits = req.body?.gearEdits as Record<string, Record<string, string>> | undefined;
   const mode = parseGenMode(req.body?.mode);
   const gameVersion: 'm26' | 'm27' = req.body?.gameVersion === 'm27' ? 'm27' : 'm26';
-  const source = req.body?.source === 'alltime' ? 'alltime' : req.body?.source === 'decade' ? 'decade' : req.body?.source === 'picked' ? 'picked' : req.body?.source === 'team' ? 'team' : req.body?.source === 'file' ? 'file' : 'year';
+  const source = req.body?.source === 'freaks' ? 'freaks' : req.body?.source === 'alltime' ? 'alltime' : req.body?.source === 'decade' ? 'decade' : req.body?.source === 'picked' ? 'picked' : req.body?.source === 'team' ? 'team' : req.body?.source === 'file' ? 'file' : 'year';
   const opts: GenOptions = {
     strength: Number(req.body?.strength) > 0 ? Number(req.body?.strength) : 1,
     studs: Math.max(0, Math.round(Number(req.body?.studs) || 0)),
@@ -36,6 +37,14 @@ r.post('/export/mdc', async (req, res) => {
     include: (Array.isArray(req.body?.include) ? req.body.include : []).map((x: unknown) => Number(x)).filter((n: number) => Number.isInteger(n) && n >= 0),
     portraitPack: !!req.body?.portraitPack,
     portraitCdn: !!req.body?.portraitCdn,
+    freakMode: !!req.body?.freakMode || source === 'freaks',
+    freakPreset: req.body?.freakPreset as FreakPreset | undefined,
+    freakRate: req.body?.freakRate != null ? Number(req.body.freakRate) : undefined,
+    freakCap: req.body?.freakCap != null ? Number(req.body.freakCap) : undefined,
+    generationalShare: req.body?.generationalShare != null ? Number(req.body.generationalShare) : undefined,
+    hybridRate: req.body?.hybridRate != null ? Number(req.body.hybridRate) : undefined,
+    superFusionRate: req.body?.superFusionRate != null ? Number(req.body.superFusionRate) : undefined,
+    freakSeed: req.body?.freakSeed != null ? Number(req.body.freakSeed) : undefined,
   };
 
   // An opened .mdc: apply the edits to the file's own prospects and write them
@@ -50,6 +59,19 @@ r.post('/export/mdc', async (req, res) => {
   if (fileOut) {
     players = [];
     filename = fileOut.filename;
+    } else if (source === 'freaks') {
+    const freakSettings = {
+      enabled: true,
+      preset: opts.freakPreset,
+      freakRate: opts.freakRate,
+      freakCap: opts.freakCap,
+      generationalShare: opts.generationalShare,
+      hybridRate: opts.hybridRate,
+      superFusionRate: opts.superFusionRate,
+      seed: opts.freakSeed ?? (opts.variant ? opts.variant * 1000 + 2027 : 2027),
+    };
+    players = ProspectVarianceService.buildProceduralClass(freakSettings, 2027);
+    filename = `CAREERDRAFT-FREAKLAB${opts.freakSeed ?? 2027}`;
   } else if (source === 'picked') {
     // A Class Studio board in pick order, or the 1.2.0 shape (a list of keys).
     const raw = req.body?.keys;

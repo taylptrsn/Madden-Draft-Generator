@@ -11,7 +11,7 @@ function ModePanel({
   onClick,
   index,
 }: {
-  accent: 'blue' | 'gold';
+  accent: 'blue' | 'gold' | 'purple';
   icon: string;
   title: string;
   tagline: string;
@@ -30,14 +30,23 @@ function ModePanel({
           cta: 'text-primary-light',
           beam: 'from-primary/14',
         }
-      : {
-          ring: 'hover:border-gold/60 focus-visible:border-gold/70',
-          glow: 'hover:shadow-[0_0_0_1px_rgba(245,197,24,0.16),0_16px_36px_-20px_rgba(245,197,24,0.28)]',
-          chip: 'bg-gold/12 text-gold ring-1 ring-gold/22',
-          dot: 'bg-gold',
-          cta: 'text-gold',
-          beam: 'from-gold/12',
-        };
+      : accent === 'purple'
+        ? {
+            ring: 'hover:border-purple-400/60 focus-visible:border-purple-400/70',
+            glow: 'hover:shadow-[0_0_0_1px_rgba(168,85,247,0.18),0_16px_36px_-20px_rgba(168,85,247,0.35)]',
+            chip: 'bg-purple-500/12 text-purple-300 ring-1 ring-purple-500/22',
+            dot: 'bg-purple-400',
+            cta: 'text-purple-300',
+            beam: 'from-purple-500/14',
+          }
+        : {
+            ring: 'hover:border-gold/60 focus-visible:border-gold/70',
+            glow: 'hover:shadow-[0_0_0_1px_rgba(245,197,24,0.16),0_16px_36px_-20px_rgba(245,197,24,0.28)]',
+            chip: 'bg-gold/12 text-gold ring-1 ring-gold/22',
+            dot: 'bg-gold',
+            cta: 'text-gold',
+            beam: 'from-gold/12',
+          };
 
   return (
     <button
@@ -70,7 +79,7 @@ function ModePanel({
   );
 }
 
-export function HomePage({ onSelect, franchiseEnabled, title = `Madden ${NAME}` }: { onSelect: (v: AppView) => void; franchiseEnabled: boolean; title?: string }) {
+export function HomePage({ onSelect, onOpenFreaks, franchiseEnabled, title = `Madden ${NAME}` }: { onSelect: (v: AppView) => void; onOpenFreaks?: () => void; franchiseEnabled: boolean; title?: string }) {
   return (
     <div className="relative h-full overflow-auto">
       {/* Hero art: the generated stadium plate, faded into the shell at the bottom. */}
@@ -92,7 +101,7 @@ export function HomePage({ onSelect, franchiseEnabled, title = `Madden ${NAME}` 
           </p>
         </div>
 
-        <div className={`mt-8 grid grid-cols-1 gap-3 md:grid-cols-2 ${franchiseEnabled ? 'xl:grid-cols-3' : ''}`}>
+        <div className={`mt-8 grid grid-cols-1 gap-3 md:grid-cols-2 ${franchiseEnabled ? 'xl:grid-cols-4' : 'xl:grid-cols-3'}`}>
           <ModePanel
             index={0}
             accent="blue"
@@ -109,6 +118,23 @@ export function HomePage({ onSelect, franchiseEnabled, title = `Madden ${NAME}` 
           />
           <ModePanel
             index={1}
+            accent="purple"
+            icon={ICONS.sparkles}
+            title="Freak Lab 🦄"
+            tagline="Generate procedural unicorns & anomalies calibrated to 1936–2026."
+            features={[
+              '29 Freak archetypes, dual hybrids & 3-way super-fusions',
+              'Calibrated to 95th/99th percentile historical tail stats',
+              '6×6 Cholesky physical correlation sampler',
+              'Standalone or overlay onto any 1936–2026 draft class',
+            ]}
+            onClick={() => {
+              if (onOpenFreaks) onOpenFreaks();
+              else onSelect('draft');
+            }}
+          />
+          <ModePanel
+            index={2}
             accent="blue"
             icon={ICONS.users}
             title="Rosters"
@@ -122,7 +148,7 @@ export function HomePage({ onSelect, franchiseEnabled, title = `Madden ${NAME}` 
           />
           {franchiseEnabled && (
             <ModePanel
-              index={2}
+              index={3}
               accent="gold"
               icon={ICONS.shield}
               title="Franchise Tools"

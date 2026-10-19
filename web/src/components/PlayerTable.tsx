@@ -181,6 +181,12 @@ const BoardRow = memo(function BoardRow({
             {r.edited && <span className="h-1.5 w-1.5 rounded-full bg-gold shadow-[0_0_6px_rgba(245,197,24,0.8)]" title="edited" />}
             <span className="truncate">{r.firstName} {r.lastName}</span>
             {r.supplemental && <span className="rounded border border-legend/40 px-1 text-[11px] uppercase tracking-wider text-legend-light" title={`Supplemental draft pick, round ${r.supplemental.round}`}>S</span>}
+            {spoilers && r.freak?.isFreak && (
+              <span className="inline-flex items-center gap-1 rounded border border-purple-500/40 bg-purple-500/15 px-1.5 py-0.2 text-[10px] font-semibold text-purple-200" title={`${r.freak.archetypeLabel} (${r.freak.tier.toUpperCase()}): ${r.freak.summary}`}>
+                <span>{r.freak.emoji}</span>
+                <span className="hidden xl:inline">{r.freak.archetypeLabel}</span>
+              </span>
+            )}
           </span>
         </span>
       </td>

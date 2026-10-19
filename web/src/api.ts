@@ -2,7 +2,7 @@ import type { GeneratedClass, ClassEdits, GearEdits, GearOption, LikenessStats, 
 
 /** Generation options every class request carries (see App.DraftOpts). */
 export interface ClassRequestOpts {
-  source: 'year' | 'alltime' | 'decade' | 'picked' | 'team' | 'file';
+  source: 'year' | 'alltime' | 'decade' | 'picked' | 'team' | 'file' | 'freaks';
   decade?: number;
   /** An opened .mdc (source === 'file'). */
   fileId?: string;
@@ -21,6 +21,14 @@ export interface ClassRequestOpts {
   keys?: string[];
   fill?: boolean;
   name?: string;
+  freakMode?: boolean;
+  freakPreset?: import('./types').FreakPreset;
+  freakRate?: number;
+  freakCap?: number;
+  generationalShare?: number;
+  hybridRate?: number;
+  superFusionRate?: number;
+  freakSeed?: number;
 }
 
 /** CAREERDRAFT-<SLUG> for a hand-picked class (mirrors the server's classSlug). */
@@ -509,7 +517,7 @@ export const api = {
 
   /** Custom class: All-Time Greats / by-decade source and/or generation modifiers. */
   generatedCustom: (opts: Partial<ClassRequestOpts> & {
-    source: 'year' | 'alltime' | 'decade' | 'picked' | 'team';
+    source: 'year' | 'alltime' | 'decade' | 'picked' | 'team' | 'freaks';
     year?: number;
     league?: string;
     mode: string;
@@ -549,7 +557,7 @@ export const api = {
     // Match Madden's own save naming (extensionless CAREERDRAFT-*) so the file
     // drops straight into the Saves folder and shows up in "Load Draft Class".
     a.download =
-      draftOpts?.source === 'file' ? (draftOpts.name || 'CAREERDRAFT')
+      draftOpts?.source === 'freaks' ? `CAREERDRAFT-FREAKLAB${draftOpts.freakSeed ?? 2027}` : draftOpts?.source === 'file' ? (draftOpts.name || 'CAREERDRAFT')
       : draftOpts?.source === 'picked' || draftOpts?.source === 'team' ? classFileName(draftOpts.name)
       : draftOpts?.source === 'alltime' ? 'CAREERDRAFT-ALLTIMEGREATS'
       : draftOpts?.source === 'decade' ? `CAREERDRAFT-${draftOpts.decade}sGREATS`

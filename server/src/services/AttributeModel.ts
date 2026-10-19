@@ -1,4 +1,4 @@
-import { CombineMeasurements } from '../types/player';
+﻿import { CombineMeasurements } from '../types/player';
 import type { CareerBits } from './NflverseCareerService';
 import { AttrStat, CalibrationService, PosProfile } from './CalibrationService';
 import { CombineService } from './CombineService';
@@ -219,7 +219,127 @@ export function generateAttributes(input: GenerateInput): Record<string, number>
     const p = qbRushPercentile(input.career, input.draftYear);
     if (p != null) out.speed = onDistribution(p, stats.speed, profile.attrs.speed ?? 78);
   }
+  if (input.career) {
+    applyCareerSkillSignature(posId, out, input.career, input.draftYear, input.uncapped);
+  }
   return out;
+}
+
+/**
+ * Shapes a prospect's non-physical skill profile using his real 1936-2026 NFL
+ * career statistical signature (YPR, rec/game, TD rate, rush YPG/YPC, sacks/game,
+ * INTs/game, QB pass/rush rates) before reconcileToTarget locks in the exact OVR.
+ */
+export function applyCareerSkillSignature(
+  posId: number,
+  out: Record<string, number>,
+  c: CareerBits,
+  draftYear?: number,
+  uncapped?: boolean
+): void {
+  const games = Math.max(1, c.games ?? Math.round(Math.max(1, c.seasonsStarted ?? 0) * 14));
+  if (games < 12) return;
+  const group = PositionMapper.groupFromId(posId);
+  const cap = uncapped ? 99 : 94;
+  const nudge = (k: string, delta: number) => {
+    if (out[k] == null) return;
+    out[k] = clampRating(Math.min(cap, Math.max(25, out[k] + delta)));
+  };
+
+  const rec = c.receptions ?? 0;
+  const recYds = c.recYards ?? 0;
+  const recTds = c.recTds ?? 0;
+  const rushAtt = c.rushAtts ?? 0;
+  const rushYds = c.rushYards ?? 0;
+  const sacks = c.defSacks ?? 0;
+  const ints = c.defInts ?? 0;
+  const passYds = c.passYards ?? 0;
+  const wt = c.weight ?? 215;
+
+  if (group === 'WR' || group === 'TE') {
+    if (rec >= 35) {
+      const ypr = recYds / rec;
+      const rpg = rec / games;
+      const tdRate = recTds / rec;
+      // Vertical / deep-ball signature (Moss, Hayes, DeSean Jackson, Vernon Davis)
+      if (ypr >= 16.5) {
+        nudge('deepRouteRunning', 3);
+        nudge('spectacularCatch', 3);
+        nudge('release', 2);
+      } else if (ypr <= 11.8 && rpg >= 3.8) {
+        // High-volume underneath / slot technician
+        nudge('shortRouteRunning', 3);
+        nudge('catching', 2);
+        nudge('catchInTraffic', 2);
+      }
+      if (rpg >= 4.8) {
+        nudge('catching', 2);
+        nudge('mediumRouteRunning', 2);
+      }
+      if (tdRate >= 0.11 || recTds >= 65) {
+        nudge('spectacularCatch', 2);
+        nudge('catchInTraffic', 2);
+      }
+    }
+  } else if (group === 'RB') {
+    if (rushAtt >= 100) {
+      const ypc = rushYds / rushAtt;
+      const rypg = rushYds / games;
+      if (ypc >= 4.6 || rypg >= 68) {
+        nudge('breakTackle', 3);
+        nudge('ballCarrierVision', 3);
+      }
+      if (wt >= 228) {
+        nudge('trucking', 4);
+        nudge('stiffArm', 3);
+      } else if (wt <= 206) {
+        nudge('jukeMove', 3);
+        nudge('spinMove', 2);
+      }
+    }
+    if (rec / games >= 2.5) {
+      nudge('catching', 4);
+      nudge('shortRouteRunning', 4);
+    }
+  } else if (group === 'QB') {
+    const pRush = qbRushPercentile(c, draftYear);
+    if (pRush != null && pRush >= 0.82) {
+      const boost = pRush >= 0.95 ? 4 : 2;
+      nudge('breakSack', boost);
+      nudge('throwOnTheRun', boost);
+      nudge('jukeMove', boost);
+      nudge('carrying', 2);
+    }
+    if (passYds / games >= ((draftYear ?? 2000) >= 2000 ? 225 : 175)) {
+      nudge('throwAccuracyShort', 2);
+      nudge('throwAccuracyMid', 2);
+      nudge('throwAccuracyDeep', 2);
+      nudge('throwUnderPressure', 2);
+    }
+  } else if (group === 'EDGE' || group === 'IDL' || group === 'LB') {
+    const spg = sacks / games;
+    if (sacks >= 15 && spg >= 0.42) {
+      const boost = spg >= 0.65 ? 4 : 2;
+      nudge('powerMoves', boost);
+      nudge('finesseMoves', boost);
+      nudge('pursuit', 2);
+      nudge('blockShedding', 2);
+    }
+    if (group === 'LB' && ints >= 8 && ints / games >= 0.08) {
+      nudge('zoneCoverage', 3);
+      nudge('manCoverage', 2);
+      nudge('catching', 3);
+      nudge('playRecognition', 2);
+    }
+  } else if (group === 'CB' || group === 'S') {
+    const ipg = ints / games;
+    if (ints >= 10 && ipg >= 0.18) {
+      const boost = ipg >= 0.30 ? 4 : 2;
+      nudge('catching', boost + 2);
+      nudge('zoneCoverage', boost);
+      nudge('playRecognition', boost);
+    }
+  }
 }
 
 /**
@@ -353,3 +473,4 @@ function reconcileArchetype(attrs: Record<string, number>, posId: number, archet
     if (!done) break;
   }
 }
+

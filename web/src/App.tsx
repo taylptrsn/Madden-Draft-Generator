@@ -36,7 +36,7 @@ export type AppView = 'home' | 'draft' | 'franchise' | 'rosters';
 
 /** Draft-class generation modifiers (custom classes). */
 export interface DraftOpts {
-  source: 'year' | 'alltime' | 'decade' | 'picked' | 'team' | 'file';
+  source: 'year' | 'alltime' | 'decade' | 'picked' | 'team' | 'file' | 'freaks';
   decade: number; // used when source === 'decade' (e.g. 1990)
   team?: string; // franchise key when source === 'team' (e.g. DAL)
   fileId?: string; // an opened .mdc when source === 'file'
@@ -49,10 +49,18 @@ export interface DraftOpts {
   include?: number[]; // source indexes forced into an over-capacity year (per class, persisted)
   customId?: string; // hand-picked class id (source === 'picked')
   fill?: boolean; // pad a short hand-picked class to 402 (default true)
+  freakMode?: boolean;
+  freakPreset?: import('./types').FreakPreset;
+  freakRate?: number;
+  freakCap?: number;
+  generationalShare?: number;
+  hybridRate?: number;
+  superFusionRate?: number;
+  freakSeed?: number;
 }
 export const DEFAULT_DRAFT_OPTS: DraftOpts = { source: 'year', decade: 2010, strength: 1, studs: 0, generational: false, hindsight: 1, autoStrength: false, variant: 0 };
 export const isCustomDraft = (o: DraftOpts) =>
-  o.source !== 'year' || o.strength !== 1 || o.studs !== 0 || o.generational || (o.hindsight ?? 1) !== 1 || !!o.autoStrength || (o.variant ?? 0) !== 0 || (o.include?.length ?? 0) > 0;
+  o.source !== 'year' || !!o.freakMode || o.strength !== 1 || o.studs !== 0 || o.generational || (o.hindsight ?? 1) !== 1 || !!o.autoStrength || (o.variant ?? 0) !== 0 || (o.include?.length ?? 0) > 0;
 
 const isMergeEra = (y: number) => y >= 1960 && y <= 1966; // 1967-69: one common draft
 const leagueFor = (y: number) => (isMergeEra(y) ? 'combined' : 'NFL');
@@ -151,6 +159,7 @@ export default function App() {
       const baseOpts = useOpts ?? draftOpts;
       // Greats classes key their edits/cache under a fixed pseudo-year / decade label.
       const league = baseOpts.source === 'alltime' ? 'all-time'
+        : baseOpts.source === 'freaks' ? 'freaklab'
         : baseOpts.source === 'decade' ? `${baseOpts.decade}s`
         : baseOpts.source === 'picked' ? `custom:${baseOpts.customId ?? 'none'}`
         : baseOpts.source === 'team' ? `team:${baseOpts.team ?? 'none'}`
@@ -162,7 +171,7 @@ export default function App() {
       const opts: DraftOpts = { ...baseOpts, include: useOpts?.include ?? storedInclude };
       if ((opts.include?.length ?? 0) !== (baseOpts.include?.length ?? 0)) setDraftOpts(opts);
       const custom = isCustomDraft(opts);
-      const ekYear = opts.source === 'alltime' || opts.source === 'picked' || opts.source === 'team' || opts.source === 'file' ? 0 : opts.source === 'decade' ? opts.decade : year;
+      const ekYear = opts.source === 'freaks' || opts.source === 'alltime' || opts.source === 'picked' || opts.source === 'team' || opts.source === 'file' ? 0 : opts.source === 'decade' ? opts.decade : year;
       // M27 classes are cached under a versioned key so M26/M27 views never collide.
       const cacheMode = useVersion === 'm27' ? `${useMode}-m27` : useMode;
       const req = ++reqRef.current;
@@ -203,6 +212,9 @@ export default function App() {
             hindsight: opts.hindsight, autoStrength: opts.autoStrength, variant: opts.variant, include: opts.include,
             board: picked?.board, fill: opts.fill !== false, name: picked?.name,
             gameVersion: useVersion,
+            freakMode: opts.freakMode, freakPreset: opts.freakPreset, freakRate: opts.freakRate,
+            freakCap: opts.freakCap, generationalShare: opts.generationalShare, hybridRate: opts.hybridRate,
+            superFusionRate: opts.superFusionRate, freakSeed: opts.freakSeed,
           });
           if (req !== reqRef.current) return;
           live.fetchedAt = Date.now();
@@ -291,13 +303,24 @@ export default function App() {
       setDraftOpts(next);
       setFocusPlayer(null);
       const year =
-        next.source === 'alltime' || next.source === 'picked' || next.source === 'team' || next.source === 'file' ? 0
+        next.source === 'freaks' || next.source === 'alltime' || next.source === 'picked' || next.source === 'team' || next.source === 'file' ? 0
         : next.source === 'decade' ? next.decade
         : selected && selected > 0 ? selected : years.includes(2003) ? 2003 : years[years.length - 1] ?? 2003;
       select(year, true, mode, undefined, next);
     },
     [selected, years, mode, select]
   );
+
+  const openFreaks = useCallback(() => {
+    setView('draft');
+    const next: DraftOpts = {
+      ...draftOpts,
+      source: 'freaks',
+      freakMode: true,
+    };
+    setDraftOpts(next);
+    applyDraftOpts(next);
+  }, [draftOpts, applyDraftOpts]);
 
   const openBuilder = useCallback((c: CustomClass | null) => setBuilder({ open: true, initial: c }), []);
 
@@ -657,7 +680,7 @@ export default function App() {
         <SideRail view={view} onSetView={setView} franchiseEnabled={franchiseEnabled} />
         <main className="min-w-0 flex-1">
           {view === 'rosters' && <RostersView gameVersion={gameVersion} />}
-          {view === 'home' && <HomePage onSelect={setView} franchiseEnabled={franchiseEnabled} title={productTitle(pinnedGame ?? gameVersion)} />}
+          {view === 'home' && <HomePage onSelect={setView} onOpenFreaks={openFreaks} franchiseEnabled={franchiseEnabled} title={productTitle(pinnedGame ?? gameVersion)} />}
           {view === 'franchise' && franchiseEnabled && (
             <FranchiseView
               gameVersion={gameVersion}

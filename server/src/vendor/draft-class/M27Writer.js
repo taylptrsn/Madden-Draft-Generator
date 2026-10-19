@@ -128,7 +128,7 @@ function writeM27VisualJSON(buffer, blockStart, prospect) {
     const m = String(genericHeadName).match(/^gen_(\d+)/i);
     if (m) skinTone = parseInt(m[1], 10);
   }
-  if (genericHeadName && skinTone != null) visuals.skinTone = skinTone;
+  if (skinTone != null) visuals.skinTone = skinTone;
 
   // Loadouts: use the prospect's PlayerOnField loadout when present (era gear /
   // copied real-player gear already merged by the builder); always include the

@@ -1,3 +1,18 @@
+export interface FreakMetadata {
+  isFreak: boolean;
+  tier: 'generational' | 'unicorn' | 'super_fusion' | 'hybrid' | 'standard';
+  archetypeKey: string;
+  archetypeLabel: string;
+  emoji: string;
+  summary: string;
+  historicalComps: string[];
+  combine40?: number;
+  combineVert?: number;
+  combineBench?: number;
+}
+
+export type FreakPreset = 'balanced' | 'freak_show' | 'super_fusions' | 'all_freaks';
+
 export interface PlayerRow {
   id: number; // == pick (stable)
   pick: number;
@@ -44,6 +59,7 @@ export interface PlayerRow {
   gear?: Record<string, string>; // era-default equipment (editor slot -> asset) the export writes
   ratings: Record<string, number>; // full editable attribute set
   scouting?: string[]; // Madden's own draft notes for this position
+  freak?: FreakMetadata | null;
 }
 
 export interface FrontSevenInfo {
@@ -114,7 +130,7 @@ export interface GeneratedClass {
   degraded?: boolean; // built before the backend's data caches were ready (not cached client-side)
   dropped?: DroppedPlayer[]; // players that did not fit (years with more than 402 rows)
   included?: number[]; // source indexes forced in (DraftOpts.include echo)
-  source?: 'year' | 'alltime' | 'decade' | 'picked' | 'team' | 'file';
+  source?: 'year' | 'alltime' | 'decade' | 'picked' | 'team' | 'file' | 'freaks';
   name?: string; // hand-picked class name, the franchise name of a By-team class, or an opened file's name
   fileId?: string; // an opened .mdc (source === 'file'): server-side id for export and reload
   fileName?: string; // the opened file's name (CAREERDRAFT-1998DRAFT)

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { PlayerLookupService } from '../services/PlayerLookupService';
 import { DraftClassBuilder, GenOptions, parseGenMode } from '../services/DraftClassBuilder';
+import { ProspectVarianceService, type FreakPreset } from '../services/ProspectVarianceService';
 import { DbPositionService } from '../services/DbPositionService';
 import { gameOverall, reconcileToTarget } from '../services/AttributeModel';
 import { TeamService, PickEnrichment } from '../services/TeamService';
@@ -123,11 +124,17 @@ r.get('/draft/franchises', (_req, res) => {
   res.json({ franchises: TeamDraftService.list() });
 });
 
+r.get('/draft/freaks/calibration', (_req, res) => {
+  res.json(ProspectVarianceService.getHistoricalCalibrationSummary());
+});
+
 r.post('/draft/custom', async (req, res) => {
   const b = (req.body ?? {}) as {
-    source?: 'year' | 'alltime' | 'decade' | 'picked' | 'team'; year?: number; decade?: number; league?: string; mode?: string;
+    source?: 'year' | 'alltime' | 'decade' | 'picked' | 'team' | 'freaks'; year?: number; decade?: number; league?: string; mode?: string;
     strength?: number; studs?: number; generational?: boolean; gameVersion?: string; hindsight?: number | string; autoStrength?: boolean; variant?: number; include?: unknown;
     keys?: unknown; fill?: unknown; name?: unknown; board?: unknown; team?: unknown;
+    freakMode?: boolean; freakPreset?: FreakPreset; freakRate?: number; freakCap?: number;
+    generationalShare?: number; hybridRate?: number; superFusionRate?: number; freakSeed?: number;
   };
   const mode = parseGenMode(b.mode);
   const gameVersion: 'm26' | 'm27' = b.gameVersion === 'm27' ? 'm27' : 'm26';
@@ -139,7 +146,31 @@ r.post('/draft/custom', async (req, res) => {
     autoStrength: !!b.autoStrength,
     variant: Math.max(0, Math.round(Number(b.variant) || 0)),
     include: parseInclude(b.include),
+    freakMode: !!b.freakMode || b.source === 'freaks',
+    freakPreset: b.freakPreset,
+    freakRate: b.freakRate != null ? Number(b.freakRate) : undefined,
+    freakCap: b.freakCap != null ? Number(b.freakCap) : undefined,
+    generationalShare: b.generationalShare != null ? Number(b.generationalShare) : undefined,
+    hybridRate: b.hybridRate != null ? Number(b.hybridRate) : undefined,
+    superFusionRate: b.superFusionRate != null ? Number(b.superFusionRate) : undefined,
+    freakSeed: b.freakSeed != null ? Number(b.freakSeed) : undefined,
   };
+
+  if (b.source === 'freaks') {
+    const freakSettings = {
+      enabled: true,
+      preset: b.freakPreset,
+      freakRate: b.freakRate != null ? Number(b.freakRate) : undefined,
+      freakCap: b.freakCap != null ? Number(b.freakCap) : undefined,
+      generationalShare: b.generationalShare != null ? Number(b.generationalShare) : undefined,
+      hybridRate: b.hybridRate != null ? Number(b.hybridRate) : undefined,
+      superFusionRate: b.superFusionRate != null ? Number(b.superFusionRate) : undefined,
+      seed: b.freakSeed != null ? Number(b.freakSeed) : (opts.variant ? opts.variant * 1000 + 2027 : 2027),
+    };
+    const players = ProspectVarianceService.buildProceduralClass(freakSettings, 2027);
+    const preview = DraftClassBuilder.preview(players, mode, { ...opts, freakMode: true }, gameVersion);
+    return res.json({ year: 2027, league: 'Freak Lab', mode, gameVersion, source: 'freaks', name: 'Freak Lab Class', generatedCount: 0, ...preview });
+  }
 
   if (b.source === 'picked') {
     // A Class Studio board (real keys and custom prospects in pick order), or the

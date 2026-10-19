@@ -572,6 +572,27 @@ export function ProfileModal({
             </div>
           )}
 
+          {row.freak && row.freak.isFreak && (
+            <div className="mb-4 rounded-xl border border-purple-500/30 bg-purple-950/25 p-3.5 shadow-sm ring-1 ring-purple-500/20">
+              <div className="flex items-center justify-between gap-2">
+                <span className="flex items-center gap-2 text-sm font-bold text-purple-200">
+                  <span className="text-lg">{row.freak.emoji}</span>
+                  <span>{row.freak.archetypeLabel}</span>
+                </span>
+                <span className="rounded-md border border-purple-400/40 bg-purple-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-purple-200">
+                  {row.freak.tier}
+                </span>
+              </div>
+              <p className="mt-1.5 text-xs leading-relaxed text-purple-100/90">{row.freak.summary}</p>
+              {row.freak.historicalComps && row.freak.historicalComps.length > 0 && (
+                <div className="mt-2.5 border-t border-purple-500/20 pt-2 text-[11px] text-purple-200/80">
+                  <span className="font-semibold text-purple-300">1936–2026 Historical Comps: </span>
+                  <span>{row.freak.historicalComps.join(' · ')}</span>
+                </div>
+              )}
+            </div>
+          )}
+
           {row.scouting && row.scouting.length > 0 && (
             <div className="mt-3">
               <div className="mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-muted">Scout's read</div>

@@ -31,6 +31,24 @@ const GROUP_TONE_WEIGHTS: Record<string, Array<[number, number]>> = {
   LS: [[2, 62], [1, 20], [3, 4], [7, 10], [6, 4]],
 };
 
+/** Full 7-tone position mix for purely fictional generated classes, calibrated to
+ *  both NFL positional demographics and M27 generic-head catalog capacity across tones 1..7. */
+const FICTIONAL_GROUP_TONE_WEIGHTS: Record<string, Array<[number, number]>> = {
+  QB: [[2, 44], [1, 16], [3, 12], [4, 6], [5, 6], [7, 10], [6, 6]],
+  RB: [[7, 48], [6, 26], [5, 7], [4, 6], [2, 7], [3, 3], [1, 3]],
+  WR: [[7, 50], [6, 26], [5, 6], [4, 6], [2, 6], [3, 3], [1, 3]],
+  CB: [[7, 54], [6, 28], [5, 5], [4, 4], [2, 4], [3, 3], [1, 2]],
+  S: [[7, 46], [6, 26], [2, 10], [4, 6], [5, 6], [3, 3], [1, 3]],
+  LB: [[7, 42], [6, 24], [2, 14], [3, 6], [4, 5], [5, 5], [1, 4]],
+  EDGE: [[7, 44], [6, 24], [2, 12], [3, 6], [4, 5], [5, 5], [1, 4]],
+  IDL: [[7, 42], [6, 24], [2, 14], [4, 6], [5, 6], [3, 4], [1, 4]],
+  OL: [[2, 32], [7, 24], [6, 14], [1, 10], [3, 8], [4, 6], [5, 6]],
+  TE: [[7, 32], [2, 28], [6, 16], [1, 8], [3, 6], [4, 5], [5, 5]],
+  K: [[2, 52], [1, 18], [3, 10], [4, 6], [5, 6], [7, 5], [6, 3]],
+  P: [[2, 52], [1, 18], [3, 10], [4, 6], [5, 6], [7, 5], [6, 3]],
+  LS: [[2, 48], [1, 18], [3, 10], [4, 6], [5, 4], [7, 9], [6, 5]],
+};
+
 /** Deterministic [0,1) from a string key (FNV-1a). */
 function hashUnit(key: string): number {
   let h = 2166136261;
@@ -113,4 +131,11 @@ export function toneDistribution(label: string | null | undefined, year = 2015):
   return out;
 }
 
-export const SkinToneService = { defaultRaceFor, defaultRaceForVaried, eraDarkShare, toneDistribution };
+/** Full 7-tone deterministic draw for fictional generated prospects. */
+export function fictionalRaceFor(label: string | null | undefined, key: string): number {
+  const group = PositionMapper.groupFromId(PositionMapper.toM26Id(label ?? ''));
+  const weights = FICTIONAL_GROUP_TONE_WEIGHTS[group] ?? FICTIONAL_GROUP_TONE_WEIGHTS.LB;
+  return weightedTone(weights, hashUnit(key));
+}
+
+export const SkinToneService = { defaultRaceFor, defaultRaceForVaried, fictionalRaceFor, eraDarkShare, toneDistribution };

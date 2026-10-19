@@ -3,6 +3,7 @@ import path from 'path';
 import sharp from 'sharp';
 import { DATA_ROOT, SERVER_ROOT, LOOKUPS_DIR } from '../config/paths';
 import { parseCsvFile } from '../util/csv';
+import { buildCompatibilityTier, headBuildCode } from './LikenessService';
 
 /**
  * Serves the real Madden menu PORTRAITS (the art shown in-game), not real photos.
@@ -46,6 +47,7 @@ const DATA_DIR = resolveDataDir();
 const SPRITES_DIR = DATA_DIR ? path.join(DATA_DIR, 'portrait-sprites') : '';
 
 let byPlpo: Map<string, AtlasEntry> | null = null;
+let byPlpoLower: Map<string, string> | null = null;
 let pidToPlpo: Map<number, string> | null = null;
 let genericByTone: Map<number, string[]> | null = null;
 const cropCache = new Map<string, Buffer>(); // plpo -> cropped 256 PNG
@@ -112,6 +114,8 @@ function load(): boolean {
     }
   }
 
+  byPlpoLower = new Map();
+  for (const k of byPlpo.keys()) byPlpoLower.set(k.toLowerCase(), k);
   loadPidMap();
   return true;
 }
@@ -135,19 +139,35 @@ function loadFromPack(): boolean {
     }
   }
   for (const list of genericByTone.values()) list.sort();
+  byPlpoLower = new Map();
+  for (const k of byPlpo.keys()) byPlpoLower.set(k.toLowerCase(), k);
   loadPidMap();
   return byPlpo.size > 0;
 }
 
-/** Pick a skin-tone-matched generic portrait deterministically. */
-function genericFor(race: number | null, seed: string): string | null {
+/** Pick a skin-tone- and body-type-matched generic portrait deterministically. */
+function genericFor(race: number | null, seed: string, bodyType?: string): string | null {
   const tone = race && race >= 1 && race <= 7 ? race : 4;
   let pool = genericByTone!.get(tone);
   for (let d = 1; d <= 7 && (!pool || !pool.length); d++) {
     pool = genericByTone!.get(tone - d) || genericByTone!.get(tone + d);
   }
   if (!pool || !pool.length) pool = [...genericByTone!.values()].find((l) => l.length);
-  return pool && pool.length ? pool[hash(seed) % pool.length] : null;
+  if (!pool || !pool.length) return null;
+  if (bodyType) {
+    // Prefer modern build-tagged generic portraits whose build matches bodyType
+    const tier1 = pool.filter((k) => {
+      const b = headBuildCode(k);
+      return b !== '' && buildCompatibilityTier(b, bodyType) === 1;
+    });
+    const tier2 = pool.filter((k) => {
+      const b = headBuildCode(k);
+      return b !== '' && buildCompatibilityTier(b, bodyType) === 2;
+    });
+    if (tier1.length > 0) pool = tier1;
+    else if (tier2.length > 0) pool = tier2;
+  }
+  return pool[hash(seed) % pool.length];
 }
 
 export const PortraitService = {
@@ -155,15 +175,31 @@ export const PortraitService = {
     return load() || loadFromPack();
   },
 
-  /** The plpo portrait a prospect should display: real portrait by PID, else a
-   *  skin-tone-matched generic. Returns null if portraits are unavailable. */
-  plpoFor(pid: number, race: number | null, seed: string): string | null {
+  /** The plpo portrait a prospect should display: real portrait by PID, else the
+   *  exact portrait paired with `genericHead`, else a skin-tone & body-type-matched generic. */
+  plpoFor(pid: number, race: number | null, seed: string, genericHead?: string | null, bodyType?: string): string | null {
     if (!load() && !loadFromPack()) return null;
     if (pid > 0) {
       const plpo = pidToPlpo!.get(pid);
-      if (plpo && plpo !== 'plpo_Blank' && byPlpo!.has(plpo)) return plpo;
+      if (plpo && plpo !== 'plpo_Blank' && byPlpo!.has(plpo) && !plpo.startsWith('plpo_generic_')) {
+        return plpo;
+      }
     }
-    return genericFor(race, seed);
+    if (genericHead && /^gen_\d/i.test(genericHead)) {
+      const directPlpo = `plpo_generic_${genericHead.slice(4)}`;
+      if (byPlpo!.has(directPlpo)) return directPlpo;
+      const canonical = byPlpoLower?.get(directPlpo.toLowerCase());
+      if (canonical) return canonical;
+    }
+    if (pid > 0) {
+      const plpo = pidToPlpo!.get(pid);
+      if (plpo && plpo !== 'plpo_Blank' && byPlpo!.has(plpo)) {
+        if (!bodyType || buildCompatibilityTier(headBuildCode(plpo), bodyType) > 0) {
+          return plpo;
+        }
+      }
+    }
+    return genericFor(race, seed, bodyType);
   },
 
   /** plpo for a known portrait PID only (no generic fallback), else null. */
@@ -178,10 +214,11 @@ export const PortraitService = {
     if (!load() && !loadFromPack()) return null;
     const cached = cropCache.get(plpo);
     if (cached) return cached;
-    const e = byPlpo!.get(plpo);
+    const canonical = byPlpo!.has(plpo) ? plpo : (byPlpoLower?.get(plpo.toLowerCase()) ?? plpo);
+    const e = byPlpo!.get(canonical);
     if (!e) return null;
     if (e.sheet < 0 || !DATA_DIR) {
-      const f = packFile(plpo);
+      const f = packFile(canonical);
       if (!fs.existsSync(f)) return null;
       const buf = fs.readFileSync(f);
       cropCache.set(plpo, buf);
