@@ -372,6 +372,35 @@ export function headBuildCode(code: string | null | undefined): string {
   return m ? m[1].toUpperCase() : '';
 }
 
+/** Style group classification for generic 3D heads and portraits */
+export type HeadStyleGroup = 'bald' | 'clean' | 'beard' | 'goatee_stubble' | 'unknown';
+
+/** Extract the style token ('B', 'BD', 'BM', 'G', 'N', 'S', etc.) from a generic head or portrait */
+export function headStyleCode(code: string | null | undefined): string {
+  if (!code) return '';
+  const parts = code.trim().split('_');
+  if (parts.length >= 4 && /^gen$/i.test(parts[0])) {
+    return parts[3].toUpperCase();
+  }
+  if (parts.length >= 6 && /^plpo_generic$/i.test(parts[0] + '_' + parts[1])) {
+    if (!parts[4].match(/^\d+$/)) {
+      return parts[4].toUpperCase();
+    }
+  }
+  return '';
+}
+
+/** Classifies a head or portrait style code into visual hairstyle & facial hair compatibility groups */
+export function headStyleGroup(code: string | null | undefined): HeadStyleGroup {
+  const s = headStyleCode(code) || (code ? code.trim().toUpperCase() : '');
+  if (s === 'B') return 'bald';
+  if (s === 'N') return 'clean';
+  if (['BD', 'BM', 'BMS', 'MB'].includes(s)) return 'beard';
+  if (['G', 'GM', 'GS', 'M', 'MG', 'MS', 'S'].includes(s)) return 'goatee_stubble';
+  return 'unknown';
+}
+
+
 /** Infer a player's expected bodyType when called before a prospect record exists. */
 export function inferPlayerBodyType(player: BaselinePlayer, explicitBodyType?: string | null): string {
   if (explicitBodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(explicitBodyType)) {
@@ -809,19 +838,37 @@ export const LikenessService = {
       extra3dByBucket.get(key)!.push(h);
     }
 
-    // Group cataloged portraits by (tone, bodyType tier)
-    const portByBucket = new Map<string, GenericPortraitEntry[]>();
+    // Group cataloged portraits by (tone, bodyType tier, styleGroup) and (tone, bodyType tier, exactStyle)
+    // Only modern portraits (carrying verified Madden style codes) are used for style borrowing.
+    const portByStyleGroup = new Map<string, GenericPortraitEntry[]>();
+    const portByExactStyle = new Map<string, GenericPortraitEntry[]>();
     for (const port of portCatalog) {
+      if (!port.isModern) continue;
       const tone = port.tone;
+      const sGroup = headStyleGroup(port.plpo);
+      const sCode = headStyleCode(port.plpo);
+      if (!sCode || sGroup === 'unknown') continue;
+
       for (const bt of ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean']) {
         const tier = buildCompatibilityTier(port.build, bt);
         if (tier > 0) {
-          const key = `${tone}|${bt}|${tier}`;
-          if (!portByBucket.has(key)) portByBucket.set(key, []);
-          portByBucket.get(key)!.push(port);
+          const groupKey = `${tone}|${bt}|${tier}|${sGroup}`;
+          if (!portByStyleGroup.has(groupKey)) portByStyleGroup.set(groupKey, []);
+          portByStyleGroup.get(groupKey)!.push(port);
+
+          const exactKey = `${tone}|${bt}|${tier}|${sCode}`;
+          if (!portByExactStyle.has(exactKey)) portByExactStyle.set(exactKey, []);
+          portByExactStyle.get(exactKey)!.push(port);
         }
       }
     }
+
+    const isLongHairHead = (h: string): boolean => (headsFeat?.[h]?.hairCoverage ?? 1.0) < 0.95;
+    const isLongHairPort = (entry: GenericPortraitEntry): boolean => {
+      const genHead = 'gen_' + entry.plpo.slice('plpo_generic_'.length);
+      if (isLongHairHead(genHead)) return true;
+      return (entry.neckRatio ?? 1.5) < 0.90;
+    };
 
     const indices: number[] = [];
     for (let i = 0; i < prospects.length; i++) {
@@ -895,29 +942,51 @@ export const LikenessService = {
         usage.set(headAsset, (usage.get(headAsset) ?? 0) + 1);
         p.PEPS = headAsset;
         const resolvedTone = assignedExtraHead.tone;
-        const t1Ports = portByBucket.get(`${resolvedTone}|${bodyType}|1`) ?? [];
-        const t2Ports = portByBucket.get(`${resolvedTone}|${bodyType}|2`) ?? [];
-        const unusedT1 = t1Ports.filter((x) => (pidUsage.get(x.pid) ?? 0) === 0);
-        const unusedT2 = t2Ports.filter((x) => (pidUsage.get(x.pid) ?? 0) === 0);
-        const pool = unusedT1.length > 0 ? unusedT1 : (unusedT2.length > 0 ? unusedT2 : [...t1Ports, ...t2Ports]);
-        let chosenPid = 0;
-        if (pool.length > 0) {
-          const picked = pool[hash(`${base.firstName}|${base.lastName}|${i}|port`) % pool.length];
-          chosenPid = picked.pid;
-        }
-        p.PID = chosenPid;
-        p.pinPortrait = true;
-        if (chosenPid) pidUsage.set(chosenPid, (pidUsage.get(chosenPid) ?? 0) + 1);
 
         const vis = (p.visuals ?? {}) as Record<string, unknown>;
         vis.skinTone = resolvedTone;
         const extraCands = getToneCandidates(resolvedTone, draftYear, bodyType);
         const fallbackPool = extraCands.tier1.length > 0 ? extraCands.tier1 : extraCands.all;
+        let genHead = '';
         if (fallbackPool.length > 0) {
-          vis.genericHeadName = fallbackPool[hash(`${base.firstName}|${base.lastName}|${i}|gen`) % fallbackPool.length];
+          genHead = fallbackPool[hash(`${base.firstName}|${base.lastName}|${i}|gen`) % fallbackPool.length];
+          vis.genericHeadName = genHead;
         }
         p.visuals = vis;
         base.race = resolvedTone;
+
+        // Constrain borrowed portrait to the genHead style group and hair silhouette
+        const targetGroup = headStyleGroup(genHead);
+        const headStyle = headStyleCode(genHead);
+        const headIsLong = isLongHairHead(genHead);
+
+        const filterCandidate = (entry: GenericPortraitEntry) => {
+          if ((pidUsage.get(entry.pid) ?? 0) > 0) return false;
+          return headIsLong ? isLongHairPort(entry) : !isLongHairPort(entry);
+        };
+
+        let candidates = (portByExactStyle.get(`${resolvedTone}|${bodyType}|1|${headStyle}`) ?? []).filter(filterCandidate);
+        if (candidates.length === 0) {
+          candidates = (portByExactStyle.get(`${resolvedTone}|${bodyType}|2|${headStyle}`) ?? []).filter(filterCandidate);
+        }
+        if (candidates.length === 0) {
+          candidates = (portByStyleGroup.get(`${resolvedTone}|${bodyType}|1|${targetGroup}`) ?? []).filter(filterCandidate);
+        }
+        if (candidates.length === 0) {
+          candidates = (portByStyleGroup.get(`${resolvedTone}|${bodyType}|2|${targetGroup}`) ?? []).filter(filterCandidate);
+        }
+
+        let chosenPid = 0;
+        if (candidates.length > 0) {
+          const picked = candidates[hash(`${base.firstName}|${base.lastName}|${i}|port`) % candidates.length];
+          chosenPid = picked.pid;
+          p.pinPortrait = true;
+        } else if (genHead) {
+          chosenPid = pidForHead(genHead);
+        }
+
+        p.PID = chosenPid;
+        if (chosenPid) pidUsage.set(chosenPid, (pidUsage.get(chosenPid) ?? 0) + 1);
         continue;
       }
 
@@ -985,19 +1054,36 @@ export const LikenessService = {
         const resolvedTone = toneFromCode(bestHead);
         p.PEPS = bestHead;
 
-        // Option 1: If chosenPid has already been used by another prospect in this class,
-        // draw an unused portrait from the 991 shipped generic portrait catalog matching (tone, bodyType)
+        // Option 2: If chosenPid has already been used by another prospect in this class,
+        // borrow an unused portrait strictly constrained to the SAME hairstyle, facial hair, and hair length
         if (isGenerated && (pidUsage.get(chosenPid) ?? 0) > 0) {
-          const t1Ports = portByBucket.get(`${resolvedTone}|${bodyType}|1`) ?? [];
-          const t2Ports = portByBucket.get(`${resolvedTone}|${bodyType}|2`) ?? [];
-          const unusedT1 = t1Ports.filter((x) => (pidUsage.get(x.pid) ?? 0) === 0);
-          const unusedT2 = t2Ports.filter((x) => (pidUsage.get(x.pid) ?? 0) === 0);
-          const pool = unusedT1.length > 0 ? unusedT1 : (unusedT2.length > 0 ? unusedT2 : [...t1Ports, ...t2Ports]);
-          if (pool.length > 0) {
-            const picked = pool[hash(`${base.firstName}|${base.lastName}|${i}|port`) % pool.length];
+          const headStyle = headStyleCode(bestHead);
+          const targetGroup = headStyleGroup(bestHead);
+          const headIsLong = isLongHairHead(bestHead);
+
+          const filterCandidate = (entry: GenericPortraitEntry) => {
+            if ((pidUsage.get(entry.pid) ?? 0) > 0) return false;
+            return headIsLong ? isLongHairPort(entry) : !isLongHairPort(entry);
+          };
+
+          let candidates = (portByExactStyle.get(`${resolvedTone}|${bodyType}|1|${headStyle}`) ?? []).filter(filterCandidate);
+          if (candidates.length === 0) {
+            candidates = (portByExactStyle.get(`${resolvedTone}|${bodyType}|2|${headStyle}`) ?? []).filter(filterCandidate);
+          }
+          if (candidates.length === 0) {
+            candidates = (portByStyleGroup.get(`${resolvedTone}|${bodyType}|1|${targetGroup}`) ?? []).filter(filterCandidate);
+          }
+          if (candidates.length === 0) {
+            candidates = (portByStyleGroup.get(`${resolvedTone}|${bodyType}|2|${targetGroup}`) ?? []).filter(filterCandidate);
+          }
+
+          if (candidates.length > 0) {
+            const picked = candidates[hash(`${base.firstName}|${base.lastName}|${i}|port`) % candidates.length];
             chosenPid = picked.pid;
             p.pinPortrait = true;
           }
+          // If no style-compatible unused portrait exists in this tone/build, chosenPid remains
+          // pidForHead(bestHead) (the authentic 1:1 portrait), preserving 100% hair & facial hair fidelity.
         }
 
         p.PID = chosenPid;

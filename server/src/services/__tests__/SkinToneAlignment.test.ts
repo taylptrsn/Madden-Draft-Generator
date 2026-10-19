@@ -1,3 +1,5 @@
+import { LikenessService, headStyleCode, headStyleGroup } from '../LikenessService';
+import { PortraitService } from '../PortraitService';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DraftClassBuilder } from '../DraftClassBuilder';
@@ -98,4 +100,117 @@ test('M26: Real head scan prospects replace template slot genericHeadName with t
   assert.ok(altVis.genericHeadName, 'genericHeadName must exist');
   assert.match(altVis.genericHeadName!, /^gen_1_/i, 'Alt must have gen_1 generic head for body skin, not gen_7');
   assert.equal(altVis.skinTone, 1);
+});
+
+
+test('M27: Borrowed 2D portraits strictly match 3D generic head hairstyle and facial hair', () => {
+  assert.equal(headStyleGroup('gen_1_B_B_005'), 'bald');
+  assert.equal(headStyleGroup('gen_1_B_N_010'), 'clean');
+  assert.equal(headStyleGroup('gen_2_BMH_BD_01'), 'beard');
+  assert.equal(headStyleGroup('gen_7_M_G_005'), 'goatee_stubble');
+
+  // Create 15 generated prospects in tone 1
+  const baldProspects: Array<Record<string, unknown>> = [];
+  const baldPlayers: BaselinePlayer[] = [];
+  for (let i = 0; i < 15; i++) {
+    baldProspects.push({
+      PEPS: 'gen_1_B_B_005',
+      bodyType: 'Standard',
+      PID: 0,
+      visuals: {},
+    });
+    baldPlayers.push(makePlayer({
+      firstName: `Rookie${i}`,
+      lastName: `Bald${i}`,
+      race: 1,
+      source: 'historical', // keep as generic head to test generic head borrowing
+      position: 'WR',
+      weight: 200,
+    }));
+  }
+
+  LikenessService.balanceClassGenericHeads(baldProspects, baldPlayers, 'm27', 0);
+
+  for (let i = 0; i < baldProspects.length; i++) {
+    const p = baldProspects[i];
+    const pid = Number(p.PID);
+    assert.ok(pid > 0, `Prospect ${i} must have a valid PID`);
+    const plpo = PortraitService.plpoForPid(pid);
+    assert.ok(plpo, `PID ${pid} must resolve to a valid plpo`);
+    const pGroup = headStyleGroup(plpo);
+    const vis = (p.visuals ?? {}) as { genericHeadName?: string };
+    const headName = String(vis.genericHeadName || p.PEPS || '');
+    const hGroup = headStyleGroup(headName);
+    assert.equal(pGroup, hGroup, `Prospect ${i} portrait style (${pGroup}, ${plpo}) must match 3D head (${hGroup}, ${headName})`);
+  }
+
+  // Create 15 generated prospects in tone 1 (clean-shaven head)
+  const cleanProspects: Array<Record<string, unknown>> = [];
+  const cleanPlayers: BaselinePlayer[] = [];
+  for (let i = 0; i < 15; i++) {
+    cleanProspects.push({
+      PEPS: 'gen_1_B_N_010',
+      bodyType: 'Standard',
+      PID: 0,
+      visuals: {},
+    });
+    cleanPlayers.push(makePlayer({
+      firstName: `Rookie${i}`,
+      lastName: `Clean${i}`,
+      race: 1,
+      source: 'historical',
+      position: 'WR',
+      weight: 200,
+    }));
+  }
+
+  LikenessService.balanceClassGenericHeads(cleanProspects, cleanPlayers, 'm27', 0);
+
+  for (let i = 0; i < cleanProspects.length; i++) {
+    const p = cleanProspects[i];
+    const pid = Number(p.PID);
+    assert.ok(pid > 0, `Prospect ${i} must have a valid PID`);
+    const plpo = PortraitService.plpoForPid(pid);
+    assert.ok(plpo, `PID ${pid} must resolve to a valid plpo`);
+    const pGroup = headStyleGroup(plpo);
+    const vis = (p.visuals ?? {}) as { genericHeadName?: string };
+    const headName = String(vis.genericHeadName || p.PEPS || '');
+    const hGroup = headStyleGroup(headName);
+    assert.equal(pGroup, hGroup, `Prospect ${i} portrait style (${pGroup}, ${plpo}) must match 3D head (${hGroup}, ${headName})`);
+  }
+
+  // Create 15 generated prospects with fictional source (testing assignedExtraHead constraint)
+  const fictionalProspects: Array<Record<string, unknown>> = [];
+  const fictionalPlayers: BaselinePlayer[] = [];
+  for (let i = 0; i < 15; i++) {
+    fictionalProspects.push({
+      PEPS: 'gen_1_B_N_010',
+      bodyType: 'Standard',
+      PID: 0,
+      visuals: {},
+    });
+    fictionalPlayers.push(makePlayer({
+      firstName: `Fictional${i}`,
+      lastName: `Player${i}`,
+      race: 1,
+      source: 'generated',
+      position: 'WR',
+      weight: 200,
+    }));
+  }
+
+  LikenessService.balanceClassGenericHeads(fictionalProspects, fictionalPlayers, 'm27', 0);
+
+  for (let i = 0; i < fictionalProspects.length; i++) {
+    const p = fictionalProspects[i];
+    const pid = Number(p.PID);
+    assert.ok(pid > 0, `Prospect ${i} must have a valid PID`);
+    const plpo = PortraitService.plpoForPid(pid);
+    assert.ok(plpo, `PID ${pid} must resolve to a valid plpo`);
+    const pGroup = headStyleGroup(plpo);
+    const vis = (p.visuals ?? {}) as { genericHeadName?: string };
+    const headName = String(vis.genericHeadName || p.PEPS || '');
+    const hGroup = headStyleGroup(headName);
+    assert.equal(pGroup, hGroup, `Fictional prospect ${i} portrait style (${pGroup}, ${plpo}) must match 3D head preset (${hGroup}, ${headName})`);
+  }
 });
