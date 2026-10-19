@@ -34,6 +34,7 @@ import { PortraitService } from './PortraitService';
 import { GEAR_SLOT_TYPES, slotOfElement, waistConflict } from './GearOptionsService';
 import { seededRng } from '../util/rng';
 import { MDC_BLOCK_SIZE, MDC_DATA_START } from '../config/paths';
+import { targetLongSnapperCount } from './GenericFillerService';
 import { ProspectVarianceService, type FreakMetadata, type FreakPreset } from './ProspectVarianceService';
 
 /** Logical draft-class size the M26 template ships with (blocks 0..401). */
@@ -610,6 +611,7 @@ export interface DroppedPlayer {
  * draft order, so a naive slice drops whoever happens to be last (1960: Bob Talamini
  * at index 428). Instead drop the lowest-caliber UNDRAFTED players first, then the
  * lowest-caliber late picks, and keep the survivors in their original order.
+ * Long Snappers are protected up to the class target (5-10 for Madden 27).
  */
 function fitToCapacity(players: BaselinePlayer[], include: number[] = []): { kept: BaselinePlayer[]; keptIdx: number[]; dropped: DroppedPlayer[]; included: number[] } {
   if (players.length <= LOGICAL_CAPACITY) return { kept: players, keptIdx: players.map((_, i) => i), dropped: [], included: [] };
@@ -621,9 +623,36 @@ function fitToCapacity(players: BaselinePlayer[], include: number[] = []): { kep
     const slot = p.draftRound != null ? RatingService.slotExpectation(p.draftRound, p.draftPick) : 0;
     return RatingService.caliber(p, posId) + slot;
   };
+  const isLS = (p: BaselinePlayer) => PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight) === 21;
+  const classYear = players[0]?.draftYear ?? 2026;
+  const targetLS = targetLongSnapperCount(classYear);
+  const totalLS = players.filter(isLS).length;
+  const maxDropLS = Math.max(0, totalLS - targetLS);
+
   const scores = players.map(score);
   const order = players.map((_, i) => i).sort((a, b) => scores[a] - scores[b]);
-  const drop = new Set(order.slice(0, players.length - LOGICAL_CAPACITY));
+
+  const numToDrop = players.length - LOGICAL_CAPACITY;
+  const drop = new Set<number>();
+  let droppedLS = 0;
+  for (const i of order) {
+    if (drop.size >= numToDrop) break;
+    if (isLS(players[i])) {
+      if (droppedLS < maxDropLS) {
+        drop.add(i);
+        droppedLS++;
+      }
+    } else {
+      drop.add(i);
+    }
+  }
+  if (drop.size < numToDrop) {
+    for (const i of order) {
+      if (drop.size >= numToDrop) break;
+      drop.add(i);
+    }
+  }
+
   // Baseline keep list in source order; pick numbers follow from it.
   const keptIdx = players.map((_, i) => i).filter((i) => !drop.has(i));
   // Forced inclusions swap into the slot of the weakest remaining keeper (never a
@@ -635,7 +664,17 @@ function fitToCapacity(players: BaselinePlayer[], include: number[] = []): { kep
     for (let k = 0; k < keptIdx.length; k++) {
       const j = keptIdx[k];
       if (forced.has(j) || included.includes(j)) continue;
+      // Protect LS from forced inclusion eviction if at or below targetLS
+      const currentKeptLS = keptIdx.filter(idx => !drop.has(idx) && isLS(players[idx])).length;
+      if (isLS(players[j]) && currentKeptLS <= targetLS) continue;
       if (victimPos < 0 || scores[j] < scores[keptIdx[victimPos]]) victimPos = k;
+    }
+    if (victimPos < 0) {
+      for (let k = 0; k < keptIdx.length; k++) {
+        const j = keptIdx[k];
+        if (forced.has(j) || included.includes(j)) continue;
+        if (victimPos < 0 || scores[j] < scores[keptIdx[victimPos]]) victimPos = k;
+      }
     }
     if (victimPos < 0) break;
     drop.add(keptIdx[victimPos]);
@@ -654,18 +693,64 @@ function fitToCapacity(players: BaselinePlayer[], include: number[] = []): { kep
 /** Canonical capped draft positions, also used by the historical pool. */
 export function draftPositions(players: BaselinePlayer[], opts: GenOptions = {}) {
   const { kept: capped, keptIdx, dropped, included } = fitToCapacity(players, opts.include ?? []);
-    // Resolve each player's M26 position, then even out the two cohorts the source
-    // data badly over-concentrates: edges (nearly all labeled "LE" -> LEDG, ~85/15)
-    // and off-ball LBs (nearly all "MLB" -> MIKE, ~80-98%). Side/role is cosmetic
-    // within each cohort (LEDG/REDG share the EDGE group; SAM/MIKE/WILL share LB),
-    // so round-robin each to an even split — deterministic, so preview == export.
-    // Offensive-line sides and safeties: the source lumps tackles as "T"/"OT" (-> LT)
-    // and guards as "G" (-> LG), and pre-2001 safeties are split by build. Balance
-    // toward Madden's own mix (LT 20 / RT 16, LG 13 / RG 13, FS 16 / SS 16 per
-    // class) around the players whose slot came from real data (PositionMapper.balanceBoard).
-    const pins = opts.pinPositions;
-    const resolved = capped.map((p) => (p.key ? pins?.get(p.key) : undefined) ?? PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight));
-    const posIds = PositionMapper.balanceBoard(resolved, capped, capped.map((p) => !!p.key && !!pins?.has(p.key)));
+  // Resolve each player's M26 position, then even out the two cohorts the source
+  // data badly over-concentrates: edges (nearly all labeled "LE" -> LEDG, ~85/15)
+  // and off-ball LBs (nearly all "MLB" -> MIKE, ~80-98%). Side/role is cosmetic
+  // within each cohort (LEDG/REDG share the EDGE group; SAM/MIKE/WILL share LB),
+  // so round-robin each to an even split — deterministic, so preview == export.
+  // Offensive-line sides and safeties: the source lumps tackles as "T"/"OT" (-> LT)
+  // and guards as "G" (-> LG), and pre-2001 safeties are split by build. Balance
+  // toward Madden's own mix (LT 20 / RT 16, LG 13 / RG 13, FS 16 / SS 16 per
+  // class) around the players whose slot came from real data (PositionMapper.balanceBoard).
+  const pins = opts.pinPositions;
+  const resolved = capped.map((p) => (p.key ? pins?.get(p.key) : undefined) ?? PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight));
+  const posIds = PositionMapper.balanceBoard(resolved, capped, capped.map((p) => !!p.key && !!pins?.has(p.key)));
+
+  // Ensure 5-10 Long Snappers for Madden 27
+  const classYear = capped[0]?.draftYear ?? 2026;
+  const targetLS = targetLongSnapperCount(classYear);
+  const currentLS = posIds.filter((id) => id === 21).length;
+  if (currentLS < targetLS) {
+    const needed = targetLS - currentLS;
+    const candidates: number[] = [];
+    // First pass: lowest-risk fringe players (late round / UDFA, low wAV, no accolades)
+    for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
+      const p = capped[i];
+      if (pins?.has(p.key ?? '')) continue;
+      if (included.includes(keptIdx[i])) continue;
+      if (posIds[i] === 21 || posIds[i] === 19 || posIds[i] === 20) continue;
+      if (p.isHOF || (p.proBowls ?? 0) > 0 || (p.allPro1 ?? 0) > 0) continue;
+      if ((p.wav ?? 0) > 4) continue;
+      if (p.draftRound != null && p.draftRound < 6) continue;
+      candidates.push(i);
+    }
+    // Second pass: fallback if needed (preserve HOF and specialists)
+    if (candidates.length < needed) {
+      for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
+        if (candidates.includes(i)) continue;
+        const p = capped[i];
+        if (pins?.has(p.key ?? '')) continue;
+        if (included.includes(keptIdx[i])) continue;
+        if (posIds[i] === 21 || posIds[i] === 19 || posIds[i] === 20) continue;
+        if (p.isHOF) continue;
+        candidates.push(i);
+      }
+    }
+    for (const idx of candidates) {
+      posIds[idx] = 21;
+      const p = capped[idx];
+      if (p.weight == null || p.weight > 265 || p.weight < 215 || p.heightInches == null) {
+        const norms = EraBioService.norms(p.draftYear ?? classYear, 'LS');
+        capped[idx] = {
+          ...p,
+          position: 'LS',
+          heightInches: p.heightInches ?? Math.round(norms.htMean),
+          weight: (p.weight != null && p.weight >= 215 && p.weight <= 265) ? p.weight : Math.round(norms.wtMean),
+        };
+      }
+    }
+  }
+
   return { capped, keptIdx, dropped, included, posIds };
 }
 
@@ -833,6 +918,7 @@ export const DraftClassBuilder = {
     /** Prospect indexes rated from EA's launch roster (Launch Day lens only). */
     launchIdx: number[];
     freakMap: Map<number, FreakMetadata>;
+    capped?: BaselinePlayer[];
   } {
     const { capped, keptIdx, dropped, included, posIds } = draftPositions(players, opts);
     const portraitMap = gameVersion === 'm27' ? new Map<number, number>() : PortraitSlotService.pidMap(capped);
@@ -996,16 +1082,17 @@ export const DraftClassBuilder = {
       withPortrait: capped.filter((p) => p.photoId != null).length,
       customPortrait: portraitMap.size,
     };
-    return { prospects, sourceIndices: keptIdx, truncated: dropped.length > 0, dropped, included, likeness, launchIdx, freakMap };
+    return { prospects, sourceIndices: keptIdx, truncated: dropped.length > 0, dropped, included, likeness, launchIdx, freakMap, capped };
   },
 
   /** Full JSON preview of the generated class for the UI: per-player bio, photo,
    *  and the complete editable attribute set (no .mdc written). When
    *  gameVersion='m27', each row also carries its persona DNA trait names. */
   preview(players: BaselinePlayer[], mode: GenMode = 'madden', opts: GenOptions = {}, gameVersion: 'm26' | 'm27' = 'm26'): PreviewResult {
-    const { kept: capped, keptIdx } = fitToCapacity(players, opts.include ?? []);
+    const { prospects, likeness, dropped, included, launchIdx, freakMap, capped: builtCapped } = this.buildProspects(players, mode, opts, gameVersion);
+    const { kept: initialCapped, keptIdx } = fitToCapacity(players, opts.include ?? []);
+    const capped = builtCapped ?? initialCapped;
     const portraitMap = gameVersion === 'm27' ? new Map<number, number>() : PortraitSlotService.pidMap(capped);
-    const { prospects, likeness, dropped, included, launchIdx, freakMap } = this.buildProspects(players, mode, opts, gameVersion);
     const launched = new Set(launchIdx);
     const rows: PreviewRow[] = prospects.map((p, i) => {
       const peps = String(p.PEPS || '').toLowerCase();
@@ -1148,10 +1235,10 @@ export const DraftClassBuilder = {
    *  layout (Mdc27Service) and persona DNA assigned per prospect (PersonaService).
    *  The M27 writer zeroes unused blocks itself, so no neutralize pass is needed. */
   buildMdc27(players: BaselinePlayer[], edits?: ClassEdits, mode: GenMode = 'madden', gearEdits?: GearEdits, opts: GenOptions = {}): BuildResult {
-    const { prospects, truncated, dropped, likeness } = this.buildProspects(players, mode, opts, 'm27');
+    const { prospects, truncated, dropped, likeness, capped: builtCapped } = this.buildProspects(players, mode, opts, 'm27');
     applyEdits(prospects, edits, 'm27');
     applyGearEdits(prospects, gearEdits);
-    const capped = players.slice(0, LOGICAL_CAPACITY);
+    const capped = builtCapped ?? players.slice(0, LOGICAL_CAPACITY);
     // Pack portraits pin before assignM27Fields so a generic head keeps the id.
     const portraitPack = opts.portraitPack ? PortraitPackService.apply(prospects as Array<Record<string, unknown>>, capped, { cdn: opts.portraitCdn }) : undefined;
     const portraitPackMissing = portraitPack ? PortraitPackService.missing(prospects as Array<Record<string, unknown>>, capped, portraitPack) : undefined;

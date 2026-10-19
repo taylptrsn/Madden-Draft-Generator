@@ -24,6 +24,17 @@ const FILL_LABEL: Record<string, string> = {
   LEDG: 'DE', REDG: 'DE', DT: 'DT', SAM: 'OLB', MIKE: 'MLB', WILL: 'OLB', CB: 'CB', FS: 'FS', SS: 'SS', K: 'K', P: 'P', LS: 'LS',
 };
 
+/** Deterministically return between 5 and 10 Long Snapper prospects for a class (Madden 27 LS roster requirement). */
+export function targetLongSnapperCount(seedKey: string | number): number {
+  let h = 2166136261;
+  const s = String(seedKey);
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return 5 + ((h >>> 0) % 6); // 5, 6, 7, 8, 9, or 10
+}
+
 /** Madden's per-class count for each position (calibration perClass). */
 function maddenTargets(): Record<string, number> {
   const out: Record<string, number> = {};
@@ -35,35 +46,57 @@ function maddenTargets(): Record<string, number> {
 }
 
 /** Positions for `need` fillers: repeatedly the position with the biggest shortfall
- *  against Madden's per-class count (ties by draft-board commonness). */
-function deficitPositions(existing: Array<{ position: string; firstName: string; lastName: string; weight?: number | null }>, need: number): string[] {
+ *  against Madden's per-class count (ties by draft-board commonness), guaranteeing
+ *  the dedicated Long Snapper quota first. */
+function deficitPositions(
+  existing: Array<{ position: string; firstName: string; lastName: string; weight?: number | null }>,
+  need: number,
+  targetLS = 0
+): string[] {
   const have: Record<string, number> = {};
   for (const p of existing) {
     const name = PositionMapper.name(PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight ?? null));
     have[name] = (have[name] || 0) + 1;
   }
-  const targets = maddenTargets();
-  const total = Object.values(targets).reduce((s, v) => s + v, 0) || 1;
-  const scale = Math.max(1, (existing.length + need) / total);
   const out: string[] = [];
-  for (let i = 0; i < need; i++) {
-    let best = 'WR', bestGap = -Infinity;
-    for (const [name, t] of Object.entries(targets)) {
-      const gap = t * scale - (have[name] || 0);
-      if (gap > bestGap) { best = name; bestGap = gap; }
+
+  // Guarantee dedicated Long Snapper quota first
+  const neededLS = Math.min(need, Math.max(0, targetLS - (have['LS'] || 0)));
+  for (let i = 0; i < neededLS; i++) {
+    have['LS'] = (have['LS'] || 0) + 1;
+    out.push('LS');
+  }
+
+  const remainingNeed = need - neededLS;
+  if (remainingNeed > 0) {
+    const targets = maddenTargets();
+    targets['LS'] = targetLS;
+    const total = Object.values(targets).reduce((s, v) => s + v, 0) || 1;
+    const scale = Math.max(1, (existing.length + need) / total);
+    for (let i = 0; i < remainingNeed; i++) {
+      let best = 'WR', bestGap = -Infinity;
+      for (const [name, t] of Object.entries(targets)) {
+        const gap = t * scale - (have[name] || 0);
+        if (gap > bestGap) { best = name; bestGap = gap; }
+      }
+      have[best] = (have[best] || 0) + 1;
+      out.push(FILL_LABEL[best]);
     }
-    have[best] = (have[best] || 0) + 1;
-    out.push(FILL_LABEL[best]);
   }
   return out;
 }
 
 export const GenericFillerService = {
-  /** Generate `target - existingCount` undrafted generic prospects for a year. */
+  /** Generate `target - existingCount` undrafted generic prospects for a year,
+   *  guaranteeing between 5 and 10 Long Snappers for Madden 27. */
   build(year: number, existing: BaselinePlayer[], target = FULL_CLASS_SIZE): BaselinePlayer[] {
-    const need = Math.max(0, target - existing.length);
-    const positions = deficitPositions(existing, need);
+    const targetLS = targetLongSnapperCount(year);
+    const existingLS = existing.filter(p => PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight ?? null) === 21).length;
+    const neededLS = Math.max(0, targetLS - existingLS);
+    const baseNeed = Math.max(0, target - existing.length);
+    const need = Math.max(baseNeed, neededLS);
     if (need === 0) return [];
+    const positions = deficitPositions(existing, need, targetLS);
     const { first, last } = PlayerLookupService.namePool();
     const out: BaselinePlayer[] = [];
     for (let i = 0; i < need; i++) {

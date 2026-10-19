@@ -1,6 +1,6 @@
 import { PlayerLookupService } from './PlayerLookupService';
 import { TeamService, PickEnrichment } from './TeamService';
-import { GenericFillerService, FULL_CLASS_SIZE } from './GenericFillerService';
+import { GenericFillerService, FULL_CLASS_SIZE, targetLongSnapperCount } from './GenericFillerService';
 import { CombineService } from './CombineService';
 import { PositionMapper } from './PositionMapper';
 import { SkinToneService } from './SkinToneService';
@@ -175,7 +175,22 @@ export async function enrichedClass(
  *  same way as a year class but without a per-year team map. An optional draft-year
  *  `range` scopes it to a decade/era (the greatest players of that span). */
 export async function allTimeGreatsClass(range?: { from: number; to: number }): Promise<{ players: BaselinePlayer[]; generatedCount: number }> {
-  const players = await enrichAcrossYears(PlayerLookupService.allTimeGreats(402, range));
+  const targetLS = targetLongSnapperCount(range ? `${range.from}-${range.to}` : 'all-time');
+  const allGreats = PlayerLookupService.allTimeGreats(FULL_CLASS_SIZE, range);
+  const existingLS = allGreats.filter((p) => PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight ?? null) === 21);
+  if (existingLS.length < targetLS) {
+    const needed = targetLS - existingLS.length;
+    let allHistorical = [...PlayerLookupService.years()].flatMap((y) => PlayerLookupService.byYear(y, 'combined'));
+    if (range) allHistorical = allHistorical.filter((p) => p.draftYear >= range.from && p.draftYear <= range.to);
+    const lsPool = allHistorical.filter((p) => PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight ?? null) === 21);
+    const score = (p: BaselinePlayer) => (p.wav ?? 0) + 4 * (p.allPro1 ?? 0) + 2 * (p.proBowls ?? 0) + (p.isHOF ? 40 : 0);
+    lsPool.sort((a, b) => score(b) - score(a));
+    const toAdd = lsPool.slice(0, needed);
+    const kept = allGreats.slice(0, FULL_CLASS_SIZE - toAdd.length);
+    const players = await enrichAcrossYears([...kept, ...toAdd]);
+    return { players, generatedCount: 0 };
+  }
+  const players = await enrichAcrossYears(allGreats);
   return { players, generatedCount: 0 };
 }
 
