@@ -79,7 +79,7 @@ function ModePanel({
   );
 }
 
-export function HomePage({ onSelect, onOpenFreaks, franchiseEnabled, title = `Madden ${NAME}` }: { onSelect: (v: AppView) => void; onOpenFreaks?: () => void; franchiseEnabled: boolean; title?: string }) {
+export function HomePage({ onSelect, onOpenOutliers, franchiseEnabled, title = `Madden ${NAME}` }: { onSelect: (v: AppView) => void; onOpenOutliers?: () => void; franchiseEnabled: boolean; title?: string }) {
   return (
     <div className="relative h-full overflow-auto">
       {/* Hero art: the generated stadium plate, faded into the shell at the bottom. */}
@@ -120,8 +120,8 @@ export function HomePage({ onSelect, onOpenFreaks, franchiseEnabled, title = `Ma
             index={1}
             accent="purple"
             icon={ICONS.sparkles}
-            title="Freak Lab 🦄"
-            tagline="Generate procedural unicorns & anomalies calibrated to 1936–2026."
+            title="Outlier Engine ⚡"
+            tagline="Generate procedural athletic outliers & anomalies calibrated to 1936–2026."
             features={[
               '29 Outlier archetypes, dual hybrids & 3-way super-fusions',
               'Calibrated to 95th/99th percentile historical tail stats',
@@ -129,7 +129,7 @@ export function HomePage({ onSelect, onOpenFreaks, franchiseEnabled, title = `Ma
               'Standalone or overlay onto any 1936–2026 draft class',
             ]}
             onClick={() => {
-              if (onOpenFreaks) onOpenFreaks();
+              if (onOpenOutliers) onOpenOutliers();
               else onSelect('draft');
             }}
           />

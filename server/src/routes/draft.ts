@@ -124,7 +124,7 @@ r.get('/draft/franchises', (_req, res) => {
   res.json({ franchises: TeamDraftService.list() });
 });
 
-r.get('/draft/freaks/calibration', (_req, res) => {
+r.get(['/draft/outliers/calibration', '/draft/freaks/calibration'], (_req, res) => {
   res.json(ProspectVarianceService.getHistoricalCalibrationSummary());
 });
 

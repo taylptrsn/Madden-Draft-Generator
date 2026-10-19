@@ -69,7 +69,7 @@ export function DraftOptions({ opts, decades, busy, onApply, customClasses = [],
               <button className={seg(source === 'decade')} onClick={() => setSource('decade')}>By decade</button>
               <button className={seg(source === 'alltime')} onClick={() => setSource('alltime')}>All-Time</button>
               <button className={seg(source === 'team')} onClick={() => setSource('team')} title="The best players a franchise ever drafted, one class">By team</button>
-              <button className={seg(source === 'freaks')} onClick={() => { setSource('freaks'); setFreakMode(true); }} title="Procedural draft class generated with unicorns & 3-way super-fusions">Freak Lab 🦄</button>
+              <button className={seg(source === 'freaks')} onClick={() => { setSource('freaks'); setFreakMode(true); }} title="Procedural draft class generated with athletic outliers, unicorns & 3-way super-fusions">Outlier Engine ⚡</button>
             </div>
             {source === 'team' && (
               <div className="flex items-center gap-2">
@@ -111,11 +111,11 @@ export function DraftOptions({ opts, decades, busy, onApply, customClasses = [],
           <span className="flex justify-between text-[11px] text-muted"><span>Draft day</span><span>Career outcome</span></span>
         </div>
 
-        {/* Freak Lab & Cholesky Variance Controls */}
+        {/* Outlier Engine & Cholesky Variance Controls */}
         <div className="flex flex-col gap-1.5 rounded-lg border border-purple-500/20 bg-purple-950/20 p-2.5">
           <div className="flex items-center justify-between gap-3">
             <span className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-purple-300">
-              <span>🦄</span>
+              <span>⚡</span>
               <span>Outlier Engine {source === 'freaks' ? '(Active)' : 'Overlay'}</span>
             </span>
             {source !== 'freaks' && (
@@ -136,9 +136,9 @@ export function DraftOptions({ opts, decades, busy, onApply, customClasses = [],
                 }}
                 className="h-7 rounded border border-purple-500/30 bg-black/40 px-2 text-xs text-purple-100 focus:border-purple-400 focus:outline-none"
               >
-                <option value="balanced">Balanced (4% Freaks · Realistic)</option>
+                <option value="balanced">Balanced (4% Outliers · Realistic)</option>
                 <option value="freak_show">Heavy Variance (10% Outliers)</option>
-                <option value="super_fusions">Super-Fusions (8% · High Fusions)</option>
+                <option value="super_fusions">Super-Fusions (8% Outliers · High Fusions)</option>
                 <option value="all_freaks">All Outliers (100% Outliers)</option>
               </select>
               <button

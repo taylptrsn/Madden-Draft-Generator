@@ -159,7 +159,7 @@ export default function App() {
       const baseOpts = useOpts ?? draftOpts;
       // Greats classes key their edits/cache under a fixed pseudo-year / decade label.
       const league = baseOpts.source === 'alltime' ? 'all-time'
-        : baseOpts.source === 'freaks' ? 'freaklab'
+        : baseOpts.source === 'freaks' ? 'outlier-engine'
         : baseOpts.source === 'decade' ? `${baseOpts.decade}s`
         : baseOpts.source === 'picked' ? `custom:${baseOpts.customId ?? 'none'}`
         : baseOpts.source === 'team' ? `team:${baseOpts.team ?? 'none'}`
@@ -311,7 +311,7 @@ export default function App() {
     [selected, years, mode, select]
   );
 
-  const openFreaks = useCallback(() => {
+  const openOutliers = useCallback(() => {
     setView('draft');
     const next: DraftOpts = {
       ...draftOpts,
@@ -680,7 +680,7 @@ export default function App() {
         <SideRail view={view} onSetView={setView} franchiseEnabled={franchiseEnabled} />
         <main className="min-w-0 flex-1">
           {view === 'rosters' && <RostersView gameVersion={gameVersion} />}
-          {view === 'home' && <HomePage onSelect={setView} onOpenFreaks={openFreaks} franchiseEnabled={franchiseEnabled} title={productTitle(pinnedGame ?? gameVersion)} />}
+          {view === 'home' && <HomePage onSelect={setView} onOpenOutliers={openOutliers} franchiseEnabled={franchiseEnabled} title={productTitle(pinnedGame ?? gameVersion)} />}
           {view === 'franchise' && franchiseEnabled && (
             <FranchiseView
               gameVersion={gameVersion}

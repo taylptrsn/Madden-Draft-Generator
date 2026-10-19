@@ -557,7 +557,7 @@ export const api = {
     // Match Madden's own save naming (extensionless CAREERDRAFT-*) so the file
     // drops straight into the Saves folder and shows up in "Load Draft Class".
     a.download =
-      draftOpts?.source === 'freaks' ? `CAREERDRAFT-FREAKLAB${draftOpts.freakSeed ?? 2027}` : draftOpts?.source === 'file' ? (draftOpts.name || 'CAREERDRAFT')
+      draftOpts?.source === 'freaks' ? `CAREERDRAFT-OUTLIERS${draftOpts.freakSeed ?? 2027}` : draftOpts?.source === 'file' ? (draftOpts.name || 'CAREERDRAFT')
       : draftOpts?.source === 'picked' || draftOpts?.source === 'team' ? classFileName(draftOpts.name)
       : draftOpts?.source === 'alltime' ? 'CAREERDRAFT-ALLTIMEGREATS'
       : draftOpts?.source === 'decade' ? `CAREERDRAFT-${draftOpts.decade}sGREATS`
