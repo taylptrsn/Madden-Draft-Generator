@@ -1,6 +1,6 @@
 # Player Generation Pipeline & Architecture
 
-This document details the end-to-end player generation architecture in the **Madden Draft Class Generator**, encompassing both **Historical Draft Classes (1936?2026)** and **Procedural / Fictional Draft Classes** powered by the **Freak Lab** variance engine.
+This document details the end-to-end player generation architecture in the **Madden Draft Class Generator**, encompassing both **Historical Draft Classes (1936?2026)** and **Procedural / Fictional Draft Classes** powered by the **Outlier Engine** variance engine.
 
 ---
 
@@ -28,11 +28,11 @@ flowchart TD
     BoardInit --> Cholesky["Multivariate Physical Correlation\n6x6 Cholesky Decomposition L on [H, W, SPD, AGI, STR, JMP]"]
     Cholesky --> Biomechanics["Biomechanical Mass-Speed Envelope\nt40,min(W) = 4.22 + 0.0038 * max(0, W - 200)"]
     
-    Biomechanics --> FreakCheck{"Freak Lab Enabled?"}
+    Biomechanics --> OutlierCheck{"Outlier Engine Enabled?"}
     
-    FreakCheck -->|"No / Standard Rookie"| StdRookie["Apply Position Baseline Ratings\nBody Type Assignment & Baseline OVR Reconciliation"]
+    OutlierCheck -->|"No / Standard Rookie"| StdRookie["Apply Position Baseline Ratings\nBody Type Assignment & Baseline OVR Reconciliation"]
     
-    FreakCheck -->|"Yes (Sample Freak Rate)"| FreakRoll{"Roll Archetype Tier"}
+    OutlierCheck -->|"Yes (Sample Freak Rate)"| FreakRoll{"Roll Archetype Tier"}
     
     FreakRoll -->|"Super-Fusion (Top-16 Only)"| SuperFusion["3-Way Triangle Clique Super-Fusion\n(e.g., Cybernetic QB, Mythical Wideout)"]
     FreakRoll -->|"Dual-Archetype Hybrid"| HybridRoll["Sample Natural / Stretch Pair\n(70/30 Body & Trait Blending)"]
@@ -102,14 +102,16 @@ $$t_{40, \min}(W) = 4.22 + 0.0038 	imes \max(0, W - 200)$$
 - A 341-lb defensive tackle (Jordan Davis) has a feasibility floor of $4.76	ext{s}$.
 If a hybrid or super-fusion rolls a 40-yard dash time faster than this physical limit, the time and Madden in-game `speed` rating are automatically capped to the biomechanically feasible maximum.
 
-### 2.4 The Freak Lab Variance Engine
+### 2.4 The Outlier Engine Variance Engine
 Ported and calibrated directly from the audited NFL 2K5 prospect variance engine:
 - **29 Position-Gated Archetypes**: Covering all positions (e.g., Megatron alien wideout, Goliath dual-threat QB, Sub-4.3 speed demon, Immovable Mountain mauler/nose tackle, Apex edge bender, Tower-burner cornerback).
 - **7 Hand-Curated 3-Way Super-Fusions**: Forming complete 3-clique triangles with 100% position coverage (restricted to picks in the top 16).
 - **Symmetric Natural & Stretch Hybrid Graphs**: Dual-archetype hybrids with $70/30$ primary/secondary body and attribute blending.
 - **Quantile-Anchored Body Sizing (`sampleBand`)**: Sizing windows map the prospect's underlying Cholesky standard-normal draw $z$ to the archetype height/weight range via the standard normal CDF with $\pm 0.15$ natural jitter:
-$$u = 	ext{clamp}_{[0, 1]}\left(\Phi(z) + \mathcal{U}(-0.15, 0.15)ight)$$
-$$	ext{Dimension} = 	ext{round}\left(	ext{min} + u 	imes (	ext{max} - 	ext{min})ight)$$
+$$u = 	ext{clamp}_{[0, 1]}\left(\Phi(z) + \mathcal{U}(-0.15, 0.15)
+ight)$$
+$$	ext{Dimension} = 	ext{round}\left(	ext{min} + u 	imes (	ext{max} - 	ext{min})
+ight)$$
 
 ### 2.5 Generational vs. Raw Project Instinct Split
 In authentic draft classes, physical freaks outside the top of the draft are typically raw developmental projects rather than polished day-1 stars:

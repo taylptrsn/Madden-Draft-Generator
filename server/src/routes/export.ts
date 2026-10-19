@@ -71,7 +71,7 @@ r.post('/export/mdc', async (req, res) => {
       seed: opts.freakSeed ?? (opts.variant ? opts.variant * 1000 + 2027 : 2027),
     };
     players = ProspectVarianceService.buildProceduralClass(freakSettings, 2027);
-    filename = `CAREERDRAFT-FREAKLAB${opts.freakSeed ?? 2027}`;
+    filename = `CAREERDRAFT-OUTLIERS${opts.freakSeed ?? 2027}`;
   } else if (source === 'picked') {
     // A Class Studio board in pick order, or the 1.2.0 shape (a list of keys).
     const raw = req.body?.keys;

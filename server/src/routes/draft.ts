@@ -169,7 +169,7 @@ r.post('/draft/custom', async (req, res) => {
     };
     const players = ProspectVarianceService.buildProceduralClass(freakSettings, 2027);
     const preview = DraftClassBuilder.preview(players, mode, { ...opts, freakMode: true }, gameVersion);
-    return res.json({ year: 2027, league: 'Freak Lab', mode, gameVersion, source: 'freaks', name: 'Freak Lab Class', generatedCount: 0, ...preview });
+    return res.json({ year: 2027, league: 'Outlier Engine', mode, gameVersion, source: 'freaks', name: 'Outlier Engine Class', generatedCount: 0, ...preview });
   }
 
   if (b.source === 'picked') {

@@ -4,7 +4,7 @@ Build, customize, and export authentic draft classes directly into **Madden NFL 
 
 The app supports two powerful generation modes:
 1. **Real NFL Drafts (1936 to 2026)**: Turn any historical draft class into a playable `.mdc` file - real players, rated from their actual NFL careers, with era-correct builds, gear, faces, and real drafting teams.
-2. **Procedural / Fictional Draft Classes with the Freak Lab**: Generate unlimited fictional draft classes powered by a procedural variance engine ported and calibrated directly from the legendary **NFL 2K5** prospect system. Includes 29 physical archetypes, 7 mythical 3-way super-fusions, dual-archetype hybrids, authentic rookie OVR scaling (best player <= 84 OVR), and realistic development trait curves.
+2. **Procedural / Fictional Draft Classes with the Outlier Engine**: Generate unlimited fictional draft classes powered by a procedural variance engine ported and calibrated directly from the legendary **NFL 2K5** prospect system. Includes 29 physical archetypes, 7 mythical 3-way super-fusions, dual-archetype hybrids, authentic rookie OVR scaling (best player <= 84 OVR), and realistic development trait curves.
 
 **[Download the latest release](https://github.com/AMattHT/Madden-Draft-Generator/releases/latest) Madden-27-Draft-Class-Generator-Setup-1.4.2.exe**
 
@@ -40,11 +40,11 @@ flowchart TD
     BoardInit --> Cholesky["Multivariate Physical Correlation\n6x6 Cholesky Decomposition L on [H, W, SPD, AGI, STR, JMP]"]
     Cholesky --> Biomechanics["Biomechanical Mass-Speed Feasibility Floor\nt40,min(W) = 4.22 + 0.0038 * max(0, W - 200)"]
     
-    Biomechanics --> FreakCheck{"Freak Lab Enabled?"}
+    Biomechanics --> OutlierCheck{"Outlier Engine Enabled?"}
     
-    FreakCheck -->|"No / Standard Rookie"| StdRookie["Apply Position Baseline Ratings\nBody Type Assignment & Baseline OVR Reconciliation"]
+    OutlierCheck -->|"No / Standard Rookie"| StdRookie["Apply Position Baseline Ratings\nBody Type Assignment & Baseline OVR Reconciliation"]
     
-    FreakCheck -->|"Yes (Sample Freak Rate)"| FreakRoll{"Roll Archetype Tier"}
+    OutlierCheck -->|"Yes (Sample Freak Rate)"| FreakRoll{"Roll Archetype Tier"}
     
     FreakRoll -->|"Super-Fusion (Top-16 Only)"| SuperFusion["3-Way Triangle Clique Super-Fusion\n(e.g., Cybernetic QB, Mythical Wideout)"]
     FreakRoll -->|"Dual-Archetype Hybrid"| HybridRoll["Sample Natural / Stretch Pair\n(70/30 Body & Trait Blending)"]
@@ -90,7 +90,7 @@ flowchart TD
 - **Ratings that mean something**: A player's overall comes from actual NFL career value (wAV), combine results, and historical production, matching Madden's in-game formula.
 - **Real faces and real photographs**: 2,803+ players receive in-game head scans. 8,101+ have real photographs pulled from Madden archives back to 2001.
 
-### 2. The Freak Lab: Procedural Prospect Variance Engine
+### 2. The Outlier Engine: Procedural Prospect Variance
 Ported and calibrated directly from the **NFL 2K5** prospect variance engine:
 - **29 Position-Gated Freak Archetypes**: Megatron alien receivers, Goliath dual-threat QBs, Sub-4.3 speed demons, Immovable Mountain maulers & nose tackles, Apex edge benders, and Tower-burner cornerbacks.
 - **7 Hand-Curated 3-Way Super-Fusions**: Mythical combinations (e.g., Cam Newton x Josh Allen x Michael Vick at QB; Bo Jackson x Derrick Henry x Chris Johnson at HB; Tariq Woolen x Sauce Gardner x Deion Sanders at CB).
@@ -100,9 +100,9 @@ Ported and calibrated directly from the **NFL 2K5** prospect variance engine:
 - **Authentic Rookie OVR Ceilings**: The best player in a class is capped at **`83` or `84 OVR`**. Late-round freaks remain in their draft-round bands (`60-71 OVR`) as raw physical projects with high physical floors (90-99) but raw developmental instincts (`48-62` AWR/PRC).
 - **Procedural Dev Trait Distribution**: Bell-curved allocation (**2-3 X-Factors, 6-8 Superstars, 35-42 Stars, ~355 Normal**), replacing the completed-career step wall.
 - **4 Calibrated Presets**:
-  - `Balanced` (Default): ~4% freaks (cap 16), 1-2 per draft.
-  - `Freak Show`: ~10% freaks (cap 40), 2-4 per draft round.
-  - `Super Fusions`: ~8% freaks (cap 32), higher rate of mythical 3-way blends.
+  - `Balanced` (Default): ~4% outliers (cap 16), 1-2 per draft.
+  - `Heavy Variance`: ~10% outliers (cap 40), 2-4 per draft round.
+  - `Super Fusions`: ~8% outliers (cap 32), higher rate of mythical 3-way blends.
   - `All Freaks`: 100% of the class rolled as freaks, hybrids, and fusions.
 
 ### 3. Fictional Likeness & Visual Isolation

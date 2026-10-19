@@ -123,7 +123,7 @@ export function HomePage({ onSelect, onOpenFreaks, franchiseEnabled, title = `Ma
             title="Freak Lab 🦄"
             tagline="Generate procedural unicorns & anomalies calibrated to 1936–2026."
             features={[
-              '29 Freak archetypes, dual hybrids & 3-way super-fusions',
+              '29 Outlier archetypes, dual hybrids & 3-way super-fusions',
               'Calibrated to 95th/99th percentile historical tail stats',
               '6×6 Cholesky physical correlation sampler',
               'Standalone or overlay onto any 1936–2026 draft class',
