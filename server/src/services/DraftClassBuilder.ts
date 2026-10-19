@@ -466,10 +466,13 @@ function toProspect(it: RankedItem, portraitPid?: number, gameVersion: 'm26' | '
   const vis: Record<string, unknown> = {
     loadouts: [EraGearService.loadout(player.draftYear, posId, `${player.firstName}|${player.lastName}|${index}${v}`, gameVersion, player.observedGear)],
   };
-  if (like.kind === 'generic' && /^gen_/i.test(like.peps)) {
-    vis.genericHeadName = like.peps;
-    vis.skinTone = like.skinTone;
-  }
+  // Madden 3D player models derive body/hand skin textures from genericHeadName.
+  // Every prospect (real head scan or generic) must have a tone-matched genericHeadName.
+  const genLikeness = (like.kind === 'generic' && /^gen_/i.test(like.peps))
+    ? like
+    : LikenessService.generic(player, variant ? index + variant * 1000 : index, gameVersion, String(prospect.bodyType || 'Standard'));
+  vis.genericHeadName = genLikeness.peps;
+  vis.skinTone = genLikeness.skinTone;
   prospect.visuals = vis;
   // Recorded equipment for this real player (player editor): sits on the era
   // loadout; a per-class gear edit applied later still wins.
@@ -726,8 +729,14 @@ export function applyEdits(prospects: MdcProspect[], edits?: ClassEdits, gameVer
         const asset = String(raw).trim();
         if (asset && !/^gen_/i.test(asset)) {
           p.PEPS = asset;
-          const vis = (p.visuals ??= {}) as { genericHeadName?: string };
-          delete vis.genericHeadName;
+          const vis = ((p.visuals ??= {}) as { genericHeadName?: string; skinTone?: number });
+          const tone = Number(vis.skinTone) || (Number(p.race) >= 1 && Number(p.race) <= 8 ? Number(p.race) : 7);
+          if (!vis.genericHeadName || !new RegExp(`^gen_${tone}_`, 'i').test(vis.genericHeadName)) {
+            const bt = String(p.bodyType || 'Standard');
+            const g = LikenessService.generic({ firstName: p.firstName, lastName: p.lastName, race: tone } as BaselinePlayer, 0, gameVersion, bt);
+            vis.genericHeadName = g.peps;
+            vis.skinTone = tone;
+          }
         }
         continue;
       }

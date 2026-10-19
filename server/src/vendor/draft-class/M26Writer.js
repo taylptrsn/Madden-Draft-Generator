@@ -544,10 +544,21 @@ function updateM26VisualJSON(buffer, blockStart, prospect) {
     }
     console.log(`[M26Writer] Sources checked - visuals.genericHeadName: ${prospect.visuals?.genericHeadName}, assignedGenr: ${prospect.assignedGenr}, PEPS: ${prospect.PEPS}`);
 
-    // Only create JSON if we have face data to write
+    // Ensure valid genericHeadName matching skinTone for 3D body skin textures
+    const m26ToneFallbacks = {
+      1: 'gen_1_B_B_005',
+      2: 'gen_2_BMH_S_002',
+      3: 'gen_3_B_BD_02',
+      4: 'gen_4_BHM_S_01',
+      5: 'gen_5_BHM_M_002',
+      6: 'gen_6_BHM_BM_004',
+      7: 'gen_7_BHM_MG_001',
+      8: 'gen_7_BHM_MG_001',
+    };
     if (!genericHeadName || typeof genericHeadName !== 'string' || !genericHeadName.toUpperCase().startsWith('GEN_')) {
-      console.log(`[M26Writer] No valid genericHeadName to write, skipping JSON creation`);
-      return;
+      const tone = prospect.visuals?.skinTone || prospect.skinTone || prospect.race || 7;
+      const safeTone = Math.max(1, Math.min(8, Number(tone) || 7));
+      genericHeadName = m26ToneFallbacks[safeTone] || 'gen_7_BHM_MG_001';
     }
 
     // Extract skinTone from genericHeadName (e.g., "gen_7_B_N_019" -> 7)
@@ -751,6 +762,32 @@ existing visuals.genericHeadName: ${visuals.genericHeadName}
     visuals.skinTone = skinToneToUse;
     console.log(`[M26Writer] Updating skinTone: ${oldSkinTone} -> ${skinToneToUse}`);
     updated = true;
+  }
+
+  // CRITICAL FIX: Ensure visuals.genericHeadName matches skinToneToUse
+  // In Madden 26, body skin (hands, arms, legs) is derived from genericHeadName.
+  // If a real player asset was used and genericHeadName in the template slot has a different
+  // tone prefix (e.g., template was gen_2 White, player is Black skinTone 7), we must update
+  // genericHeadName to a tone-matched generic head so arms/hands match the face.
+  if (skinToneToUse !== null) {
+    const curToneMatch = visuals.genericHeadName ? String(visuals.genericHeadName).match(/^gen_(\d+)/i) : null;
+    const curTone = curToneMatch ? parseInt(curToneMatch[1], 10) : null;
+    if (curTone !== skinToneToUse) {
+      const m26ToneFallbacks = {
+        1: 'gen_1_B_B_005',
+        2: 'gen_2_BMH_S_002',
+        3: 'gen_3_B_BD_02',
+        4: 'gen_4_BHM_S_01',
+        5: 'gen_5_BHM_M_002',
+        6: 'gen_6_BHM_BM_004',
+        7: 'gen_7_BHM_MG_001',
+        8: 'gen_7_BHM_MG_001',
+      };
+      const fallbackHead = m26ToneFallbacks[skinToneToUse] || 'gen_7_BHM_MG_001';
+      console.log(`[M26Writer] Updating genericHeadName to match skinTone ${skinToneToUse}: ${visuals.genericHeadName} -> ${fallbackHead}`);
+      visuals.genericHeadName = fallbackHead;
+      updated = true;
+    }
   }
 
   // EQUIPMENT: Apply equipment loadout changes from prospect.visuals.loadouts

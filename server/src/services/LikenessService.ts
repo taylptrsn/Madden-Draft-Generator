@@ -911,7 +911,11 @@ export const LikenessService = {
 
         const vis = (p.visuals ?? {}) as Record<string, unknown>;
         vis.skinTone = resolvedTone;
-        delete vis.genericHeadName;
+        const extraCands = getToneCandidates(resolvedTone, draftYear, bodyType);
+        const fallbackPool = extraCands.tier1.length > 0 ? extraCands.tier1 : extraCands.all;
+        if (fallbackPool.length > 0) {
+          vis.genericHeadName = fallbackPool[hash(`${base.firstName}|${base.lastName}|${i}|gen`) % fallbackPool.length];
+        }
         p.visuals = vis;
         base.race = resolvedTone;
         continue;

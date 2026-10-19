@@ -131,9 +131,10 @@ export function assignM27Fields(prospect: Record<string, unknown>, bits: M27Play
   // Portrait: generic heads map to a fixed PID; real scans keep the PID the builder set.
   const visuals = (prospect.visuals ?? {}) as { genericHeadName?: string };
   const peps = typeof prospect.PEPS === 'string' ? prospect.PEPS : '';
+  const isRealScan = !!peps && !/^gen_/i.test(peps);
   const head = visuals.genericHeadName || (/^gen_/i.test(peps) ? peps : null);
   // pinPortrait: the builder set a legends portrait on a generic head — keep it.
-  if (head && !prospect.pinPortrait) prospect.PID = genericHeadPid(head);
+  if (!isRealScan && head && !prospect.pinPortrait) prospect.PID = genericHeadPid(head);
   else if (prospect.PID == null) prospect.PID = 0;
   delete prospect.pinPortrait;
 

@@ -114,21 +114,38 @@ function writeM27VisualJSON(buffer, blockStart, prospect) {
   const bodyType = prospect.bodyType || src.bodyType || 'Muscular';
 
   // Face: generic heads go in genericHeadName; real assets are binary-only.
+  // In Madden 27, 3D body skin textures (hands, arms, legs) are derived from genericHeadName.
   let genericHeadName = src.genericHeadName || prospect.assignedGenr || null;
   const peps = prospect.PEPS ?? prospect.assetName ?? null;
   if (!genericHeadName && typeof peps === 'string' && /^gen_/i.test(peps)) genericHeadName = peps;
 
-  const visuals = {};
-  if (bodyType) visuals.bodyType = bodyType;
-  if (genericHeadName) visuals.genericHeadName = genericHeadName;
-  // Body skin: official files omit this and inherit from gen_N. We write it when
-  // we know it so M26-style body/face matching works in both games.
-  let skinTone = src.skinTone;
+  // Resolve skinTone from src, prospect attributes, or genericHeadName
+  let skinTone = src.skinTone ?? prospect.skinTone ?? prospect.race ?? null;
   if (skinTone == null && genericHeadName) {
     const m = String(genericHeadName).match(/^gen_(\d+)/i);
     if (m) skinTone = parseInt(m[1], 10);
   }
-  if (skinTone != null) visuals.skinTone = skinTone;
+  if (skinTone == null || skinTone < 1 || skinTone > 8) skinTone = 7;
+
+  // Ensure visuals always has a valid tone-matching genericHeadName so body skin never defaults to White
+  if (!genericHeadName || !/^gen_\d/i.test(genericHeadName)) {
+    const m27ToneFallbacks = {
+      1: 'gen_1_B_B_005',
+      2: 'gen_2_BMH_S_002',
+      3: 'gen_3_BMT_S_003',
+      4: 'gen_4_BHM_S_01',
+      5: 'gen_5_BHM_M_002',
+      6: 'gen_6_BHM_BM_004',
+      7: 'gen_7_BHM_MG_001',
+      8: 'gen_7_BHM_MG_001',
+    };
+    genericHeadName = m27ToneFallbacks[skinTone] || 'gen_7_BHM_MG_001';
+  }
+
+  const visuals = {};
+  if (bodyType) visuals.bodyType = bodyType;
+  visuals.genericHeadName = genericHeadName;
+  visuals.skinTone = skinTone;
 
   // Loadouts: use the prospect's PlayerOnField loadout when present (era gear /
   // copied real-player gear already merged by the builder); always include the
