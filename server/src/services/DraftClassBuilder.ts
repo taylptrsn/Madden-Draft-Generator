@@ -327,8 +327,13 @@ function pickBodyType(posName: string, w: number, r: number): BodyType {
       if (w <= 240) return pick('Thin', 0.85, 'Standard');
       return 'Muscular';
     case 'LS':
-      if (w <= 230) return pick('Thin', 0.85, 'Standard');
-      return w <= 240 ? 'Thin' : 'Muscular';
+      // Long snappers range from normal (Standard) for lighter builds,
+      // to Muscular for mid-weight builds, to lineman (Heavy) for 280+ lb builds.
+      if (w < 175) return 'Lean';
+      if (w <= 230) return 'Standard';
+      if (w <= 240) return pick('Muscular', 0.75, 'Thin');
+      if (w < 280) return 'Muscular';
+      return 'Heavy';
     default:
       return w < 175 ? 'Lean' : w <= 230 ? 'Standard' : w < 286 ? 'Muscular' : 'Heavy';
   }
@@ -738,18 +743,43 @@ export function draftPositions(players: BaselinePlayer[], opts: GenOptions = {})
     }
     for (const idx of candidates) {
       posIds[idx] = 21;
-      const p = capped[idx];
-      if (p.weight == null || p.weight > 265 || p.weight < 215 || p.heightInches == null) {
-        const norms = EraBioService.norms(p.draftYear ?? classYear, 'LS');
-        capped[idx] = {
-          ...p,
-          position: 'LS',
-          heightInches: p.heightInches ?? Math.round(norms.htMean),
-          weight: (p.weight != null && p.weight >= 215 && p.weight <= 265) ? p.weight : Math.round(norms.wtMean),
-        };
-      }
+      capped[idx] = { ...capped[idx], position: 'LS' };
     }
   }
+
+  // Ensure all Long Snappers (converted, filler, or historical) have realistic, diverse builds:
+  // a mix of normal (~224-230 lbs -> Standard), muscular (~242-262 lbs -> Muscular),
+  // and lineman (~280-292 lbs -> Heavy).
+  const lsIndices = capped.map((_, i) => i).filter((i) => posIds[i] === 21);
+  lsIndices.forEach((idx, ordinal) => {
+    const p = capped[idx];
+    if (p.weight == null || p.weight > 295 || p.weight < 215 || p.heightInches == null) {
+      const rand = seededRng(`ls_build|${classYear}|${ordinal}`);
+      // Mix: ordinal % 4 === 0 -> Heavy (lineman), 1 -> Standard (normal), otherwise -> Muscular
+      const bucket = ordinal % 4;
+      let targetWt: number;
+      let targetHt: number;
+      if (bucket === 1) {
+        // Normal/stocky center build (~224-230 lbs -> Standard)
+        targetWt = Math.round(224 + rand() * 6);
+        targetHt = Math.round(71 + rand() * 3);
+      } else if (bucket === 0) {
+        // Lineman build (~280-292 lbs -> Heavy)
+        targetWt = Math.round(280 + rand() * 12);
+        targetHt = Math.round(74 + rand() * 3);
+      } else {
+        // Athletic/muscular build (~242-262 lbs -> Muscular)
+        targetWt = Math.round(242 + rand() * 20);
+        targetHt = Math.round(73 + rand() * 3);
+      }
+      capped[idx] = {
+        ...p,
+        position: 'LS',
+        heightInches: p.heightInches ?? targetHt,
+        weight: (p.weight != null && p.weight >= 215 && p.weight <= 295) ? p.weight : targetWt,
+      };
+    }
+  });
 
   return { capped, keptIdx, dropped, included, posIds };
 }
@@ -977,6 +1007,22 @@ export const DraftClassBuilder = {
         it.overall = Math.min(capMax, Math.round(base * strength));
         it.devTrait = promoted.has(it) ? 3 : CalibrationService.devForTopFraction(outcomeFrac, gameVersion);
       });
+
+      // Long Snappers in Madden 27 are dedicated specialists (mean ~70 OVR in EA template / launch rosters, range 64-76).
+      // They sit at the bottom of the draft board as late picks / UDFAs, but their specialist OVR must not collapse to 53-56,
+      // which would force their longSnap rating down into the 40s.
+      const lsItems = board.filter((it) => it.posId === 21);
+      if (lsItems.length > 0) {
+        const sortedLs = [...lsItems].sort((a, b) => b.caliber - a.caliber);
+        sortedLs.forEach((it, lsRank) => {
+          const lsFrac = (lsRank + 0.5) / sortedLs.length;
+          // Scale from 75 down to 65 across the class cohort
+          const lsBase = Math.round(76 - lsFrac * 8);
+          const careerBonus = Math.min(4, Math.round((it.player.wav ?? 0) / 3));
+          const targetLsOvr = Math.min(capMax, Math.round((lsBase + careerBonus) * strength));
+          it.overall = Math.max(64, Math.min(80, targetLsOvr));
+        });
+      }
       // Young careers (drafted within the last YOUNG_SEASONS completed seasons): two
       // seasons of wAV are not an outcome, so their dev traits come from AP awards,
       // All-Pro / Pro Bowl counts and wAV production pace instead of the ranking

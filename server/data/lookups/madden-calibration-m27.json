@@ -13363,8 +13363,8 @@
       "archetypeProfiles": {
         "65": {
           "count": 20,
-          "htMean": 73,
-          "wtMean": 245,
+          "htMean": 74,
+          "wtMean": 265,
           "ovrMean": 69,
           "attrs": {
             "speed": 64,
@@ -13420,13 +13420,13 @@
             "kickPower": 36,
             "kickAccuracy": 37,
             "kickReturn": 56,
-            "longSnap": 50
+            "longSnap": 78
           }
         },
         "66": {
           "count": 28,
-          "htMean": 73,
-          "wtMean": 248,
+          "htMean": 72,
+          "wtMean": 238,
           "ovrMean": 69,
           "attrs": {
             "speed": 66,
@@ -13482,15 +13482,15 @@
             "kickPower": 33,
             "kickAccuracy": 38,
             "kickReturn": 55,
-            "longSnap": 50
+            "longSnap": 84
           }
         }
       },
       "ovrMean": 69,
       "htMean": 73,
-      "htStd": 1.1,
-      "wtMean": 247,
-      "wtStd": 7,
+      "htStd": 1.8,
+      "wtMean": 252,
+      "wtStd": 18,
       "attrs": {
         "speed": 65,
         "acceleration": 63,
@@ -13545,7 +13545,7 @@
         "kickPower": 34,
         "kickAccuracy": 38,
         "kickReturn": 55,
-        "longSnap": 50
+        "longSnap": 80
       },
       "attrStats": {
         "speed": {
@@ -13920,11 +13920,11 @@
           "max": 65
         },
         "longSnap": {
-          "slope": 0,
-          "std": 0,
-          "residStd": 0,
-          "min": 50,
-          "max": 50
+          "slope": 0.9,
+          "std": 5,
+          "residStd": 4.5,
+          "min": 68,
+          "max": 94
         }
       }
     }

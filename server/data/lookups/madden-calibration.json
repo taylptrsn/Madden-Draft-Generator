@@ -13303,7 +13303,7 @@
         "65": {
           "count": 5,
           "htMean": 74,
-          "wtMean": 247,
+          "wtMean": 265,
           "ovrMean": 72,
           "attrs": {
             "speed": 65,
@@ -13359,13 +13359,13 @@
             "kickPower": 34,
             "kickAccuracy": 40,
             "kickReturn": 56,
-            "longSnap": 50
+            "longSnap": 78
           }
         },
         "66": {
           "count": 10,
-          "htMean": 73,
-          "wtMean": 244,
+          "htMean": 72,
+          "wtMean": 238,
           "ovrMean": 70,
           "attrs": {
             "speed": 67,
@@ -13421,15 +13421,15 @@
             "kickPower": 36,
             "kickAccuracy": 32,
             "kickReturn": 55,
-            "longSnap": 50
+            "longSnap": 84
           }
         }
       },
       "ovrMean": 70,
       "htMean": 73,
-      "htStd": 1.2,
-      "wtMean": 245,
-      "wtStd": 7,
+      "htStd": 1.8,
+      "wtMean": 252,
+      "wtStd": 18,
       "attrs": {
         "speed": 66,
         "acceleration": 63,
@@ -13484,7 +13484,7 @@
         "kickPower": 35,
         "kickAccuracy": 35,
         "kickReturn": 55,
-        "longSnap": 50
+        "longSnap": 80
       },
       "attrStats": {
         "speed": {
@@ -13859,11 +13859,11 @@
           "max": 62
         },
         "longSnap": {
-          "slope": 0,
-          "std": 0,
-          "residStd": 0,
-          "min": 50,
-          "max": 50
+          "slope": 0.9,
+          "std": 5,
+          "residStd": 4.5,
+          "min": 68,
+          "max": 94
         }
       }
     }

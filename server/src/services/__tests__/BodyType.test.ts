@@ -19,6 +19,9 @@ test('body types respect the editor weight bands and the real roster mix', () =>
     assert.equal(bodyTypeFor('LG', 315, fixed(r)) === 'Standard', false);
     assert.equal(bodyTypeFor('K', 190, fixed(0.5)), 'Thin');
   }
+  assert.equal(bodyTypeFor('LS', 225, fixed(0.5)), 'Standard');
+  assert.equal(bodyTypeFor('LS', 250, fixed(0.5)), 'Muscular');
+  assert.equal(bodyTypeFor('LS', 285, fixed(0.5)), 'Heavy');
   assert.equal(bodyTypeFor('WR', 168, fixed(0.5)), 'Lean');
   assert.equal(bodyTypeFor('DT', 304, fixed(0.5)), 'Heavy');
   assert.equal(bodyTypeFor('LT', 300, fixed(0.9)), 'Muscular');
