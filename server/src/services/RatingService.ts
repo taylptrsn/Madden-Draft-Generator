@@ -29,7 +29,7 @@ const ANCHORS: Record<string, Anchor[]> = {
   // accrues far slower, so a 3-wAV long snapper is a fringe rookie, not a starter).
   K: [[2, 50], [8, 57], [20, 68], [45, 78], [70, 84], [100, 90]],
   P: [[2, 50], [8, 57], [20, 68], [45, 78], [70, 84], [100, 90]],
-  LS: [[1, 50], [4, 57], [10, 66], [22, 74], [38, 80]],
+  LS: [[0, 48], [3, 53], [6, 60], [9, 66]],
 };
 
 function interp(anchors: Anchor[], x: number): number {

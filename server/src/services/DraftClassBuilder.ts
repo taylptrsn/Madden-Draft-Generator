@@ -395,7 +395,7 @@ function toProspect(it: RankedItem, portraitPid?: number, gameVersion: 'm26' | '
   if (it.launch) {
     for (const [k, v] of Object.entries(it.launch.attrs)) if (RATING_KEYS.includes(k)) (prospect as Record<string, number>)[k] = v;
   }
-  if (posId === 21) {
+  if (posId === 21 && !it.launch) {
     // Concentrate a Long Snapper's OVR budget into his snapping specialty so a 64-72 OVR LS still carries 70-82 longSnap
     const lsRec = prospect as Record<string, number>;
     lsRec.longSnap = Math.max(Number(lsRec.longSnap) || 74, Math.min(86, 75 + Math.round((overall - 65) * 1.1)));
@@ -403,7 +403,7 @@ function toProspect(it: RankedItem, portraitPid?: number, gameVersion: 'm26' | '
     lsRec.tackle = Math.max(40, (Number(lsRec.tackle) || 56) - 6);
   }
   reconcileToTarget(prospect as Record<string, number>, posId, archetype, overall, gameVersion);
-  if (posId === 21 && (Number(prospect.longSnap) || 0) < 70) {
+  if (posId === 21 && !it.launch && (Number(prospect.longSnap) || 0) < 70) {
     const lsRec = prospect as Record<string, number>;
     const needed = 70 - (Number(lsRec.longSnap) || 0);
     lsRec.longSnap = 70;
@@ -1042,7 +1042,9 @@ export const DraftClassBuilder = {
       // Career-retrospective: OVR reflects how good they actually turned out
       // (uncapped wAV caliber), dev from that caliber. NOT Madden-shaped.
       for (const it of items) {
-        it.overall = it.posId === 21 ? Math.max(66, Math.min(82, it.caliber + 14)) : it.caliber;
+        // LS caliber anchors sit low (48-66) so snappers never out-rank position players on
+        // the board; in retro mode lift them onto the specialist band (66-80) instead.
+        it.overall = it.posId === 21 ? Math.max(66, Math.min(80, it.caliber + 14)) : it.caliber;
         it.devTrait = it.posId === 21 ? Math.min(1, devFromCaliber(it.caliber, it.player)) : devFromCaliber(it.caliber, it.player);
       }
     } else {

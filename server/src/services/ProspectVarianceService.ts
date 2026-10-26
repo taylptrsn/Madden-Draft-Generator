@@ -27,6 +27,20 @@ import { bodyTypeFor } from './DraftClassBuilder';
 
 
 
+const WAVE_GROUP: Record<string, string> = {
+  LT: 'OT', RT: 'OT', OT: 'OT', LG: 'OG', RG: 'OG', OG: 'OG',
+  LEDG: 'DE', REDG: 'DE', DE: 'DE', SAM: 'LB', MIKE: 'LB', WILL: 'LB', LB: 'LB',
+  FS: 'S', SS: 'S', S: 'S',
+};
+
+/** True when a raw slot label (OT, DE, LB, S) or an M26 position (LT, LEDG, SAM, FS)
+ *  belongs to a class-wave list written in either vocabulary. */
+export function waveHas(list: readonly string[], label: string): boolean {
+  const g = (x: string) => WAVE_GROUP[x] ?? x;
+  const key = g(label);
+  return list.some((x) => g(x) === key);
+}
+
 export type FreakPreset = 'balanced' | 'freak_show' | 'super_fusions' | 'all_freaks';
 
 
@@ -2131,7 +2145,7 @@ class ProspectVarianceServiceImpl {
     { label: 'Defensive Front-Seven Showcase', boom: ['DE', 'DT', 'LB', 'LEDG', 'REDG', 'SAM', 'MIKE', 'WILL'], thin: ['QB', 'CB'] },
     { label: 'Franchise Tackle & Lockdown Corner Class', boom: ['OT', 'LT', 'RT', 'CB'], thin: ['HB', 'S', 'FS', 'SS'] },
     { label: 'Quarterback & Edge Rusher Bonanza', boom: ['QB', 'DE', 'LEDG', 'REDG'], thin: ['OG', 'C', 'LG', 'RG', 'LB'] },
-    { label: 'All-Around Secondary & Offensive Line Class', boom: ['CB', 'S', 'FS', 'SS', 'OT', 'OG', 'LT', 'LG', 'RG', 'RT'], thin: ['TE', 'DT'] },
+    { label: 'All-Around Secondary & Offensive Line Class', boom: ['CB', 'S', 'FS', 'SS', 'OT', 'OG', 'C', 'LT', 'LG', 'RG', 'RT'], thin: ['TE', 'DT'] },
   ];
 
   public getClassWave(seed: number): { label: string; boom: string[]; thin: string[] } {
@@ -2144,7 +2158,7 @@ class ProspectVarianceServiceImpl {
     'Junior', 'Star', 'Puka', 'Troy', 'Kingsley', 'Jonah', 'Jackson', 'Jayden', 'Tuli', 'Toa',
   ];
   private static readonly POLYNESIAN_LAST = [
-    'Sewell', 'Tagovailoa', 'Hufanga', 'Vea', 'Latu', 'Buckner', 'Polamalu', 'Fanu', 'Tuipulotu',
+    'Tagovailoa', 'Hufanga', 'Vea', 'Latu', 'Polamalu', 'Fanu', 'Tuipulotu',
     'Aumavae', 'Lotulelei', 'Seau', 'Ngata', 'Maiava', 'Uiagalelei', 'Nacua', 'Suamataia', 'Fuaga',
     'Savaiinaea', 'Taumoepenu', 'Tavai', 'Fotu', 'Anae', 'Tonga',
   ];
@@ -2166,7 +2180,7 @@ class ProspectVarianceServiceImpl {
     'Julian', 'Xavier', 'Cairo', 'Eddy', 'Gabriel', 'Marco', 'Mateo', 'Diego',
   ];
   private static readonly HISPANIC_LAST = [
-    'Gonzalez', 'Pacheco', 'Olave', 'Warner', 'Romo', 'Hernandez', 'Munoz', 'Bonitto', 'Rodriguez',
+    'Gonzalez', 'Pacheco', 'Olave', 'Romo', 'Hernandez', 'Munoz', 'Rodriguez',
     'Martinez', 'Ramirez', 'Borregales', 'Pineiro', 'Montoya', 'Rivera', 'Castillo', 'Mendoza',
   ];
   private static readonly HISPANIC_STATES = ['CA', 'TX', 'FL', 'AZ', 'NV', 'NY', 'NJ'];
@@ -2192,7 +2206,13 @@ class ProspectVarianceServiceImpl {
 
     const firstNames = pool.map(p => p.firstName).filter(Boolean);
     const lastNames = pool.map(p => p.lastName).filter(Boolean);
-    const colleges = pool.map(p => p.college).filter(c => c && c !== 'Unknown' && LookupService.collegeId(c) > 0);
+    const collegeOk = new Map<string, boolean>();
+    const colleges = pool.map(p => p.college).filter(c => {
+      if (!c || c === 'Unknown') return false;
+      let ok = collegeOk.get(c);
+      if (ok === undefined) { ok = LookupService.collegeId(c) > 0; collegeOk.set(c, ok); }
+      return ok;
+    });
     const blueBloodColleges = colleges.filter(c => ProspectVarianceServiceImpl.BLUE_BLOOD_REGEX.test(c.trim()));
     const states = pool.map(p => p.homeState).filter((s): s is string => Boolean(s));
 
@@ -2244,11 +2264,11 @@ class ProspectVarianceServiceImpl {
     // and push thin-group prospects out of the top 28 so each class has a distinct positional identity
     for (let i = 0; i < Math.min(36, rawSlots.length); i++) {
       const curPos = rawSlots[i]!;
-      if (wave.thin.includes(curPos) && rng.next() < 0.60) {
+      if (waveHas(wave.thin, curPos) && rng.next() < 0.60) {
         for (let attempt = 0; attempt < 25; attempt++) {
           const swapIdx = rng.randint(40, 120);
           const cand = rawSlots[swapIdx]!;
-          if (wave.boom.includes(cand)) {
+          if (waveHas(wave.boom, cand)) {
             rawSlots[swapIdx] = curPos;
             rawSlots[i] = cand;
             break;
@@ -2325,6 +2345,12 @@ class ProspectVarianceServiceImpl {
         customRace = customRace ?? rng.choice([2, 3, 4, 4, 5]);
         customState = customState ?? rng.choice(ProspectVarianceServiceImpl.HISPANIC_STATES);
       }
+      const cohortFirst = ProspectVarianceServiceImpl.POLYNESIAN_LAST.includes(ln)
+        ? ProspectVarianceServiceImpl.POLYNESIAN_FIRST
+        : ProspectVarianceServiceImpl.NIGERIAN_LAST.includes(ln)
+          ? ProspectVarianceServiceImpl.NIGERIAN_FIRST
+          : firstNames;
+      for (let t = 0; t < 10 && usedNames.has(`${fn} ${ln}`); t++) fn = rng.choice(cohortFirst);
       usedNames.add(`${fn} ${ln}`);
 
       // College Pipeline Weighting: Round 1-2 heavily favors CFB Blue-Bloods; Day 3 seeds Small-School Sleepers
@@ -2509,8 +2535,8 @@ class ProspectVarianceServiceImpl {
       if (isProcedural) {
         const wave = this.getClassWave(resolved.seed);
         if (i < 96 && pos !== 'K' && pos !== 'P' && pos !== 'LS') {
-          if (wave.boom.includes(pos)) baseOvr = Math.min(82, baseOvr + (i < 32 ? 2 : 1));
-          else if (wave.thin.includes(pos) && i < 48) baseOvr = Math.max(62, baseOvr - 2);
+          if (waveHas(wave.boom, pos)) baseOvr = Math.min(82, baseOvr + (i < 32 ? 2 : 1));
+          else if (waveHas(wave.thin, pos) && i < 48) baseOvr = Math.max(62, baseOvr - 2);
         }
         const stdSlotCap = i === 0 ? 82 : i < 3 ? 81 : i < 8 ? 80 : i < 16 ? 79 : i < 32 ? 77 : 82;
         if (baseOvr > stdSlotCap) {
@@ -2537,16 +2563,18 @@ class ProspectVarianceServiceImpl {
         if (!player?.weight) {
           prospect.weight = clamp(geom.wMean + corr[1]! * geom.wStd, geom.wMin, geom.wMax);
         }
-        const youngBoost = pAge <= 20 ? 1.5 : pAge === 21 ? 0.8 : pAge >= 23 ? -0.6 : 0;
+        const isGenProspect = isProcedural || player?.source === 'generated';
+        const ageCurve = isGenProspect && pos !== 'LS';
+        const youngBoost = !ageCurve ? 0 : pAge <= 20 ? 1.5 : pAge === 21 ? 0.8 : pAge >= 23 ? -0.6 : 0;
+        const seniorStrength = ageCurve && pAge >= 23 ? 1.5 : 0;
         prospect.speed = clampRating(Number(prospect.speed ?? 75) + corr[2]! * 2.2 + youngBoost);
         prospect.acceleration = clampRating(Number(prospect.acceleration ?? 75) + corr[2]! * 1.8 + corr[3]! * 0.8 + youngBoost);
         prospect.agility = clampRating(Number(prospect.agility ?? 72) + corr[3]! * 2.5 + youngBoost * 0.7);
         prospect.changeOfDirection = clampRating(Number(prospect.changeOfDirection ?? 72) + corr[3]! * 2.5 + youngBoost * 0.7);
-        prospect.strength = clampRating(Number(prospect.strength ?? 70) + corr[4]! * 2.8 + (pAge >= 23 ? 1.5 : 0));
+        prospect.strength = clampRating(Number(prospect.strength ?? 70) + corr[4]! * 2.8 + seniorStrength);
         prospect.jumping = clampRating(Number(prospect.jumping ?? 72) + corr[5]! * 2.8 + youngBoost);
 
-        const isGenProspect = isProcedural || player?.source === 'generated';
-        if (isGenProspect && pos !== 'LS') {
+        if (ageCurve) {
           // Age vs. Polish Curve: 20-21yo underclassmen enter rawer mentally; 23-24yo 5th-year seniors enter pro-ready
           if (pAge <= 21) {
             const rawPenalty = pAge <= 20 ? rng.randint(5, 8) : rng.randint(3, 6);

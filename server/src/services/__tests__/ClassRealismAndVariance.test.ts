@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'fs';
 import path from 'path';
 import { LOOKUPS_DIR } from '../../config/paths';
-import { ProspectVarianceService } from '../ProspectVarianceService';
+import { ProspectVarianceService, waveHas } from '../ProspectVarianceService';
 import { DraftClassBuilder } from '../DraftClassBuilder';
 import { EraGearService } from '../EraGearService';
 import { LookupService } from '../LookupService';
@@ -90,8 +90,7 @@ test('Enhancement 2: Modern M27 equipment includes full visor palette, scrunch/u
     if (v) visors.add(v);
     const s = bySlot.get('InnerSocks');
     if (s) socks.add(s);
-    if (bySlot.get('WaistWear') === 'Handwarmer_Standard') {
-      assert.ok(bySlot.get('Towel') !== 'Towel_South' || !bySlot.has('WaistWearOverride'), 'Back towel must not combine with back handwarmer override');
+    if (bySlot.get('WaistWear') === 'Handwarmer_Standard' && bySlot.get('WaistWearOverride') === 'HandwarmerStyle_Back') {
       handwarmers++;
     }
     if (bySlot.get('LeftArmWear') !== bySlot.get('RightArmWear')) {
@@ -128,7 +127,7 @@ test('Enhancement 5 & 6: Class-to-Class Positional Waves, Cultural Name Coherenc
   const players = ProspectVarianceService.buildProceduralClass({ enabled: true, seed: 2027 }, 2027);
 
   // Check Polynesian / Nigerian / Hispanic cohort presence and skin-tone coherence
-  const polyLast = new Set(['Sewell', 'Tagovailoa', 'Hufanga', 'Vea', 'Latu', 'Buckner', 'Polamalu', 'Fanu', 'Tuipulotu', 'Aumavae', 'Lotulelei', 'Seau', 'Ngata', 'Maiava', 'Uiagalelei', 'Nacua', 'Suamataia', 'Fuaga', 'Savaiinaea', 'Taumoepenu', 'Tavai', 'Fotu', 'Anae', 'Tonga']);
+  const polyLast = new Set(['Tagovailoa', 'Hufanga', 'Vea', 'Latu', 'Polamalu', 'Fanu', 'Tuipulotu', 'Aumavae', 'Lotulelei', 'Seau', 'Ngata', 'Maiava', 'Uiagalelei', 'Nacua', 'Suamataia', 'Fuaga', 'Savaiinaea', 'Taumoepenu', 'Tavai', 'Fotu', 'Anae', 'Tonga']);
   const nigLast = new Set(['Oweh', 'Mafe', 'Madubuike', 'Odighizuwa', 'Ojulari', 'Nwosu', 'Awuzie', 'Asomugha', 'Okwara', 'Onwuzurike', 'Anudike', 'Ezeiruaku', 'Ogbah', 'Okoye', 'Njoku', 'Egbuka', 'Igbinoghene', 'Adebawore', 'Oluwatimi', 'Ojomo', 'Ebukam', 'Onyemata', 'Ogbonnia', 'Okoronkwo']);
 
   const polyPlayers = players.filter((p) => polyLast.has(p.lastName));
@@ -158,4 +157,22 @@ test('Enhancement 5 & 6: Class-to-Class Positional Waves, Cultural Name Coherenc
     r12BlueBloods > lateBlueBloods + 8,
     `Expected Rounds 1-2 Blue-Blood count (${r12BlueBloods}) to significantly exceed late-round count (${lateBlueBloods})`
   );
+});
+
+test('Class waves match raw slot labels and M26 positions alike', () => {
+  assert.ok(waveHas(['LT', 'RT'], 'OT'));
+  assert.ok(waveHas(['OT'], 'RT'));
+  assert.ok(waveHas(['SAM', 'MIKE', 'WILL'], 'LB'));
+  assert.ok(waveHas(['DE'], 'REDG'));
+  assert.ok(waveHas(['FS', 'SS'], 'S'));
+  assert.ok(!waveHas(['QB', 'WR'], 'OT'));
+  assert.ok(!waveHas(['CB'], 'S'));
+});
+
+test('Procedural classes never repeat a full name, even after cohort first-name swaps', () => {
+  for (const seed of [2027, 2031, 4040]) {
+    const players = ProspectVarianceService.buildProceduralClass({ enabled: true, seed }, 2027);
+    const names = players.map((p) => `${p.firstName} ${p.lastName}`);
+    assert.equal(new Set(names).size, names.length, `seed ${seed} has duplicate names`);
+  }
 });

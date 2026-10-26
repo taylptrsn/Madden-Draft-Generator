@@ -414,7 +414,7 @@ const M27_EQUIPMENT: Record<string, EraDefaults> = {
  *  small pads 69%, back plate 48%, undershirt 34%); older eras phase them out:
  *  no sleeves before ~2000, no spats before ~2010, no pacifier before ~1996,
  *  medium pads before 2005, knee/thigh pads on everyone before 1995. */
-function bodyAccessories(year: number, group: string, seedKey: string, m27: boolean, hasBackTowel = false): LoadoutElement[] {
+function bodyAccessories(year: number, group: string, seedKey: string, m27: boolean): LoadoutElement[] {
   const roll = (slot: string) => pick(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], `${seedKey}|${slot}`) as string;
   const chance = (slot: string, p: number) => parseInt(roll(slot), 10) / 10 < p;
   const out: LoadoutElement[] = [];
@@ -476,12 +476,13 @@ function bodyAccessories(year: number, group: string, seedKey: string, m27: bool
   if (year >= 2000 && !line && chance('undershirt', 0.34)) out.push({ slotType: 'InnerShirt', itemAssetName: 'Undershirt_Untucked' });
   else out.push(none('InnerShirt'));
 
-  // Waist handwarmer (modern M27 QBs, RBs, and WRs; use front placement if player already has a back towel)
+  // Waist handwarmer (modern M27 QBs, RBs, and WRs). EA's own template pairs this
+  // with any towel position, including Towel_South.
   if (m27 && year >= 2010 && (group === 'QB' || group === 'RB' || group === 'WR') && chance('handwarmer', group === 'QB' ? 0.30 : 0.18)) {
-    out.push({ slotType: 'WaistWear', itemAssetName: 'Handwarmer_Standard' });
-    if (!hasBackTowel) {
-      out.push({ slotType: 'WaistWearOverride', itemAssetName: 'HandwarmerStyle_Back' });
-    }
+    out.push(
+      { slotType: 'WaistWear', itemAssetName: 'Handwarmer_Standard' },
+      { slotType: 'WaistWearOverride', itemAssetName: 'HandwarmerStyle_Back' },
+    );
   }
 
   // M27 rebuilds the loadout wholesale: removal markers would write nothing, so drop them.
@@ -774,7 +775,7 @@ export const EraGearService = {
       // thigh pads, back plate, untucked undershirt). Mixes for the modern brackets
       // come from the game's own generated classes; absence is expressed with a
       // removal marker for M26 (merge-into-donor) and by omission for M27.
-      for (const el of bodyAccessories(year, group, seedKey, m27, !match && towel === 'Towel_South')) els.push(el);
+      for (const el of bodyAccessories(year, group, seedKey, m27)) els.push(el);
 
       // The photo detector's eyeBlack flag fires on any dark mid-face under a
       // helmet (dark skin, shadow): 74% of the 1987 class "wore" eye black. The
