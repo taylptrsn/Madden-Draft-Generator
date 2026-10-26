@@ -19,7 +19,8 @@ import { CalibrationService } from './CalibrationService';
 import { ArchetypeService } from './ArchetypeService';
 import { NflverseCareerService } from './NflverseCareerService';
 import { OVRWeightsCalculator } from './OVRWeightsCalculator';
-import { LikenessService, LikenessKind } from './LikenessService';
+import { LikenessService, LikenessKind, headBuildCode, buildCompatibilityTier } from './LikenessService';
+import { SkinToneService } from './SkinToneService';
 import { EraGearService } from './EraGearService';
 import { PhotoLookService } from './PhotoLookService';
 import { PortraitSlotService } from './PortraitSlotService';
@@ -430,8 +431,9 @@ function toProspect(it: RankedItem, portraitPid?: number, gameVersion: 'm26' | '
   if (player.likenessFix?.bodyType && (BODY_TYPES as readonly string[]).includes(player.likenessFix.bodyType)) {
     prospect.bodyType = player.likenessFix.bodyType as BodyType;
   }
-  const real = LikenessService.realFace(player, gameVersion);
-  let like = LikenessService.assign(player, variant ? index + variant * 1000 : index, gameVersion, String(prospect.bodyType || 'Standard'));
+  const playerWithBuild: BaselinePlayer = { ...player, weight, heightInches, position: posName };
+  const real = LikenessService.realFace(playerWithBuild, gameVersion);
+  let like = LikenessService.assign(playerWithBuild, variant ? index + variant * 1000 : index, gameVersion, String(prospect.bodyType || 'Standard'));
   // The user's likeness fix: a pinned generic head (its tone comes with it) or a
   // scan asset, applied the way a per-class face edit is. A class edit still
   // overrides this for its own class (applyEdits runs later).
@@ -450,7 +452,7 @@ function toProspect(it: RankedItem, portraitPid?: number, gameVersion: 'm26' | '
   // A real head whose portrait the game no longer ships (M27 dropped most retired
   // players' regular portraits) gets a tone-matched generic portrait, not the shield.
   const genericPortrait = () => {
-    const g = like.kind === 'generic' ? like : LikenessService.generic(player, variant ? index + variant * 1000 : index, gameVersion, String(prospect.bodyType || 'Standard'));
+    const g = like.kind === 'generic' ? like : LikenessService.generic(playerWithBuild, variant ? index + variant * 1000 : index, gameVersion, String(prospect.bodyType || 'Standard'));
     return gameVersion === 'm27' ? genericHeadPid(g.peps) : (LikenessService.genericPid(g.peps, 'm26') ?? 0);
   };
   // A generic-head legend (no renderable scan) still gets his legends portrait.
@@ -476,7 +478,7 @@ function toProspect(it: RankedItem, portraitPid?: number, gameVersion: 'm26' | '
   // Every prospect (real head scan or generic) must have a tone-matched genericHeadName.
   const genLikeness = (like.kind === 'generic' && /^gen_/i.test(like.peps))
     ? like
-    : LikenessService.generic(player, variant ? index + variant * 1000 : index, gameVersion, String(prospect.bodyType || 'Standard'));
+    : LikenessService.generic(playerWithBuild, variant ? index + variant * 1000 : index, gameVersion, String(prospect.bodyType || 'Standard'));
   vis.genericHeadName = genLikeness.peps;
   vis.skinTone = genLikeness.skinTone;
   prospect.visuals = vis;
@@ -715,9 +717,9 @@ export function draftPositions(players: BaselinePlayer[], opts: GenOptions = {})
   const classYear = capped[0]?.draftYear ?? 2026;
   const targetLS = targetLongSnapperCount(classYear);
   const currentLS = posIds.filter((id) => id === 21).length;
+  const candidates: number[] = [];
   if (currentLS < targetLS) {
     const needed = targetLS - currentLS;
-    const candidates: number[] = [];
     // First pass: lowest-risk fringe players (late round / UDFA, low wAV, no accolades)
     for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
       const p = capped[i];
@@ -743,17 +745,26 @@ export function draftPositions(players: BaselinePlayer[], opts: GenOptions = {})
     }
     for (const idx of candidates) {
       posIds[idx] = 21;
-      capped[idx] = { ...capped[idx], position: 'LS' };
+      const prev = capped[idx];
+      capped[idx] = {
+        ...prev,
+        position: 'LS',
+        race: prev.source === 'generated'
+          ? SkinToneService.fictionalRaceFor('LS', `${prev.firstName}|${prev.lastName}|${idx}|ls`)
+          : prev.race,
+      };
     }
   }
 
   // Ensure all Long Snappers (converted, filler, or historical) have realistic, diverse builds:
   // a mix of normal (~224-230 lbs -> Standard), muscular (~242-262 lbs -> Muscular),
   // and lineman (~280-292 lbs -> Heavy).
+  const convertedSet = new Set<number>(candidates);
   const lsIndices = capped.map((_, i) => i).filter((i) => posIds[i] === 21);
   lsIndices.forEach((idx, ordinal) => {
     const p = capped[idx];
-    if (p.weight == null || p.weight > 295 || p.weight < 215 || p.heightInches == null) {
+    const isConvertedOrFiller = convertedSet.has(idx) || p.source === 'generated';
+    if (isConvertedOrFiller || p.weight == null || p.weight > 295 || p.weight < 215 || p.heightInches == null) {
       const rand = seededRng(`ls_build|${classYear}|${ordinal}`);
       // Mix: ordinal % 4 === 0 -> Heavy (lineman), 1 -> Standard (normal), otherwise -> Muscular
       const bucket = ordinal % 4;
@@ -775,8 +786,8 @@ export function draftPositions(players: BaselinePlayer[], opts: GenOptions = {})
       capped[idx] = {
         ...p,
         position: 'LS',
-        heightInches: p.heightInches ?? targetHt,
-        weight: (p.weight != null && p.weight >= 215 && p.weight <= 295) ? p.weight : targetWt,
+        heightInches: isConvertedOrFiller ? targetHt : (p.heightInches ?? targetHt),
+        weight: (!isConvertedOrFiller && p.weight != null && p.weight >= 215 && p.weight <= 295) ? p.weight : targetWt,
       };
     }
   });
@@ -811,7 +822,28 @@ export function applyEdits(prospects: MdcProspect[], edits?: ClassEdits, gameVer
         continue;
       }
       if (k === 'bodyType') {
-        if (BODY_TYPES.includes(String(raw))) p.bodyType = String(raw);
+        if (BODY_TYPES.includes(String(raw))) {
+          const newBt = String(raw);
+          p.bodyType = newBt;
+          const peps = String(p.PEPS || '');
+          if (/^gen_/i.test(peps) && !('genericHeadName' in patch) && !('faceAsset' in patch)) {
+            if (buildCompatibilityTier(headBuildCode(peps), newBt) === 0) {
+              const vis = ((p.visuals ??= {}) as { genericHeadName?: string; skinTone?: number });
+              const tone = Number(vis.skinTone) || Number(( /^gen_(\d+)/i.exec(peps) ?? [])[1]) || 4;
+              const posName = PositionMapper.name(Number(p.position) || 0);
+              const g = LikenessService.generic(
+                { firstName: String(p.firstName || ''), lastName: String(p.lastName || ''), race: tone, position: posName, weight: Number(p.weight) || 220 } as BaselinePlayer,
+                0,
+                gameVersion,
+                newBt
+              );
+              p.PEPS = g.peps;
+              vis.genericHeadName = g.peps;
+              delete p.pinPortrait;
+              p.PID = gameVersion === 'm27' ? genericHeadPid(g.peps) : (LikenessService.genericPid(g.peps, 'm26') ?? 0);
+            }
+          }
+        }
         continue;
       }
       // Persona DNA edit (M27): comma-separated trait id string -> number[]
@@ -837,7 +869,26 @@ export function applyEdits(prospects: MdcProspect[], edits?: ClassEdits, gameVer
       // GEN_ PEPS into visuals.genericHeadName); mirror into visuals for safety.
       if (k === 'skinTone') {
         const t = Math.max(1, Math.min(8, Number(raw)));
-        if (Number.isFinite(t)) ((p.visuals ??= {}) as { skinTone?: number }).skinTone = t;
+        if (Number.isFinite(t)) {
+          const vis = ((p.visuals ??= {}) as { genericHeadName?: string; skinTone?: number });
+          vis.skinTone = t;
+          if (!('genericHeadName' in patch) && (!vis.genericHeadName || !new RegExp(`^gen_${t}_`, 'i').test(vis.genericHeadName))) {
+            const bt = String(p.bodyType || 'Standard');
+            const posName = PositionMapper.name(Number(p.position) || 0);
+            const g = LikenessService.generic(
+              { firstName: String(p.firstName || ''), lastName: String(p.lastName || ''), race: t, position: posName, weight: Number(p.weight) || 220 } as BaselinePlayer,
+              0,
+              gameVersion,
+              bt
+            );
+            vis.genericHeadName = g.peps;
+            if (/^gen_/i.test(String(p.PEPS || '')) && !('faceAsset' in patch)) {
+              p.PEPS = g.peps;
+              delete p.pinPortrait;
+              p.PID = gameVersion === 'm27' ? genericHeadPid(g.peps) : (LikenessService.genericPid(g.peps, 'm26') ?? 0);
+            }
+          }
+        }
         continue;
       }
       if (k === 'faceAsset') {
@@ -845,10 +896,17 @@ export function applyEdits(prospects: MdcProspect[], edits?: ClassEdits, gameVer
         if (asset && !/^gen_/i.test(asset)) {
           p.PEPS = asset;
           const vis = ((p.visuals ??= {}) as { genericHeadName?: string; skinTone?: number });
-          const tone = Number(vis.skinTone) || (Number(p.race) >= 1 && Number(p.race) <= 8 ? Number(p.race) : 7);
+          const patchTone = 'skinTone' in patch ? Math.max(1, Math.min(8, Number(patch.skinTone))) : 0;
+          const tone = (Number.isFinite(patchTone) && patchTone > 0 ? patchTone : 0) || Number(vis.skinTone) || (Number(p.race) >= 1 && Number(p.race) <= 8 ? Number(p.race) : 7);
           if (!vis.genericHeadName || !new RegExp(`^gen_${tone}_`, 'i').test(vis.genericHeadName)) {
             const bt = String(p.bodyType || 'Standard');
-            const g = LikenessService.generic({ firstName: p.firstName, lastName: p.lastName, race: tone } as BaselinePlayer, 0, gameVersion, bt);
+            const posName = PositionMapper.name(Number(p.position) || 0);
+            const g = LikenessService.generic(
+              { firstName: String(p.firstName || ''), lastName: String(p.lastName || ''), race: tone, position: posName, weight: Number(p.weight) || 220 } as BaselinePlayer,
+              0,
+              gameVersion,
+              bt
+            );
             vis.genericHeadName = g.peps;
             vis.skinTone = tone;
           }
@@ -863,6 +921,8 @@ export function applyEdits(prospects: MdcProspect[], edits?: ClassEdits, gameVer
           vis.genericHeadName = code;
           const m = code.match(/^gen_(\d+)/i);
           if (m) vis.skinTone = Number(m[1]);
+          delete p.pinPortrait;
+          p.PID = gameVersion === 'm27' ? genericHeadPid(code) : (LikenessService.genericPid(code, 'm26') ?? 0);
         }
         continue;
       }

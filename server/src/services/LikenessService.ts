@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { firstNameVariants } from './PlayerLookupService';
+import { PositionMapper } from './PositionMapper';
 import path from 'path';
 import { LOOKUPS_DIR, CACHE_DIR } from '../config/paths';
 import { BaselinePlayer } from '../types/player';
@@ -952,10 +953,15 @@ export const LikenessService = {
     const effectiveBodyTypeFor = (idx: number): string => {
       const pr = prospects[idx];
       const pl = players[idx];
+      const resolvedPos = typeof pr?.position === 'number'
+        ? PositionMapper.name(pr.position)
+        : (typeof pr?.position === 'string' && pr.position && !/^\d+$/.test(pr.position))
+          ? pr.position
+          : pl.position;
       const merged: BaselinePlayer = {
         ...pl,
         weight: Number(pr?.weight) || pl.weight,
-        position: String(pr?.position || pl.position),
+        position: resolvedPos,
       };
       return inferPlayerBodyType(merged, String(pr?.bodyType || ''));
     };

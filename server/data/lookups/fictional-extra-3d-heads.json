@@ -410,7 +410,7 @@
       "assetName": "FergusonReid_13039",
       "portraitPid": 9183,
       "tone": 2,
-      "bodyType": "Heavy",
+      "bodyType": "Muscular",
       "name": "Reid Ferguson"
     },
     {
@@ -571,7 +571,7 @@
       "assetName": "CorrellZeke_4644",
       "portraitPid": 11018,
       "tone": 2,
-      "bodyType": "Standard",
+      "bodyType": "Heavy",
       "name": "Zeke Correll"
     },
     {
@@ -851,7 +851,7 @@
       "assetName": "ColemanBrandon_14730",
       "portraitPid": 10037,
       "tone": 3,
-      "bodyType": "Standard",
+      "bodyType": "Heavy",
       "name": "Brandon Coleman"
     },
     {
@@ -1159,7 +1159,7 @@
       "assetName": "BaileyWesley_10133",
       "portraitPid": 11458,
       "tone": 4,
-      "bodyType": "Standard",
+      "bodyType": "Muscular",
       "name": "Wesley Bailey"
     },
     {
@@ -1397,7 +1397,7 @@
       "assetName": "BrownIIIBobby_21922",
       "portraitPid": 1592,
       "tone": 5,
-      "bodyType": "Standard",
+      "bodyType": "Heavy",
       "name": "Bobby Brown III"
     },
     {
@@ -1432,7 +1432,7 @@
       "assetName": "DavisTyler_14866",
       "portraitPid": 10380,
       "tone": 5,
-      "bodyType": "Standard",
+      "bodyType": "Heavy",
       "name": "Tyler Davis"
     },
     {
@@ -1607,7 +1607,7 @@
       "assetName": "EdwardsMike_20457",
       "portraitPid": 9448,
       "tone": 6,
-      "bodyType": "Heavy",
+      "bodyType": "Standard",
       "name": "Mike Edwards"
     },
     {
@@ -1866,7 +1866,7 @@
       "assetName": "AdamsTony_22642",
       "portraitPid": 2723,
       "tone": 7,
-      "bodyType": "Heavy",
+      "bodyType": "Standard",
       "name": "Tony Adams"
     },
     {
@@ -2083,7 +2083,7 @@
       "assetName": "BashamJrCarlos_21503",
       "portraitPid": 1608,
       "tone": 7,
-      "bodyType": "Standard",
+      "bodyType": "Heavy",
       "name": "Boogie Basham Jr"
     },
     {
