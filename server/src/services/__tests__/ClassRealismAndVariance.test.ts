@@ -6,6 +6,7 @@ import { LOOKUPS_DIR } from '../../config/paths';
 import { ProspectVarianceService } from '../ProspectVarianceService';
 import { DraftClassBuilder } from '../DraftClassBuilder';
 import { EraGearService } from '../EraGearService';
+import { LookupService } from '../LookupService';
 
 const m27Assets = new Set<string>(
   JSON.parse(fs.readFileSync(path.join(LOOKUPS_DIR, 'm27-game-gear-assets.json'), 'utf8'))
@@ -89,7 +90,8 @@ test('Enhancement 2: Modern M27 equipment includes full visor palette, scrunch/u
     if (v) visors.add(v);
     const s = bySlot.get('InnerSocks');
     if (s) socks.add(s);
-    if (bySlot.get('WaistWear') === 'Handwarmer_Standard' && bySlot.get('WaistWearOverride') === 'HandwarmerStyle_Back') {
+    if (bySlot.get('WaistWear') === 'Handwarmer_Standard') {
+      assert.ok(bySlot.get('Towel') !== 'Towel_South' || !bySlot.has('WaistWearOverride'), 'Back towel must not combine with back handwarmer override');
       handwarmers++;
     }
     if (bySlot.get('LeftArmWear') !== bySlot.get('RightArmWear')) {
@@ -141,8 +143,15 @@ test('Enhancement 5 & 6: Class-to-Class Positional Waves, Cultural Name Coherenc
     assert.ok((p.race ?? 0) >= 6 && (p.race ?? 0) <= 7, `Expected Nigerian prospect ${p.firstName} ${p.lastName} to have tone 6-7, got ${p.race}`);
   }
 
+  // Every generated player in a procedural class must resolve to a valid non-zero Madden college ID
+  for (const p of players) {
+    const cid = LookupService.collegeId(p.college);
+    assert.ok(cid > 0, `Expected valid non-zero collegeId for "${p.college}", got ${cid}`);
+  }
+  assert.ok(LookupService.collegeId('Western Michigan') > 0, 'Western Michigan should resolve to W. Michigan in LookupService');
+
   // Check Blue-Blood college weighting in Rounds 1-2 vs Small-School sleepers in Day 3
-  const blueBloodRegex = /^(Alabama|Georgia|Ohio St|LSU|Michigan|Texas|Oregon|Clemson|Notre Dame|Penn St|USC|Oklahoma|Florida|Miami|Washington|Florida St|Auburn|Tennessee|Texas A&M|Wisconsin|Iowa|Utah)$/i;
+  const blueBloodRegex = /^(Alabama|Georgia|Ohio St(\.|ate)?|LSU|Michigan|Texas|Oregon|Clemson|Notre Dame|Penn St(\.|ate)?|USC|Southern California|Oklahoma|Florida|Miami(\s*\(FL\))?|Washington|Florida St(\.|ate)?|Auburn|Tennessee|Texas A&M|Wisconsin|Iowa|Utah|Mississippi|Ole Miss)$/i;
   const r12BlueBloods = players.slice(0, 64).filter((p) => blueBloodRegex.test(p.college.trim())).length;
   const lateBlueBloods = players.slice(200, 264).filter((p) => blueBloodRegex.test(p.college.trim())).length;
   assert.ok(

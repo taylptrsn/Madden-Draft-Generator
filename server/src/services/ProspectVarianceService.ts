@@ -11,6 +11,7 @@ import { NflverseCareerService } from './NflverseCareerService';
 import { CalibrationService } from './CalibrationService';
 
 import { PositionMapper } from './PositionMapper';
+import { LookupService } from './LookupService';
 
 import { SkinToneService } from './SkinToneService';
 
@@ -2170,7 +2171,7 @@ class ProspectVarianceServiceImpl {
   ];
   private static readonly HISPANIC_STATES = ['CA', 'TX', 'FL', 'AZ', 'NV', 'NY', 'NJ'];
 
-  private static readonly BLUE_BLOOD_REGEX = /^(Alabama|Georgia|Ohio St|LSU|Michigan|Texas|Oregon|Clemson|Notre Dame|Penn St|USC|Oklahoma|Florida|Miami|Washington|Florida St|Auburn|Tennessee|Texas A&M|Wisconsin|Iowa|Utah)$/i;
+  private static readonly BLUE_BLOOD_REGEX = /^(Alabama|Georgia|Ohio St(\.|ate)?|LSU|Michigan|Texas|Oregon|Clemson|Notre Dame|Penn St(\.|ate)?|USC|Southern California|Oklahoma|Florida|Miami(\s*\(FL\))?|Washington|Florida St(\.|ate)?|Auburn|Tennessee|Texas A&M|Wisconsin|Iowa|Utah|Mississippi|Ole Miss)$/i;
   private static readonly SMALL_SCHOOL_COLLEGES = [
     'North Dakota St.', 'South Dakota St.', 'Montana St.', 'Delaware', 'Appalachian St.',
     'Boise St.', 'Toledo', 'Marshall', 'Western Michigan', 'Northern Illinois',
@@ -2191,7 +2192,7 @@ class ProspectVarianceServiceImpl {
 
     const firstNames = pool.map(p => p.firstName).filter(Boolean);
     const lastNames = pool.map(p => p.lastName).filter(Boolean);
-    const colleges = pool.map(p => p.college).filter(c => c && c !== 'Unknown');
+    const colleges = pool.map(p => p.college).filter(c => c && c !== 'Unknown' && LookupService.collegeId(c) > 0);
     const blueBloodColleges = colleges.filter(c => ProspectVarianceServiceImpl.BLUE_BLOOD_REGEX.test(c.trim()));
     const states = pool.map(p => p.homeState).filter((s): s is string => Boolean(s));
 
@@ -2354,6 +2355,7 @@ class ProspectVarianceServiceImpl {
         age,
         homeState: customState ?? (states.length > 0 ? rng.choice(states) : 'TX'),
         race: customRace ?? SkinToneService.fictionalRaceFor(pos, `${fn}|${ln}|${i}|${resolved.seed}`),
+        toneSource: customRace != null ? 'curated' : undefined,
         wikiImageUrl: null,
         pfrImageUrl: null,
         headshotUrl: null,
@@ -2450,9 +2452,11 @@ class ProspectVarianceServiceImpl {
 
 
     if (targetFreakCount >= total) {
-
-      for (let i = 0; i < total; i++) selectedFreakIndices.add(i);
-
+      for (let i = 0; i < total; i++) {
+        if (PositionMapper.name(Number(prospects[i]?.position) || 0) !== 'LS') {
+          selectedFreakIndices.add(i);
+        }
+      }
     } else if (targetFreakCount > 0) {
 
       const scored = candidateIndices.map(idx => {
@@ -2465,10 +2469,9 @@ class ProspectVarianceServiceImpl {
 
         const tierBoost = idx < 12 ? 2.1 : idx < 32 ? 1.65 : idx < 96 ? 1.15 : 0.85;
 
-        const specPenalty = (posName === 'K' || posName === 'P' || posName === 'LS') ? 0.35 : 1.0;
-
+        if (posName === 'LS') return { idx, score: -1 };
+        const specPenalty = (posName === 'K' || posName === 'P') ? 0.35 : 1.0;
         const score = Math.pow(rng.next(), 1 / (tierBoost * specPenalty));
-
         return { idx, score };
 
       });
@@ -2542,19 +2545,22 @@ class ProspectVarianceServiceImpl {
         prospect.strength = clampRating(Number(prospect.strength ?? 70) + corr[4]! * 2.8 + (pAge >= 23 ? 1.5 : 0));
         prospect.jumping = clampRating(Number(prospect.jumping ?? 72) + corr[5]! * 2.8 + youngBoost);
 
-        // Age vs. Polish Curve: 20-21yo underclassmen enter rawer mentally; 23-24yo 5th-year seniors enter pro-ready
-        if (pAge <= 21) {
-          const rawPenalty = pAge <= 20 ? rng.randint(5, 8) : rng.randint(3, 6);
-          prospect.awareness = clampRating(Number(prospect.awareness ?? 62) - rawPenalty);
-          prospect.playRecognition = clampRating(Number(prospect.playRecognition ?? 62) - rawPenalty);
-        } else if (pAge >= 23) {
-          const polishBonus = pAge >= 24 ? rng.randint(6, 9) : rng.randint(4, 7);
-          prospect.awareness = clampRating(Number(prospect.awareness ?? 62) + polishBonus);
-          prospect.playRecognition = clampRating(Number(prospect.playRecognition ?? 62) + polishBonus);
-        }
+        const isGenProspect = isProcedural || player?.source === 'generated';
+        if (isGenProspect && pos !== 'LS') {
+          // Age vs. Polish Curve: 20-21yo underclassmen enter rawer mentally; 23-24yo 5th-year seniors enter pro-ready
+          if (pAge <= 21) {
+            const rawPenalty = pAge <= 20 ? rng.randint(5, 8) : rng.randint(3, 6);
+            prospect.awareness = clampRating(Number(prospect.awareness ?? 62) - rawPenalty);
+            prospect.playRecognition = clampRating(Number(prospect.playRecognition ?? 62) - rawPenalty);
+          } else if (pAge >= 23) {
+            const polishBonus = pAge >= 24 ? rng.randint(6, 9) : rng.randint(4, 7);
+            prospect.awareness = clampRating(Number(prospect.awareness ?? 62) + polishBonus);
+            prospect.playRecognition = clampRating(Number(prospect.playRecognition ?? 62) + polishBonus);
+          }
 
-        // Polarized Role-Player & Specialist Sub-Archetypes (same OVR, distinct on-field feel)
-        this.applyRolePlayerPolarization(prospect as Record<string, number>, pos, rng);
+          // Polarized Role-Player & Specialist Sub-Archetypes (same OVR, distinct on-field feel)
+          this.applyRolePlayerPolarization(prospect as Record<string, number>, pos, rng);
+        }
 
         prospect.bodyType = bodyTypeFor(pos, Number(prospect.weight) || 215, () => rng.next());
         reconcileToTarget(
@@ -2564,6 +2570,13 @@ class ProspectVarianceServiceImpl {
           baseOvr,
           gameVersion
         );
+        if (pos === 'LS' && (Number(prospect.longSnap) || 0) < 70) {
+          const lsRec = prospect as Record<string, number>;
+          const needed = 70 - (Number(lsRec.longSnap) || 0);
+          lsRec.longSnap = 70;
+          lsRec.awareness = Math.max(35, (Number(lsRec.awareness) || 52) - Math.ceil(needed * 2.5));
+          reconcileToTarget(lsRec, posId, Number(prospect.archetype) || 0, baseOvr, gameVersion);
+        }
         continue;
       }
 
@@ -2898,14 +2911,13 @@ class ProspectVarianceServiceImpl {
       const reachIndices = new Set<number>();
       const sleeperIndices = new Set<number>();
 
-      // Select 3-4 Round 1-2 "Combine Reaches / Overhyped Projects" (picks 9..58, non-generational)
+      // Select 3-4 Round 1-2 "Combine Reaches / Overhyped Projects" (picks 9..58, non-freaks preferred)
       const reachCandidates: number[] = [];
       for (let i = 8; i < Math.min(58, total); i++) {
         const p = prospects[i]!;
         const posName = PositionMapper.name(Number(p.position) || 0);
         if (posName === 'K' || posName === 'P' || posName === 'LS') continue;
-        const m = metadataMap.get(i);
-        if (m && (m.tier === 'super_fusion' || m.tier === 'generational')) continue;
+        if (metadataMap.has(i)) continue;
         reachCandidates.push(i);
       }
       const targetReaches = rng.randint(3, 4);
@@ -2949,8 +2961,14 @@ class ProspectVarianceServiceImpl {
         const gemOvr = rng.randint(72, 76);
         sp.awareness = Math.max(Number(sp.awareness ?? 62), rng.randint(68, 78));
         sp.playRecognition = Math.max(Number(sp.playRecognition ?? 62), rng.randint(68, 78));
-        reconcileToTarget(sp as Record<string, number>, sPosId, sArch, gemOvr, gameVersion);
-        sp.overall = gemOvr;
+        const sMeta = metadataMap.get(pickIdx);
+        if (sMeta) {
+          const floors = this.collectRookieScaledFloors(sMeta.archetypeKey, gemOvr);
+          this.reconcileFreakToTarget(sp as Record<string, number>, sPosId, sArch, gemOvr, floors, gameVersion);
+        } else {
+          reconcileToTarget(sp as Record<string, number>, sPosId, sArch, gemOvr, gameVersion);
+          sp.overall = gemOvr;
+        }
       }
 
       // Designated Return Specialists: 5-7 agile mid/late-round WRs, CBs, and HBs carry 88-95 kickReturn
@@ -2984,9 +3002,15 @@ class ProspectVarianceServiceImpl {
         kp.speed = Math.max(Number(kp.speed ?? 88), rng.randint(90, 95));
         kp.agility = Math.max(Number(kp.agility ?? 85), rng.randint(88, 94));
         kp.changeOfDirection = Math.max(Number(kp.changeOfDirection ?? 85), rng.randint(88, 94));
-        reconcileToTarget(kp as Record<string, number>, kPosId, kArch, kOvr, gameVersion);
+        const kMeta = metadataMap.get(pickIdx);
+        if (kMeta) {
+          const floors = this.collectRookieScaledFloors(kMeta.archetypeKey, kOvr);
+          this.reconcileFreakToTarget(kp as Record<string, number>, kPosId, kArch, kOvr, floors, gameVersion);
+        } else {
+          reconcileToTarget(kp as Record<string, number>, kPosId, kArch, kOvr, gameVersion);
+          kp.overall = kOvr;
+        }
         kp.kickReturn = krVal;
-        kp.overall = kOvr;
         krCount++;
       }
 

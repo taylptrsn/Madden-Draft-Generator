@@ -39,6 +39,7 @@ const COLLEGE_ALIASES: Record<string, string> = {
   'southeastern louisiana': 'SE Louisiana',
   louisiana: 'UL Lafayette',
   'louisiana-monroe': 'UL Monroe',
+  'western michigan': 'W. Michigan',
 };
 
 // 2-letter USPS -> full state name (the CSV hometown field mixes "City, GA" and

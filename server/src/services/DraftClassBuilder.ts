@@ -395,7 +395,21 @@ function toProspect(it: RankedItem, portraitPid?: number, gameVersion: 'm26' | '
   if (it.launch) {
     for (const [k, v] of Object.entries(it.launch.attrs)) if (RATING_KEYS.includes(k)) (prospect as Record<string, number>)[k] = v;
   }
+  if (posId === 21) {
+    // Concentrate a Long Snapper's OVR budget into his snapping specialty so a 64-72 OVR LS still carries 70-82 longSnap
+    const lsRec = prospect as Record<string, number>;
+    lsRec.longSnap = Math.max(Number(lsRec.longSnap) || 74, Math.min(86, 75 + Math.round((overall - 65) * 1.1)));
+    lsRec.awareness = Math.max(40, (Number(lsRec.awareness) || 58) - 8);
+    lsRec.tackle = Math.max(40, (Number(lsRec.tackle) || 56) - 6);
+  }
   reconcileToTarget(prospect as Record<string, number>, posId, archetype, overall, gameVersion);
+  if (posId === 21 && (Number(prospect.longSnap) || 0) < 70) {
+    const lsRec = prospect as Record<string, number>;
+    const needed = 70 - (Number(lsRec.longSnap) || 0);
+    lsRec.longSnap = 70;
+    lsRec.awareness = Math.max(35, (Number(lsRec.awareness) || 52) - Math.ceil(needed * 2.5));
+    reconcileToTarget(lsRec, posId, archetype, overall, gameVersion);
+  }
   // EA's own launch attributes for a 2026 rookie replace the generated ones (all
   // but long snap, which the site does not publish); the reconcile then lands the
   // game's recompute on EA's launch overall under EA's archetype.
@@ -749,7 +763,7 @@ export function draftPositions(players: BaselinePlayer[], opts: GenOptions = {})
       capped[idx] = {
         ...prev,
         position: 'LS',
-        race: prev.source === 'generated'
+        race: prev.source === 'generated' && prev.toneSource !== 'curated'
           ? SkinToneService.fictionalRaceFor('LS', `${prev.firstName}|${prev.lastName}|${idx}|ls`)
           : prev.race,
       };
@@ -966,6 +980,12 @@ export function applyGearSlots(p: MdcProspect, slots: Record<string, string | un
   const loadout = visuals.loadouts?.[0];
   if (!loadout) return;
   const els = (loadout.loadoutElements ??= []);
+  if ((slots.playcallBand && /^Waist_PlaycallSheet/i.test(slots.playcallBand)) || slots.handwarmer === 'Handwarmer_None') {
+    if (!('handwarmerStyle' in slots)) {
+      const idx = els.findIndex((e) => e.slotType === 'WaistWearOverride');
+      if (idx >= 0) els.splice(idx, 1);
+    }
+  }
   for (const [slot, asset] of Object.entries(slots)) {
     if (!asset || waistConflict(slots, slot)) continue;
     // Facemask is a SLOTLESS element (itemAssetName GearFaceMask_*, no slotType):
@@ -1022,8 +1042,8 @@ export const DraftClassBuilder = {
       // Career-retrospective: OVR reflects how good they actually turned out
       // (uncapped wAV caliber), dev from that caliber. NOT Madden-shaped.
       for (const it of items) {
-        it.overall = it.caliber;
-        it.devTrait = devFromCaliber(it.caliber, it.player);
+        it.overall = it.posId === 21 ? Math.max(66, Math.min(82, it.caliber + 14)) : it.caliber;
+        it.devTrait = it.posId === 21 ? Math.min(1, devFromCaliber(it.caliber, it.player)) : devFromCaliber(it.caliber, it.player);
       }
     } else {
       // Madden-realistic: rank by caliber, then map each rank to Madden's
@@ -1073,14 +1093,17 @@ export const DraftClassBuilder = {
       // which would force their longSnap rating down into the 40s.
       const lsItems = board.filter((it) => it.posId === 21);
       if (lsItems.length > 0) {
+        const nonLsTop50Floor = board.filter((it) => it.posId !== 21)[49]?.overall ?? 74;
+        const lsMaxCap = Math.max(66, Math.min(72, nonLsTop50Floor - 1));
         const sortedLs = [...lsItems].sort((a, b) => b.caliber - a.caliber);
         sortedLs.forEach((it, lsRank) => {
           const lsFrac = (lsRank + 0.5) / sortedLs.length;
-          // Scale from 75 down to 65 across the class cohort
-          const lsBase = Math.round(76 - lsFrac * 8);
-          const careerBonus = Math.min(4, Math.round((it.player.wav ?? 0) / 3));
+          // Scale from 72 down to 65 across the class cohort, always strictly below top-50 non-LS OVR
+          const lsBase = Math.round(72 - lsFrac * 7);
+          const careerBonus = Math.min(2, Math.round((it.player.wav ?? 0) / 5));
           const targetLsOvr = Math.min(capMax, Math.round((lsBase + careerBonus) * strength));
-          it.overall = Math.max(64, Math.min(80, targetLsOvr));
+          it.overall = Math.max(64, Math.min(lsMaxCap, targetLsOvr));
+          it.devTrait = Math.min(1, it.devTrait);
         });
       }
       // Young careers (drafted within the last YOUNG_SEASONS completed seasons): two
