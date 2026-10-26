@@ -177,17 +177,20 @@ export async function enrichedClass(
 export async function allTimeGreatsClass(range?: { from: number; to: number }): Promise<{ players: BaselinePlayer[]; generatedCount: number }> {
   const targetLS = targetLongSnapperCount(range ? `${range.from}-${range.to}` : 'all-time');
   const allGreats = PlayerLookupService.allTimeGreats(FULL_CLASS_SIZE, range);
-  const existingLS = allGreats.filter((p) => PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight ?? null) === 21);
+  const isLS = (p: BaselinePlayer) => PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight ?? null) === 21;
+  const pKey = (p: BaselinePlayer) => `${p.firstName.toLowerCase()}|${p.lastName.toLowerCase()}|${p.draftYear}`;
+  const existingLS = allGreats.filter(isLS);
   if (existingLS.length < targetLS) {
     const needed = targetLS - existingLS.length;
+    const existingKeys = new Set(allGreats.map(pKey));
     let allHistorical = [...PlayerLookupService.years()].flatMap((y) => PlayerLookupService.byYear(y, 'combined'));
     if (range) allHistorical = allHistorical.filter((p) => p.draftYear >= range.from && p.draftYear <= range.to);
-    const lsPool = allHistorical.filter((p) => PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight ?? null) === 21);
+    const lsPool = allHistorical.filter((p) => isLS(p) && !existingKeys.has(pKey(p)));
     const score = (p: BaselinePlayer) => (p.wav ?? 0) + 4 * (p.allPro1 ?? 0) + 2 * (p.proBowls ?? 0) + (p.isHOF ? 40 : 0);
     lsPool.sort((a, b) => score(b) - score(a));
     const toAdd = lsPool.slice(0, needed);
-    const kept = allGreats.slice(0, FULL_CLASS_SIZE - toAdd.length);
-    const players = await enrichAcrossYears([...kept, ...toAdd]);
+    const nonLS = allGreats.filter((p) => !isLS(p)).slice(0, Math.max(0, FULL_CLASS_SIZE - existingLS.length - toAdd.length));
+    const players = await enrichAcrossYears([...nonLS, ...existingLS, ...toAdd]);
     return { players, generatedCount: 0 };
   }
   const players = await enrichAcrossYears(allGreats);

@@ -986,10 +986,19 @@ export const LikenessService = {
       return filterPoolByBodyType(raw, bodyType, gameVersion);
     };
 
-    const adjacentTones = (tone: number): number[] => {
-      if (tone <= 3) return [1, 2, 3, 4].filter((t) => t !== tone);
-      if (tone <= 5) return [4, 5, 3, 6].filter((t) => t !== tone);
-      return [6, 7, 5, 4].filter((t) => t !== tone);
+    const adjacentTones = (tone: number, curated?: boolean): number[] => {
+      if (curated) {
+        if (tone >= 6) return [6, 7].filter((t) => t !== tone);
+        if (tone >= 3) return [3, 4, 5].filter((t) => t !== tone);
+        return [2, 3, 4].filter((t) => t !== tone);
+      }
+      if (tone === 1) return [2, 3, 4];
+      if (tone === 2) return [1, 3, 4];
+      if (tone === 3) return [2, 4, 1];
+      if (tone === 4) return [5, 3, 6];
+      if (tone === 5) return [4, 6, 3];
+      if (tone === 6) return [7, 5, 4];
+      return [6, 5, 4];
     };
 
     for (const i of indices) {
@@ -1011,7 +1020,7 @@ export const LikenessService = {
         const hasUnusedGen = tier1.some((h) => (usage.get(h) ?? 0) === 0);
         
         // Only fall back to extra 3D scans if every generic head in this tone AND adjacent tones is already used
-        const hasUnusedAdjGen = adjacentTones(tone).some((adjTone) =>
+        const hasUnusedAdjGen = adjacentTones(tone, base.toneSource === 'curated').some((adjTone) =>
           getToneCandidates(adjTone, draftYear, bodyType).tier1.some((h) => (usage.get(h) ?? 0) === 0)
         );
         const seedVal = hash(`${base.firstName}|${base.lastName}|${i}|${variant}|3d`);
@@ -1078,7 +1087,7 @@ export const LikenessService = {
       if (isGenerated) {
         const hasUnusedTier1 = tier1.some((h) => (usage.get(h) ?? 0) === 0);
         if (!hasUnusedTier1) {
-          for (const adjTone of adjacentTones(tone)) {
+          for (const adjTone of adjacentTones(tone, base.toneSource === 'curated')) {
             const adj = getToneCandidates(adjTone, draftYear, bodyType);
             const unusedAdj = adj.tier1.filter((h) => (usage.get(h) ?? 0) === 0);
             if (unusedAdj.length > 0) {

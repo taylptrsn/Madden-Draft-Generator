@@ -682,11 +682,11 @@ function fitToCapacity(players: BaselinePlayer[], include: number[] = []): { kep
   const included: number[] = [];
   for (const i of forced) {
     let victimPos = -1;
+    const currentKeptLS = keptIdx.filter(idx => !drop.has(idx) && isLS(players[idx])).length;
     for (let k = 0; k < keptIdx.length; k++) {
       const j = keptIdx[k];
       if (forced.has(j) || included.includes(j)) continue;
       // Protect LS from forced inclusion eviction if at or below targetLS
-      const currentKeptLS = keptIdx.filter(idx => !drop.has(idx) && isLS(players[idx])).length;
       if (isLS(players[j]) && currentKeptLS <= targetLS) continue;
       if (victimPos < 0 || scores[j] < scores[keptIdx[victimPos]]) victimPos = k;
     }
@@ -949,7 +949,17 @@ export function applyEdits(prospects: MdcProspect[], edits?: ClassEdits, gameVer
     // in-game recompute matches the edited OVR — then re-apply any explicit rating edits
     // from this patch so a hand-tuned rating still wins over the reconciliation.
     if (Object.keys(patch).some((k) => RECONCILE_TRIGGERS.has(k))) {
+      if (Number(p.position) === 21 && !('longSnap' in patch) && (Number(p.longSnap) || 0) < 70) {
+        p.longSnap = 75;
+      }
       reconcileToTarget(p as Record<string, number>, Number(p.position), Number(p.archetype), Number(p.overall), gameVersion);
+      if (Number(p.position) === 21 && !('longSnap' in patch) && (Number(p.longSnap) || 0) < 70) {
+        const lsRec = p as Record<string, number>;
+        const needed = 70 - (Number(lsRec.longSnap) || 0);
+        lsRec.longSnap = 70;
+        lsRec.awareness = Math.max(35, (Number(lsRec.awareness) || 52) - Math.ceil(needed * 2.5));
+        reconcileToTarget(lsRec, 21, Number(p.archetype), Number(p.overall), gameVersion);
+      }
       for (const [k, raw] of Object.entries(patch)) {
         if (!RATING_KEYS.includes(k)) continue;
         const v = Number(raw);
@@ -1243,7 +1253,7 @@ export const DraftClassBuilder = {
       // Same seed/group/OVR the M27 writer uses, so the UI shows the DNA that exports.
       const persona = gameVersion === 'm27'
         ? PersonaService.dnaFor(
-            `${p.firstName}|${p.lastName}`,
+            `${p.firstName}|${p.lastName}${opts.variant ? `|v${opts.variant}` : ''}`,
             PositionMapper.groupFromId(Number(p.position) || 0),
             Number(p.overall) || 0,
             Number(p.devTrait) || 0

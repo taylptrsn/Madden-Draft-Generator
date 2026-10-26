@@ -2505,9 +2505,8 @@ class ProspectVarianceServiceImpl {
       scored.sort((a, b) => b.score - a.score);
 
       for (let i = 0; i < targetFreakCount && i < scored.length; i++) {
-
+        if (scored[i]!.score < 0) continue;
         selectedFreakIndices.add(scored[i]!.idx);
-
       }
 
     }
