@@ -386,7 +386,7 @@ const M27_EQUIPMENT: Record<string, EraDefaults> = {
   '2014-2016': {
     helmet: ['GearHelmet_RevolutionSpeed', 'GearHelmet_Speed_Flex', 'GearHelmet_AirXP', 'GearHelmet_VicisZero1'],
     shoes: ['GearFootwear_shoe_Low_NikeVaporUntouchable2', 'GearFootwear_shoe_Mid_NikeLunarBeast', 'GearFootwear_shoe_Low_NikeVaporCarbonEliteTD'],
-    gloves: ['GearHand_glove_NikeVaporJet5_TeamColor', 'GearHand_glove_NikeVaporJet5_White', 'GearHand_glove_NikeSuperbad5_2019_White', 'GearHand_glove_AdidasFreak_TeamColor'],
+    gloves: ['GearHand_glove_NikeVaporJet5_TeamColor', 'GearHand_glove_NikeVaporJet6_White', 'GearHand_glove_NikeSuperbad5_2019_White', 'GearHand_glove_AdidasFreak_TeamColor'],
     linemanGloves: ['GearHand_glove_NikeDTack_White', 'GearHand_glove_NikeDTack_Black'],
   },
   '2017-2019': {
@@ -431,9 +431,24 @@ function bodyAccessories(year: number, group: string, seedKey: string, m27: bool
     out.push({ slotType: 'MouthWear', itemAssetName: pick(['GearMouthpiece_PacifierDual_White', 'GearMouthpiece_PacifierDual_TeamColor', 'GearMouthpiece_PacifierDual_SecondaryColor', 'GearMouthpiece_PacifierDual_Black'], `${seedKey}|mouthColor`)! });
   } else out.push(none('MouthWear'));
 
-  // Arm sleeves (independently per arm, like the game)
+  // Arm sleeves (independently per arm, like the game — produces natural single-sleeve & turf-tape asymmetry)
   const sleeveP = year < 2000 ? 0 : year < 2010 ? 0.2 : 0.45;
-  const sleevePool = ['GearArmSleeve_NikeProDriFitSleeve_White', 'GearArmSleeve_Quarter_sleeveLongUnderarmor_normal_TeamColor', 'GearArmSleeve_McDavidPaddedCompressionSleeve_TeamColor', 'GearArmSleeve_Half_sleeveLongUnderarmor_normal_TeamColor', 'GearArmSleeve_Full_sleeveLongUnderarmor_normal_TeamColor', 'GearArmSleeve_NikeProDriFitSleeve_Black'];
+  const baseSleevePool = [
+    'GearArmSleeve_NikeProDriFitSleeve_White',
+    'GearArmSleeve_Quarter_sleeveLongUnderarmor_normal_TeamColor',
+    'GearArmSleeve_McDavidPaddedCompressionSleeve_TeamColor',
+    'GearArmSleeve_Half_sleeveLongUnderarmor_normal_TeamColor',
+    'GearArmSleeve_Full_sleeveLongUnderarmor_normal_TeamColor',
+    'GearArmSleeve_NikeProDriFitSleeve_Black',
+  ];
+  const m27ModernSleeveExtras = [
+    'GearArmSleeve_Shooter_sleeveLongUnderarmor_normal_White',
+    'GearArmSleeve_Shooter_sleeveLongUnderarmor_normal_Black',
+    'GearArmSleeve_Shooter_sleeveLongUnderarmor_normal_TeamColor',
+    'GearArmSleeve_Quarter_armTape_normal_OffWhite',
+    'GearArmSleeve_Undershirt_armTape_normal_OffWhite',
+  ];
+  const sleevePool = m27 && year >= 2015 ? [...baseSleevePool, ...m27ModernSleeveExtras] : baseSleevePool;
   for (const side of ['Left', 'Right']) {
     if (chance(`sleeve${side}`, sleeveP)) out.push({ slotType: `${side}ArmWear`, itemAssetName: pick(sleevePool, `${seedKey}|sleeve${side}Asset`)! });
     else out.push(none(`${side}ArmWear`));
@@ -460,6 +475,14 @@ function bodyAccessories(year: number, group: string, seedKey: string, m27: bool
   else out.push(none('FlakJacket'));
   if (year >= 2000 && !line && chance('undershirt', 0.34)) out.push({ slotType: 'InnerShirt', itemAssetName: 'Undershirt_Untucked' });
   else out.push(none('InnerShirt'));
+
+  // Waist handwarmer (modern M27 QBs, RBs, and WRs)
+  if (m27 && year >= 2010 && (group === 'QB' || group === 'RB' || group === 'WR') && chance('handwarmer', group === 'QB' ? 0.30 : 0.18)) {
+    out.push(
+      { slotType: 'WaistWear', itemAssetName: 'Handwarmer_Standard' },
+      { slotType: 'WaistWearOverride', itemAssetName: 'HandwarmerStyle_Back' },
+    );
+  }
 
   // M27 rebuilds the loadout wholesale: removal markers would write nothing, so drop them.
   return m27 ? out.filter((e) => !e.remove) : out;
@@ -646,18 +669,46 @@ export const EraGearService = {
     }
     if (m27 && glove) glove = m27fix(glove);
     if (glove) {
+      // Modern QBs wearing a glove usually wear it on their non-throwing (left) hand only
+      const qbSingleLeftGlove = !match && group === 'QB' && year >= 2010 && (hash(`${seedKey}|qbLeftGlove`) % 100) < 75;
       els.push({ slotType: 'LeftHandWear', itemAssetName: glove });
-      els.push({ slotType: 'RightHandWear', itemAssetName: glove });
+      if (!qbSingleLeftGlove) {
+        els.push({ slotType: 'RightHandWear', itemAssetName: glove });
+      } else if (!m27) {
+        els.push({ slotType: 'RightHandWear', itemAssetName: 'GearHand_None' });
+      }
     }
 
     let visor: string | null;
     if (year < 1994) visor = 'GearVisor_None';
-    else if (match && observed!.visor === 'dark') visor = 'GearVisor_visorClear';
+    else if (match && observed!.visor === 'dark') visor = m27 ? 'GearVisor_visorOakley_Dark' : 'GearVisor_visorClear';
     else if (match && observed!.visor === 'clear') visor = 'GearVisor_visorClear';
     else if (match) visor = 'GearVisor_None';
-    else visor = SKILL.has(group)
-      ? pick(['GearVisor_None', 'GearVisor_None', 'GearVisor_None', 'GearVisor_visorClear'], `${seedKey}|visor`)
-      : 'GearVisor_None';
+    else if (SKILL.has(group) || group === 'LB' || group === 'EDGE') {
+      if (m27 && year >= 2015) {
+        const visorRoll = hash(`${seedKey}|visor`) % 100;
+        const visorRate = (group === 'RB' || group === 'WR' || group === 'CB' || group === 'S') ? 32 : 20;
+        if (visorRoll < visorRate) {
+          visor = pick([
+            'GearVisor_visorClear',
+            'GearVisor_visorOakley_clear',
+            'GearVisor_visorDark',
+            'GearVisor_visorDarkLight',
+            'GearVisor_visorOakley_Dark',
+            'GearVisor_visorOakley_DarkLight',
+            'GearVisor_visorOakley_Prizm',
+          ], `${seedKey}|visorKind`);
+        } else {
+          visor = 'GearVisor_None';
+        }
+      } else {
+        visor = SKILL.has(group)
+          ? pick(['GearVisor_None', 'GearVisor_None', 'GearVisor_None', 'GearVisor_visorClear'], `${seedKey}|visor`)
+          : 'GearVisor_None';
+      }
+    } else {
+      visor = 'GearVisor_None';
+    }
     if (visor) els.push({ slotType: 'Visor', itemAssetName: visor });
 
     // Era-typical extras: wrist tape/bands, elbow pads, towels, neck rolls,
@@ -668,19 +719,29 @@ export const EraGearService = {
       const line = LINE.has(group);
       const lb = group === 'LB';
 
-      let wrist = pick(skill ? extras.wristSkill : line || lb ? extras.wristLine : null, `${seedKey}|wrist`);
+      let wristLeft = pick(skill ? extras.wristSkill : line || lb ? extras.wristLine : null, `${seedKey}|wrist`);
+      let wristRight = wristLeft;
       if (match && observed!.wristband) {
-        wrist = skill || lb
+        wristLeft = skill || lb
           ? 'GearWrist_wristBandNormal_White'
           : 'GearWrist_wristTapedNormal_White';
+        wristRight = wristLeft;
       } else if (match && observed!.wristband === false) {
-        wrist = '';
+        wristLeft = '';
+        wristRight = '';
+      } else if (!match && year >= 2004) {
+        // Asymmetric wristwear: QBs wear a coach/playbook band on their left wrist only;
+        // ~18% of modern skill/LB players wear a single wristband or asymmetric wrist tape
+        if (group === 'QB' && wristLeft && /wristBandCoach/i.test(wristLeft)) {
+          wristRight = (hash(`${seedKey}|qbRightWrist`) % 100) < 30 ? 'GearWrist_wristTapedNormal_White' : '';
+        } else if ((skill || lb) && (hash(`${seedKey}|asymWrist`) % 100) < 18) {
+          wristRight = pick(skill ? extras.wristSkill : extras.wristLine, `${seedKey}|wristR`);
+        }
       }
-      if (m27 && wrist) wrist = m27fix(wrist);
-      if (wrist) {
-        els.push({ slotType: 'LeftWristWear', itemAssetName: wrist });
-        els.push({ slotType: 'RightWristWear', itemAssetName: wrist });
-      }
+      if (m27 && wristLeft) wristLeft = m27fix(wristLeft);
+      if (m27 && wristRight) wristRight = m27fix(wristRight);
+      if (wristLeft) els.push({ slotType: 'LeftWristWear', itemAssetName: wristLeft });
+      if (wristRight) els.push({ slotType: 'RightWristWear', itemAssetName: wristRight });
 
       let elbow = pick(skill ? extras.elbowSkill : line || lb ? extras.elbowLine : null, `${seedKey}|elbow`);
       if (match) elbow = 'ElbowGear_None';
@@ -696,7 +757,10 @@ export const EraGearService = {
       const neckRoll = pick(line || lb ? extras.neckRoll : null, `${seedKey}|neckRoll`);
       if (neckRoll && neckRoll !== 'GearNeckpad_None' && !match) els.push({ slotType: 'Neckpad', itemAssetName: neckRoll });
 
-      let sock = pick(extras.socks, `${seedKey}|socks`);
+      const sockPool = (m27 && year >= 2017 && skill)
+        ? [...extras.socks, 'Gear_Socks_Wrinkle_Mid', 'Gear_Socks_Wrinkle_High', 'Gear_Socks_Under']
+        : extras.socks;
+      let sock = pick(sockPool, `${seedKey}|socks`);
       if (match && observed!.socks === 'high') sock = 'Gear_Socks_High';
       else if (match && observed!.socks === 'mid') sock = 'Gear_Socks_Mid';
       else if (match && observed!.socks === 'low') sock = 'Gear_Socks_Low';

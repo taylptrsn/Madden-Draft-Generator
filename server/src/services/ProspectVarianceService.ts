@@ -2122,234 +2122,253 @@ class ProspectVarianceServiceImpl {
 
    */
 
+  private static readonly CLASS_WAVES: Array<{ label: string; boom: string[]; thin: string[] }> = [
+    { label: 'Golden QB & WR Class', boom: ['QB', 'WR', 'LT', 'RT'], thin: ['DT', 'SAM', 'MIKE', 'WILL'] },
+    { label: 'Loaded Trench Class (OL & IDL)', boom: ['OT', 'OG', 'C', 'LT', 'LG', 'RG', 'RT', 'DT'], thin: ['QB', 'WR'] },
+    { label: 'Elite Pass Rush & Lockdown DB Class', boom: ['DE', 'LEDG', 'REDG', 'CB', 'FS', 'SS'], thin: ['HB', 'TE'] },
+    { label: 'Dynamic Skill Weapons Class (HB, WR & TE)', boom: ['HB', 'WR', 'TE'], thin: ['OT', 'LT', 'RT', 'DE', 'LEDG', 'REDG'] },
+    { label: 'Defensive Front-Seven Showcase', boom: ['DE', 'DT', 'LB', 'LEDG', 'REDG', 'SAM', 'MIKE', 'WILL'], thin: ['QB', 'CB'] },
+    { label: 'Franchise Tackle & Lockdown Corner Class', boom: ['OT', 'LT', 'RT', 'CB'], thin: ['HB', 'S', 'FS', 'SS'] },
+    { label: 'Quarterback & Edge Rusher Bonanza', boom: ['QB', 'DE', 'LEDG', 'REDG'], thin: ['OG', 'C', 'LG', 'RG', 'LB'] },
+    { label: 'All-Around Secondary & Offensive Line Class', boom: ['CB', 'S', 'FS', 'SS', 'OT', 'OG', 'LT', 'LG', 'RG', 'RT'], thin: ['TE', 'DT'] },
+  ];
+
+  public getClassWave(seed: number): { label: string; boom: string[]; thin: string[] } {
+    const idx = ((seed >>> 0) % ProspectVarianceServiceImpl.CLASS_WAVES.length);
+    return ProspectVarianceServiceImpl.CLASS_WAVES[idx]!;
+  }
+
+  private static readonly POLYNESIAN_FIRST = [
+    'Penei', 'Tua', 'Talanoa', 'Vita', 'Laiatu', 'DeForest', 'Noah', 'Sua', 'Manti', 'Haloti',
+    'Junior', 'Star', 'Puka', 'Troy', 'Kingsley', 'Jonah', 'Jackson', 'Jayden', 'Tuli', 'Toa',
+  ];
+  private static readonly POLYNESIAN_LAST = [
+    'Sewell', 'Tagovailoa', 'Hufanga', 'Vea', 'Latu', 'Buckner', 'Polamalu', 'Fanu', 'Tuipulotu',
+    'Aumavae', 'Lotulelei', 'Seau', 'Ngata', 'Maiava', 'Uiagalelei', 'Nacua', 'Suamataia', 'Fuaga',
+    'Savaiinaea', 'Taumoepenu', 'Tavai', 'Fotu', 'Anae', 'Tonga',
+  ];
+  private static readonly POLYNESIAN_STATES = ['HI', 'CA', 'UT', 'WA', 'OR', 'NV', 'AZ'];
+
+  private static readonly NIGERIAN_FIRST = [
+    'Odafe', 'Boye', 'Kayvon', 'Nnamdi', 'Chidozie', 'Osa', 'Azeez', 'Uchenna', 'Kingsley', 'Ifeatu',
+    'Amobi', 'David', 'Emmanuel', 'Christian', 'Emeka', 'Felix', 'Derrick', 'Victor', 'Samson', 'Tunde',
+  ];
+  private static readonly NIGERIAN_LAST = [
+    'Oweh', 'Mafe', 'Madubuike', 'Odighizuwa', 'Ojulari', 'Nwosu', 'Awuzie', 'Asomugha', 'Okwara',
+    'Onwuzurike', 'Anudike', 'Ezeiruaku', 'Ogbah', 'Okoye', 'Njoku', 'Egbuka', 'Igbinoghene',
+    'Adebawore', 'Oluwatimi', 'Ojomo', 'Ebukam', 'Onyemata', 'Ogbonnia', 'Okoronkwo',
+  ];
+  private static readonly NIGERIAN_STATES = ['TX', 'MD', 'GA', 'NJ', 'CA', 'IL', 'VA', 'NC'];
+
+  private static readonly HISPANIC_FIRST = [
+    'Christian', 'Isiah', 'Chris', 'Fred', 'Tony', 'Aaron', 'Nik', 'Malcolm', 'Sebastian', 'Andres',
+    'Julian', 'Xavier', 'Cairo', 'Eddy', 'Gabriel', 'Marco', 'Mateo', 'Diego',
+  ];
+  private static readonly HISPANIC_LAST = [
+    'Gonzalez', 'Pacheco', 'Olave', 'Warner', 'Romo', 'Hernandez', 'Munoz', 'Bonitto', 'Rodriguez',
+    'Martinez', 'Ramirez', 'Borregales', 'Pineiro', 'Montoya', 'Rivera', 'Castillo', 'Mendoza',
+  ];
+  private static readonly HISPANIC_STATES = ['CA', 'TX', 'FL', 'AZ', 'NV', 'NY', 'NJ'];
+
+  private static readonly BLUE_BLOOD_REGEX = /^(Alabama|Georgia|Ohio St|LSU|Michigan|Texas|Oregon|Clemson|Notre Dame|Penn St|USC|Oklahoma|Florida|Miami|Washington|Florida St|Auburn|Tennessee|Texas A&M|Wisconsin|Iowa|Utah)$/i;
+  private static readonly SMALL_SCHOOL_COLLEGES = [
+    'North Dakota St.', 'South Dakota St.', 'Montana St.', 'Delaware', 'Appalachian St.',
+    'Boise St.', 'Toledo', 'Marshall', 'Western Michigan', 'Northern Illinois',
+    'Liberty', 'Tulane', 'Memphis', 'Troy', 'Coastal Carolina', 'James Madison',
+  ];
+
   public buildProceduralClass(settings?: FreakSettings, year = 2027): BaselinePlayer[] {
-
     this.ensureCalibrated();
-
     const resolved = this.resolvePresetSettings(settings);
-
     const rng = new SeededRng(resolved.seed);
-
-
+    const wave = this.getClassWave(resolved.seed);
 
     const sampleYears = [1989, 1996, 2001, 2004, 2007, 2011, 2014, 2017, 2020, 2022, 2024];
-
     const pool: BaselinePlayer[] = [];
-
     for (const y of sampleYears) {
-
       pool.push(...PlayerLookupService.byYear(y, 'combined'));
-
     }
-
-
 
     const firstNames = pool.map(p => p.firstName).filter(Boolean);
-
     const lastNames = pool.map(p => p.lastName).filter(Boolean);
-
     const colleges = pool.map(p => p.college).filter(c => c && c !== 'Unknown');
-
+    const blueBloodColleges = colleges.filter(c => ProspectVarianceServiceImpl.BLUE_BLOOD_REGEX.test(c.trim()));
     const states = pool.map(p => p.homeState).filter((s): s is string => Boolean(s));
 
-
-
     const posSlots: { pos: string; count: number }[] = [
-
       { pos: 'QB', count: 20 },
-
       { pos: 'HB', count: 34 },
-
       { pos: 'FB', count: 8 },
-
       { pos: 'WR', count: 52 },
-
       { pos: 'TE', count: 24 },
-
       { pos: 'OT', count: 34 },
-
       { pos: 'OG', count: 30 },
-
       { pos: 'C',  count: 16 },
-
       { pos: 'DE', count: 36 },
-
       { pos: 'DT', count: 32 },
-
       { pos: 'LB', count: 44 },
-
       { pos: 'CB', count: 40 },
-
       { pos: 'S',  count: 22 },
-
       { pos: 'K',  count: 5 },
-
       { pos: 'P',  count: 5 },
-
     ];
 
-
-
     const rawSlots: string[] = [];
-
     for (const s of posSlots) {
-
       for (let i = 0; i < s.count; i++) rawSlots.push(s.pos);
-
     }
-
     for (let i = rawSlots.length - 1; i > 0; i--) {
-
       const j = rng.randint(0, i);
-
       const tmp = rawSlots[i]!;
-
       rawSlots[i] = rawSlots[j]!;
-
       rawSlots[j] = tmp;
-
     }
 
     // Keep specialists (K, P, FB) out of Rounds 1-3 (swap any in top 110 into picks 115..395)
-
     for (let i = 0; i < Math.min(110, rawSlots.length); i++) {
-
       if (rawSlots[i] === 'K' || rawSlots[i] === 'P' || rawSlots[i] === 'FB') {
-
         for (let attempt = 0; attempt < 30; attempt++) {
-
           const swapIdx = rng.randint(115, rawSlots.length - 1);
-
           const candidate = rawSlots[swapIdx]!;
-
           if (candidate !== 'K' && candidate !== 'P' && candidate !== 'FB') {
-
             rawSlots[swapIdx] = rawSlots[i]!;
-
             rawSlots[i] = candidate;
-
             break;
-
           }
-
         }
-
       }
-
     }
 
-
+    // Class-to-Class Positional Wave: pull 5 boom-group prospects into the top 40 picks
+    // and push thin-group prospects out of the top 28 so each class has a distinct positional identity
+    for (let i = 0; i < Math.min(36, rawSlots.length); i++) {
+      const curPos = rawSlots[i]!;
+      if (wave.thin.includes(curPos) && rng.next() < 0.60) {
+        for (let attempt = 0; attempt < 25; attempt++) {
+          const swapIdx = rng.randint(40, 120);
+          const cand = rawSlots[swapIdx]!;
+          if (wave.boom.includes(cand)) {
+            rawSlots[swapIdx] = curPos;
+            rawSlots[i] = cand;
+            break;
+          }
+        }
+      }
+    }
 
     const usedNames = new Set<string>();
-
     const players: BaselinePlayer[] = [];
 
-
-
     for (let i = 0; i < rawSlots.length; i++) {
-
-      let fn = rng.choice(firstNames);
-
-      let ln = rng.choice(lastNames);
-
-      let attempts = 0;
-
-      while (usedNames.has(`${fn} ${ln}`) && attempts < 10) {
-
-        fn = rng.choice(firstNames);
-
-        ln = rng.choice(lastNames);
-
-        attempts++;
-
-      }
-
-      usedNames.add(`${fn} ${ln}`);
-
-
-
       const pos = rawSlots[i]!;
-
       const pick = i + 1;
-
       const round = pick <= 224 ? Math.ceil(pick / 32) : null;
-
       const draftPick = pick <= 224 ? pick : null;
 
-      const age = rng.randint(21, 23);
+      // Realistic declaration age distribution: 20 (10%), 21 (32%), 22 (36%), 23 (16%), 24 (6%)
+      const ageRoll = rng.next();
+      const age = ageRoll < 0.10 ? 20 : ageRoll < 0.42 ? 21 : ageRoll < 0.78 ? 22 : ageRoll < 0.94 ? 23 : 24;
 
+      // Cultural Name & Demographic Coherence
+      const cohortRoll = rng.next();
+      const isPolyEligible = ['OT', 'OG', 'C', 'DT', 'DE', 'LB', 'QB', 'TE'].includes(pos);
+      const isNigEligible = ['DE', 'DT', 'OT', 'OG', 'CB', 'LB', 'WR', 'HB', 'S'].includes(pos);
+      const isHispEligible = ['K', 'P', 'WR', 'CB', 'HB', 'TE', 'OT', 'OG', 'C', 'LB', 'QB'].includes(pos);
 
+      let fn = '';
+      let ln = '';
+      let customRace: number | null = null;
+      let customState: string | null = null;
+
+      if (isPolyEligible && cohortRoll < 0.055) {
+        fn = rng.choice(ProspectVarianceServiceImpl.POLYNESIAN_FIRST);
+        ln = rng.choice(ProspectVarianceServiceImpl.POLYNESIAN_LAST);
+        customRace = rng.choice([3, 4, 4, 5]);
+        customState = rng.choice(ProspectVarianceServiceImpl.POLYNESIAN_STATES);
+      } else if (isNigEligible && cohortRoll >= 0.055 && cohortRoll < 0.135) {
+        fn = rng.choice(ProspectVarianceServiceImpl.NIGERIAN_FIRST);
+        ln = rng.choice(ProspectVarianceServiceImpl.NIGERIAN_LAST);
+        customRace = rng.choice([6, 7, 7]);
+        customState = rng.choice(ProspectVarianceServiceImpl.NIGERIAN_STATES);
+      } else if (isHispEligible && cohortRoll >= 0.135 && cohortRoll < 0.175) {
+        fn = rng.choice(ProspectVarianceServiceImpl.HISPANIC_FIRST);
+        ln = rng.choice(ProspectVarianceServiceImpl.HISPANIC_LAST);
+        customRace = rng.choice([2, 3, 4, 4, 5]);
+        customState = rng.choice(ProspectVarianceServiceImpl.HISPANIC_STATES);
+      } else {
+        fn = rng.choice(firstNames);
+        ln = rng.choice(lastNames);
+      }
+
+      let attempts = 0;
+      while (usedNames.has(`${fn} ${ln}`) && attempts < 10) {
+        fn = rng.choice(firstNames);
+        ln = rng.choice(lastNames);
+        customRace = null;
+        customState = null;
+        attempts++;
+      }
+      if (ProspectVarianceServiceImpl.POLYNESIAN_LAST.includes(ln)) {
+        if (!ProspectVarianceServiceImpl.POLYNESIAN_FIRST.includes(fn)) {
+          fn = rng.choice(ProspectVarianceServiceImpl.POLYNESIAN_FIRST);
+        }
+        customRace = customRace ?? rng.choice([3, 4, 4, 5]);
+        customState = customState ?? rng.choice(ProspectVarianceServiceImpl.POLYNESIAN_STATES);
+      } else if (ProspectVarianceServiceImpl.NIGERIAN_LAST.includes(ln)) {
+        if (!ProspectVarianceServiceImpl.NIGERIAN_FIRST.includes(fn)) {
+          fn = rng.choice(ProspectVarianceServiceImpl.NIGERIAN_FIRST);
+        }
+        customRace = customRace ?? rng.choice([6, 7, 7]);
+        customState = customState ?? rng.choice(ProspectVarianceServiceImpl.NIGERIAN_STATES);
+      } else if (ProspectVarianceServiceImpl.HISPANIC_LAST.includes(ln)) {
+        customRace = customRace ?? rng.choice([2, 3, 4, 4, 5]);
+        customState = customState ?? rng.choice(ProspectVarianceServiceImpl.HISPANIC_STATES);
+      }
+      usedNames.add(`${fn} ${ln}`);
+
+      // College Pipeline Weighting: Round 1-2 heavily favors CFB Blue-Bloods; Day 3 seeds Small-School Sleepers
+      let college = rng.choice(colleges);
+      if (i < 64 && blueBloodColleges.length > 0 && rng.next() < 0.62) {
+        college = rng.choice(blueBloodColleges);
+      } else if (i >= 110 && rng.next() < 0.14) {
+        college = rng.choice(ProspectVarianceServiceImpl.SMALL_SCHOOL_COLLEGES);
+      }
 
       players.push({
-
         firstName: fn,
-
         lastName: ln,
-
-        college: rng.choice(colleges),
-
+        college,
         draftYear: year,
-
         draftRound: round,
-
         draftPick,
-
         position: pos,
-
         jersey: null,
-
         league: 'NFL',
-
         isHOF: false,
-
         photoId: null,
-
         playerAssetsId: null,
-
         commId: null,
-
         plpo: null,
-
         heightInches: null,
-
         weight: null,
-
         age,
-
-        homeState: states.length > 0 ? rng.choice(states) : 'TX',
-
-        race: SkinToneService.fictionalRaceFor(pos, `${fn}|${ln}|${i}|${resolved.seed}`),
-
+        homeState: customState ?? (states.length > 0 ? rng.choice(states) : 'TX'),
+        race: customRace ?? SkinToneService.fictionalRaceFor(pos, `${fn}|${ln}|${i}|${resolved.seed}`),
         wikiImageUrl: null,
-
         pfrImageUrl: null,
-
         headshotUrl: null,
-
         careerFrom: null,
-
         careerTo: null,
-
         allPro1: null,
-
         proBowls: null,
-
         seasonsStarted: null,
-
         wav: null,
-
         wavSource: 'predicted',
-
         source: 'generated',
-
       });
-
     }
 
-
-
     return players;
-
   }
 
 
@@ -2481,91 +2500,71 @@ class ProspectVarianceServiceImpl {
 
 
       // Normalize base OVR for top picks so non-freak #1 starts at 81-82 (leaving 83-84 for the class leader)
-
       let baseOvr = Number(prospect.overall) || 70;
+      const pAge = Number(prospect.age) || Number(player?.age) || 22;
 
       if (isProcedural) {
-
-        const stdSlotCap = i === 0 ? 82 : i < 3 ? 81 : i < 8 ? 80 : i < 16 ? 79 : i < 32 ? 77 : 82;
-
-        if (baseOvr > stdSlotCap) {
-
-          baseOvr = stdSlotCap;
-
-          prospect.overall = baseOvr;
-
+        const wave = this.getClassWave(resolved.seed);
+        if (i < 96 && pos !== 'K' && pos !== 'P' && pos !== 'LS') {
+          if (wave.boom.includes(pos)) baseOvr = Math.min(82, baseOvr + (i < 32 ? 2 : 1));
+          else if (wave.thin.includes(pos) && i < 48) baseOvr = Math.max(62, baseOvr - 2);
         }
-
+        const stdSlotCap = i === 0 ? 82 : i < 3 ? 81 : i < 8 ? 80 : i < 16 ? 79 : i < 32 ? 77 : 82;
+        if (baseOvr > stdSlotCap) {
+          baseOvr = stdSlotCap;
+        }
+        prospect.overall = baseOvr;
       }
-
-
 
       // 1. Sample 6D Cholesky correlated physical vector: [height, weight, speed, agility, strength, jumping]
-
       const z = [rng.gauss(), rng.gauss(), rng.gauss(), rng.gauss(), rng.gauss(), rng.gauss()];
-
       const corr: number[] = [0, 0, 0, 0, 0, 0];
-
       for (let r = 0; r < 6; r++) {
-
         let s = 0;
-
         for (let c = 0; c <= r; c++) s += CHOLESKY_L[r]![c]! * z[c]!;
-
         corr[r] = s;
-
       }
-
-
 
       const isFreak = selectedFreakIndices.has(i);
 
-
-
       if (!isFreak) {
-
         if (!player?.heightInches) {
-
           prospect.heightInches = clamp(geom.hMean + corr[0]! * geom.hStd, geom.hMin, geom.hMax);
-
         }
-
         if (!player?.weight) {
-
           prospect.weight = clamp(geom.wMean + corr[1]! * geom.wStd, geom.wMin, geom.wMax);
+        }
+        const youngBoost = pAge <= 20 ? 1.5 : pAge === 21 ? 0.8 : pAge >= 23 ? -0.6 : 0;
+        prospect.speed = clampRating(Number(prospect.speed ?? 75) + corr[2]! * 2.2 + youngBoost);
+        prospect.acceleration = clampRating(Number(prospect.acceleration ?? 75) + corr[2]! * 1.8 + corr[3]! * 0.8 + youngBoost);
+        prospect.agility = clampRating(Number(prospect.agility ?? 72) + corr[3]! * 2.5 + youngBoost * 0.7);
+        prospect.changeOfDirection = clampRating(Number(prospect.changeOfDirection ?? 72) + corr[3]! * 2.5 + youngBoost * 0.7);
+        prospect.strength = clampRating(Number(prospect.strength ?? 70) + corr[4]! * 2.8 + (pAge >= 23 ? 1.5 : 0));
+        prospect.jumping = clampRating(Number(prospect.jumping ?? 72) + corr[5]! * 2.8 + youngBoost);
 
+        // Age vs. Polish Curve: 20-21yo underclassmen enter rawer mentally; 23-24yo 5th-year seniors enter pro-ready
+        if (pAge <= 21) {
+          const rawPenalty = pAge <= 20 ? rng.randint(5, 8) : rng.randint(3, 6);
+          prospect.awareness = clampRating(Number(prospect.awareness ?? 62) - rawPenalty);
+          prospect.playRecognition = clampRating(Number(prospect.playRecognition ?? 62) - rawPenalty);
+        } else if (pAge >= 23) {
+          const polishBonus = pAge >= 24 ? rng.randint(6, 9) : rng.randint(4, 7);
+          prospect.awareness = clampRating(Number(prospect.awareness ?? 62) + polishBonus);
+          prospect.playRecognition = clampRating(Number(prospect.playRecognition ?? 62) + polishBonus);
         }
 
-        prospect.speed = clampRating(Number(prospect.speed ?? 75) + corr[2]! * 2.2);
-
-        prospect.acceleration = clampRating(Number(prospect.acceleration ?? 75) + corr[2]! * 1.8 + corr[3]! * 0.8);
-
-        prospect.agility = clampRating(Number(prospect.agility ?? 72) + corr[3]! * 2.5);
-
-        prospect.changeOfDirection = clampRating(Number(prospect.changeOfDirection ?? 72) + corr[3]! * 2.5);
-
-        prospect.strength = clampRating(Number(prospect.strength ?? 70) + corr[4]! * 2.8);
-
-        prospect.jumping = clampRating(Number(prospect.jumping ?? 72) + corr[5]! * 2.8);
+        // Polarized Role-Player & Specialist Sub-Archetypes (same OVR, distinct on-field feel)
+        this.applyRolePlayerPolarization(prospect as Record<string, number>, pos, rng);
 
         prospect.bodyType = bodyTypeFor(pos, Number(prospect.weight) || 215, () => rng.next());
-
         reconcileToTarget(
-
           prospect as Record<string, number>,
-
           posId,
-
           Number(prospect.archetype) || 0,
-
           baseOvr,
-
           gameVersion
-
         );
-
         continue;
-
       }
 
 
@@ -2894,18 +2893,203 @@ class ProspectVarianceServiceImpl {
 
 
 
+      // 3b. Draft Board Uncertainty ("Round 1-2 Combine Reaches & Day 3 Hidden Gems/Sleepers")
+      //     and Designated Kick/Punt Return Specialists
+      const reachIndices = new Set<number>();
+      const sleeperIndices = new Set<number>();
+
+      // Select 3-4 Round 1-2 "Combine Reaches / Overhyped Projects" (picks 9..58, non-generational)
+      const reachCandidates: number[] = [];
+      for (let i = 8; i < Math.min(58, total); i++) {
+        const p = prospects[i]!;
+        const posName = PositionMapper.name(Number(p.position) || 0);
+        if (posName === 'K' || posName === 'P' || posName === 'LS') continue;
+        const m = metadataMap.get(i);
+        if (m && (m.tier === 'super_fusion' || m.tier === 'generational')) continue;
+        reachCandidates.push(i);
+      }
+      const targetReaches = rng.randint(3, 4);
+      for (let r = 0; r < targetReaches && reachCandidates.length > 0; r++) {
+        const pickIdx = reachCandidates.splice(rng.randint(0, reachCandidates.length - 1), 1)[0]!;
+        const rp = prospects[pickIdx]!;
+        const rPosId = Number(rp.position) || 0;
+        const rArch = Number(rp.archetype) || 0;
+        const curOvr = Number(rp.overall) || 74;
+        const reachOvr = clamp(curOvr - rng.randint(4, 6), 67, 71);
+        rp.awareness = rng.randint(44, 53);
+        rp.playRecognition = rng.randint(44, 53);
+        reconcileToTarget(rp as Record<string, number>, rPosId, rArch, reachOvr, gameVersion);
+        rp.overall = reachOvr;
+        reachIndices.add(pickIdx);
+      }
+
+      // Select 6-9 Day 3 / UDFA "Hidden Gems & Sleepers" (picks 108..375, favoring small schools & polished/young talent)
+      const sleeperCandidates: number[] = [];
+      for (let i = 108; i < Math.min(375, total); i++) {
+        const p = prospects[i]!;
+        const posName = PositionMapper.name(Number(p.position) || 0);
+        if (posName === 'K' || posName === 'P' || posName === 'LS') continue;
+        const col = String(players[i]?.college || '');
+        const isSmall = ProspectVarianceServiceImpl.SMALL_SCHOOL_COLLEGES.includes(col);
+        sleeperCandidates.push(i);
+        if (isSmall) sleeperCandidates.push(i); // 2x weight for small-school sleepers
+      }
+      const targetSleepers = rng.randint(6, 9);
+      let sAdded = 0;
+      let sAttempts = 0;
+      while (sAdded < targetSleepers && sleeperCandidates.length > 0 && sAttempts < 40) {
+        sAttempts++;
+        const pickIdx = rng.choice(sleeperCandidates);
+        if (sleeperIndices.has(pickIdx)) continue;
+        sleeperIndices.add(pickIdx);
+        sAdded++;
+        const sp = prospects[pickIdx]!;
+        const sPosId = Number(sp.position) || 0;
+        const sArch = Number(sp.archetype) || 0;
+        const gemOvr = rng.randint(72, 76);
+        sp.awareness = Math.max(Number(sp.awareness ?? 62), rng.randint(68, 78));
+        sp.playRecognition = Math.max(Number(sp.playRecognition ?? 62), rng.randint(68, 78));
+        reconcileToTarget(sp as Record<string, number>, sPosId, sArch, gemOvr, gameVersion);
+        sp.overall = gemOvr;
+      }
+
+      // Designated Return Specialists: 5-7 agile mid/late-round WRs, CBs, and HBs carry 88-95 kickReturn
+      const targetKr = rng.randint(5, 7);
+      const krCandidates: number[] = [];
+      for (let i = 64; i < total; i++) {
+        const p = prospects[i]!;
+        const posName = PositionMapper.name(Number(p.position) || 0);
+        if ((posName === 'WR' || posName === 'CB' || posName === 'HB') && Number(p.speed ?? 0) >= 88 && Number(p.agility ?? 0) >= 83) {
+          krCandidates.push(i);
+        }
+      }
+      // Fallback if fewer than targetKr met strict speed/agility floor
+      if (krCandidates.length < targetKr) {
+        for (let i = 64; i < total; i++) {
+          const p = prospects[i]!;
+          const posName = PositionMapper.name(Number(p.position) || 0);
+          if ((posName === 'WR' || posName === 'CB' || posName === 'HB') && !krCandidates.includes(i)) {
+            krCandidates.push(i);
+          }
+        }
+      }
+      let krCount = 0;
+      while (krCount < targetKr && krCandidates.length > 0) {
+        const pickIdx = krCandidates.splice(rng.randint(0, krCandidates.length - 1), 1)[0]!;
+        const kp = prospects[pickIdx]!;
+        const kPosId = Number(kp.position) || 0;
+        const kArch = Number(kp.archetype) || 0;
+        const kOvr = Number(kp.overall) || 68;
+        const krVal = rng.randint(88, 95);
+        kp.speed = Math.max(Number(kp.speed ?? 88), rng.randint(90, 95));
+        kp.agility = Math.max(Number(kp.agility ?? 85), rng.randint(88, 94));
+        kp.changeOfDirection = Math.max(Number(kp.changeOfDirection ?? 85), rng.randint(88, 94));
+        reconcileToTarget(kp as Record<string, number>, kPosId, kArch, kOvr, gameVersion);
+        kp.kickReturn = krVal;
+        kp.overall = kOvr;
+        krCount++;
+      }
+
       // 4. Rebalance Development Traits for procedural rookie classes so X-Factor (2-3),
-
-      // Superstar (6-8), and Star (34-42) rates are realistic and not a 109-player wall
-
-      this.rebalanceProceduralDevTraits(prospects, metadataMap, rng);
-
+      // Superstar (6-8), and Star (34-42) rates are realistic and respect Age & Sleeper/Reach curves
+      this.rebalanceProceduralDevTraits(prospects, metadataMap, rng, reachIndices, sleeperIndices);
     }
 
-
-
     return metadataMap;
+  }
 
+  /**
+   * Injects polarized specialist/role-player attribute splits onto ~50% of non-freak prospects
+   * prior to OVR reconciliation so two prospects with the same OVR feel distinct on the field.
+   */
+  private applyRolePlayerPolarization(attrs: Record<string, number>, pos: string, rng: SeededRng): void {
+    if (rng.next() >= 0.52) return;
+    const branch = rng.next() < 0.5;
+    const shift = (key: string, delta: number) => {
+      if (attrs[key] != null) attrs[key] = clampRating(Number(attrs[key]) + delta);
+    };
+
+    if (pos === 'HB') {
+      if (branch) {
+        // 3rd-Down Receiving / Pass-Protection Back
+        shift('catching', 8);
+        shift('shortRouteRunning', 7);
+        shift('passBlock', 6);
+        shift('trucking', -5);
+      } else {
+        // Goal-Line / Short-Yardage Bruiser
+        shift('trucking', 7);
+        shift('stiffArm', 6);
+        shift('carrying', 5);
+        shift('catching', -6);
+      }
+    } else if (pos === 'WR' || pos === 'TE') {
+      if (branch) {
+        // YAC / Space Weapon
+        shift('jukeMove', 6);
+        shift('breakTackle', 6);
+        shift('ballCarrierVision', 5);
+        shift('deepRouteRunning', -5);
+      } else {
+        // Contested-Catch Red-Zone Target
+        shift('catchInTraffic', 6);
+        shift('spectacularCatch', 6);
+        shift('release', 5);
+        shift('jukeMove', -5);
+      }
+    } else if (pos === 'LT' || pos === 'LG' || pos === 'C' || pos === 'RG' || pos === 'RT') {
+      if (branch) {
+        // Island Pass-Protector
+        shift('passBlockFinesse', 6);
+        shift('passBlockPower', 5);
+        shift('passBlock', 4);
+        shift('runBlockPower', -5);
+      } else {
+        // Road-Grader Run Mauler
+        shift('runBlockPower', 6);
+        shift('impactBlocking', 6);
+        shift('leadBlock', 4);
+        shift('passBlockFinesse', -5);
+      }
+    } else if (pos === 'LEDG' || pos === 'REDG' || pos === 'DT') {
+      if (branch) {
+        // Sub-Package Pass-Rush Specialist
+        shift('finesseMoves', 6);
+        shift('powerMoves', 5);
+        shift('blockShedding', -6);
+      } else {
+        // Early-Down Run Anchor
+        shift('blockShedding', 7);
+        shift('tackle', 5);
+        shift('finesseMoves', -6);
+      }
+    } else if (pos === 'SAM' || pos === 'MIKE' || pos === 'WILL') {
+      if (branch) {
+        // Coverage Sub-Package Linebacker
+        shift('zoneCoverage', 6);
+        shift('manCoverage', 5);
+        shift('blockShedding', -5);
+      } else {
+        // Downhill Run Thumper
+        shift('hitPower', 6);
+        shift('blockShedding', 6);
+        shift('tackle', 5);
+        shift('zoneCoverage', -5);
+      }
+    } else if (pos === 'CB' || pos === 'FS' || pos === 'SS') {
+      if (branch) {
+        // Press-Man Boundary Lockdown
+        shift('pressCoverage', 6);
+        shift('manCoverage', 5);
+        shift('zoneCoverage', -5);
+      } else {
+        // Zone Ballhawk / Turnover Magnet
+        shift('zoneCoverage', 6);
+        shift('playRecognition', 5);
+        shift('catching', 5);
+        shift('pressCoverage', -5);
+      }
+    }
   }
 
 
@@ -2925,13 +3109,11 @@ class ProspectVarianceServiceImpl {
    */
 
   private rebalanceProceduralDevTraits(
-
     prospects: MdcProspect[],
-
     metadataMap: Map<number, FreakMetadata>,
-
-    rng: SeededRng
-
+    rng: SeededRng,
+    reachIndices: Set<number> = new Set(),
+    sleeperIndices: Set<number> = new Set()
   ): void {
 
     const total = prospects.length;
@@ -3010,102 +3192,65 @@ class ProspectVarianceServiceImpl {
 
 
 
-    // 2. Assign Superstars (6-8): mix of remaining Generational/Hybrid freaks and high-OVR Round 1-2 prospects
-
+    // 2. Assign Superstars (6-8): mix of remaining Generational/Hybrid freaks, high-OVR Round 1-2 prospects, and 1-2 Day 3 Gems
     for (const item of byOvr) {
-
       if (ssCount >= maxSs) break;
-
       if (prospects[item.idx]!.devTrait !== 0) continue;
-
+      if (reachIndices.has(item.idx)) continue;
       if (item.pos === 'K' || item.pos === 'P' || item.pos === 'LS') continue;
-
       const meta = metadataMap.get(item.idx);
-
       const isFreak = Boolean(meta);
-
-      const prob = (meta?.tier === 'generational' || meta?.tier === 'super_fusion')
-
+      const age = Number(prospects[item.idx]!.age) || 22;
+      const ageMult = age <= 21 ? 1.35 : age >= 23 ? 0.68 : 1.0;
+      const baseProb = (meta?.tier === 'generational' || meta?.tier === 'super_fusion')
         ? 0.90
-
-        : meta?.tier === 'hybrid' && item.idx < 64
-
-          ? 0.60
-
-          : item.ovr >= 80
-
-            ? 0.50
-
-            : item.ovr >= 77
-
-              ? 0.30
-
-              : isFreak && item.idx < 96
-
-                ? 0.25
-
-                : 0.0;
-
+        : sleeperIndices.has(item.idx)
+          ? 0.28
+          : meta?.tier === 'hybrid' && item.idx < 64
+            ? 0.60
+            : item.ovr >= 80
+              ? 0.50
+              : item.ovr >= 77
+                ? 0.30
+                : isFreak && item.idx < 96
+                  ? 0.25
+                  : 0.0;
+      const prob = Math.min(0.95, baseProb * ageMult);
       if (prob > 0 && rng.next() < prob) {
-
         prospects[item.idx]!.devTrait = 2;
-
         ssCount++;
-
       }
-
     }
 
-
-
-    // 3. Assign Stars (35-42): probabilistic across Freaks and Rounds 1-5 so Normal devs also appear in Round 1
-
+    // 3. Assign Stars (35-42): probabilistic across Freaks, Day 3 Sleepers, and Rounds 1-5 (weighted by declaration age)
     for (const item of byOvr) {
-
       if (starCount >= maxStar) break;
-
       if (prospects[item.idx]!.devTrait !== 0) continue;
-
+      if (reachIndices.has(item.idx)) continue;
       const meta = metadataMap.get(item.idx);
-
       const isFreak = Boolean(meta);
-
+      const age = Number(prospects[item.idx]!.age) || 22;
+      const ageMult = age <= 21 ? 1.35 : age >= 23 ? 0.68 : 1.0;
       let prob = 0;
-
-      if (isFreak) {
-
+      if (sleeperIndices.has(item.idx)) {
+        prob = 0.75;
+      } else if (isFreak) {
         prob = 0.72;
-
       } else if (item.ovr >= 78) {
-
         prob = 0.55;
-
       } else if (item.ovr >= 75) {
-
         prob = 0.42;
-
       } else if (item.ovr >= 72) {
-
         prob = 0.26;
-
       } else if (item.ovr >= 69) {
-
         prob = 0.12;
-
       } else {
-
         prob = 0.03;
-
       }
-
-      if (rng.next() < prob) {
-
+      if (rng.next() < Math.min(0.92, prob * ageMult)) {
         prospects[item.idx]!.devTrait = 1;
-
         starCount++;
-
       }
-
     }
 
   }
