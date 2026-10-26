@@ -1,4 +1,4 @@
-import { LikenessService, headStyleCode, headStyleGroup } from '../LikenessService';
+import { LikenessService, headStyleCode, headStyleGroup, headBuildCode, buildCompatibilityTier, inferPlayerBodyType, VISUAL_HEAD_BUILD_OVERRIDES } from '../LikenessService';
 import { PortraitService } from '../PortraitService';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -212,5 +212,94 @@ test('M27: Borrowed 2D portraits strictly match 3D generic head hairstyle and fa
     const headName = String(vis.genericHeadName || p.PEPS || '');
     const hGroup = headStyleGroup(headName);
     assert.equal(pGroup, hGroup, `Fictional prospect ${i} portrait style (${pGroup}, ${plpo}) must match 3D head preset (${hGroup}, ${headName})`);
+  }
+});
+
+test('M27: Visual face fullness matches bodyType (no skinny faces on Heavy linemen, no chubby faces on QBs/skill players)', () => {
+  // 1. Verify specific reported outlier heads are properly classified
+  assert.equal(headBuildCode('gen_2_B_BD_03'), 'H', 'Chubby face gen_2_B_BD_03 (Jimmie Smith) must be classified as Heavy (H)');
+  assert.equal(headBuildCode('plpo_generic_2_B_BD_03'), 'H', 'Portrait plpo_generic_2_B_BD_03 must be classified as Heavy (H)');
+  assert.equal(headBuildCode('gen_2_B_N_0018'), 'H', 'Chubby face gen_2_B_N_0018 (Brian Warren) must be classified as Heavy (H)');
+  assert.equal(headBuildCode('plpo_generic_2_B_N_0018'), 'H', 'Portrait plpo_generic_2_B_N_0018 must be classified as Heavy (H)');
+  assert.equal(buildCompatibilityTier(headBuildCode('gen_2_BMH_S_004'), 'Heavy'), 0, 'Skinny face gen_2_BMH_S_004 (Ricardo Rambo) must be incompatible with Heavy');
+  assert.equal(buildCompatibilityTier(headBuildCode('gen_2_B_BD_03'), 'Standard'), 0, 'Chubby face gen_2_B_BD_03 must be incompatible with Standard');
+  assert.equal(buildCompatibilityTier(headBuildCode('gen_2_B_N_0018'), 'Standard'), 0, 'Chubby face gen_2_B_N_0018 must be incompatible with Standard');
+
+  // 2. Test across a large mixed class of Heavy linemen (including 305 lb Muscular OL) and Standard/Thin QBs/WRs across all skin tones
+  const prospects: Array<Record<string, unknown>> = [];
+  const players: BaselinePlayer[] = [];
+
+  for (let tone = 1; tone <= 7; tone++) {
+    // 10 Heavy/Lineman prospects per tone (half Heavy, half 305lb Muscular RT like Ricardo Rambo)
+    for (let j = 0; j < 10; j++) {
+      const bt = j % 2 === 0 ? 'Heavy' : 'Muscular';
+      prospects.push({
+        PEPS: `gen_${tone}_B_N_01`,
+        bodyType: bt,
+        weight: 305,
+        position: 'RT',
+        PID: 0,
+        visuals: {},
+      });
+      players.push(makePlayer({
+        firstName: `Lineman_${tone}_${j}`,
+        lastName: `Rambo_${tone}_${j}`,
+        race: tone,
+        source: 'generated',
+        position: 'RT',
+        weight: 305,
+      }));
+    }
+
+    // 12 Standard QBs per tone (201-217 lbs like Jimmie Smith & Brian Warren)
+    for (let j = 0; j < 12; j++) {
+      prospects.push({
+        PEPS: `gen_${tone}_B_N_01`,
+        bodyType: 'Standard',
+        weight: 205 + (j % 15),
+        position: 'QB',
+        PID: 0,
+        visuals: {},
+      });
+      players.push(makePlayer({
+        firstName: `QB_${tone}_${j}`,
+        lastName: `Warren_${tone}_${j}`,
+        race: tone,
+        source: 'generated',
+        position: 'QB',
+        weight: 205 + (j % 15),
+      }));
+    }
+  }
+
+  LikenessService.balanceClassGenericHeads(prospects, players, 'm27', 0);
+
+  for (let i = 0; i < prospects.length; i++) {
+    const p = prospects[i];
+    const pl = players[i];
+    const effBt = inferPlayerBodyType(pl, String(p.bodyType || ''));
+    const peps = String(p.PEPS || '');
+    const vis = (p.visuals ?? {}) as { genericHeadName?: string };
+    const headCode = String(vis.genericHeadName || peps);
+    const hBuild = headBuildCode(headCode);
+
+    const pid = Number(p.PID);
+    const plpo = PortraitService.plpoForPid(pid) || '';
+    const pBuild = headBuildCode(plpo);
+
+    if ((pl.weight ?? 0) >= 285) {
+      assert.equal(effBt, 'Heavy', `305lb lineman ${pl.firstName} must resolve to Heavy face bodyType`);
+      assert.equal(hBuild, 'H', `305lb lineman ${pl.firstName} got non-Heavy 3D head ${headCode} (build=${hBuild})`);
+      assert.equal(pBuild, 'H', `305lb lineman ${pl.firstName} got non-Heavy 2D portrait ${plpo} (build=${pBuild})`);
+    } else {
+      assert.notEqual(hBuild, 'H', `QB ${pl.firstName} (${pl.weight}lb) got chubby/Heavy 3D head ${headCode}`);
+      assert.notEqual(pBuild, 'H', `QB ${pl.firstName} (${pl.weight}lb) got chubby/Heavy 2D portrait ${plpo}`);
+      for (const [ovSuffix, ovBuild] of Object.entries(VISUAL_HEAD_BUILD_OVERRIDES)) {
+        if (ovBuild === 'H') {
+          assert.ok(!headCode.toLowerCase().endsWith(ovSuffix), `QB ${pl.firstName} got visually chubby head ${headCode}`);
+          assert.ok(!plpo.toLowerCase().endsWith(ovSuffix), `QB ${pl.firstName} got visually chubby portrait ${plpo}`);
+        }
+      }
+    }
   }
 });

@@ -364,11 +364,64 @@ function poolsFor(version: 'm26' | 'm27'): Map<number, string[]> {
   return byToneByVersion.get(version) ?? byTone!;
 }
 
-/** Extract the build token ('H', 'M', 'B', 'T', 'BM', 'BMH', 'BMT', etc.) from a
- *  generic head (`gen_<tone>_<build>_...`) or portrait (`plpo_generic_<tone>_<build>_...`). */
+/**
+ * Visual face-fullness overrides for generic heads/portraits whose actual sculpted
+ * cheek/jaw/neck thickness in Madden 27 disagrees with EA's filename build token.
+ * Keyed by lowercase suffix after `gen_` or `plpo_generic_`.
+ */
+export const VISUAL_HEAD_BUILD_OVERRIDES: Record<string, string> = {
+  // Visibly chubby / heavy / double-chin faces mislabeled under _B_ / _BM_ / _BMH_ / _BHTM_
+  '1_b_n_007': 'H',
+  '1_b_n_01': 'H',
+  '1_b_s_002': 'H',
+  '2_b_bd_03': 'H',
+  '2_b_n_0018': 'H',
+  '2_b_s_007': 'H',
+  '2_bmh_s_010': 'H',
+  '3_b_b_01': 'H',
+  '3_b_b_001': 'H',
+  '4_b_ms_02': 'H',
+  '4_b_n_01': 'H',
+  '5_b_bd_03': 'H',
+  '5_b_ms_02': 'H',
+  '5_bhtm_gs_001': 'H',
+  '6_bm_n_009': 'H',
+  '6_b_g_06': 'H',
+  '6_b_n_0011': 'H',
+  '6_b_n_004': 'H',
+  '6_b_n_006': 'H',
+  '7_b_g_008': 'H',
+  '7_b_n_0012': 'H',
+  '7_b_n_014': 'H',
+  '7_b_n_09': 'H',
+  '7_b_s_005': 'H',
+
+  // Visibly lean / normal athletic faces mislabeled under _H_
+  '1_h_bd_02': 'B',
+  '2_h_bd_03': 'M',
+  '2_h_b_010': 'M',
+  '2_h_n_007': 'M',
+  '3_h_s_001': 'B',
+  '4_h_n_002': 'M',
+  '5_h_n_01': 'B',
+  '5_h_s_010': 'B',
+};
+
+/** Extract the effective build token ('H', 'M', 'B', 'T', 'BM', 'BMH', 'BMT', etc.) from a
+ *  generic head (`gen_<tone>_<build>_...`) or portrait (`plpo_generic_<tone>_<build>_...`),
+ *  applying visual face-fullness overrides before falling back to the filename token. */
 export function headBuildCode(code: string | null | undefined): string {
   if (!code) return '';
-  const m = /^(?:gen|plpo_generic)_\d+_([A-Za-z]+)_/i.exec(code.trim());
+  const trimmed = code.trim();
+  const lower = trimmed.toLowerCase();
+  if (lower.startsWith('gen_')) {
+    const ov = VISUAL_HEAD_BUILD_OVERRIDES[lower.slice(4)];
+    if (ov) return ov;
+  } else if (lower.startsWith('plpo_generic_')) {
+    const ov = VISUAL_HEAD_BUILD_OVERRIDES[lower.slice('plpo_generic_'.length)];
+    if (ov) return ov;
+  }
+  const m = /^(?:gen|plpo_generic)_\d+_([A-Za-z]+)_/i.exec(trimmed);
   return m ? m[1].toUpperCase() : '';
 }
 
@@ -401,18 +454,26 @@ export function headStyleGroup(code: string | null | undefined): HeadStyleGroup 
 }
 
 
-/** Infer a player's expected bodyType when called before a prospect record exists. */
+/** Infer a player's effective face-matching bodyType. Heavy linemen (285+ lbs or 275+ lb OL/DT)
+ *  always receive Heavy-tier faces even if their body mesh rolled Muscular, and non-linemen under
+ *  265 lbs never receive Heavy-tier chubby faces. */
 export function inferPlayerBodyType(player: BaselinePlayer, explicitBodyType?: string | null): string {
-  if (explicitBodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(explicitBodyType)) {
-    return explicitBodyType;
-  }
-  if (player.likenessFix?.bodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(player.likenessFix.bodyType)) {
-    return player.likenessFix.bodyType;
-  }
   const pos = (player.position || '').toUpperCase().trim();
   const w = Number(player.weight) || 0;
-  if (w >= 295 || ['OT', 'LT', 'RT', 'T', 'OG', 'LG', 'RG', 'G', 'C', 'OL', 'DT', 'NT', 'IDL'].includes(pos)) {
-    return w > 0 && w < 275 ? 'Muscular' : 'Heavy';
+  const isLinemanPos = ['OT', 'LT', 'RT', 'T', 'OG', 'LG', 'RG', 'G', 'C', 'OL', 'DT', 'NT', 'IDL'].includes(pos);
+  if (w >= 285 || (isLinemanPos && (w === 0 || w >= 275))) {
+    return 'Heavy';
+  }
+  const candidate = (explicitBodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(explicitBodyType))
+    ? explicitBodyType
+    : (player.likenessFix?.bodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(player.likenessFix.bodyType))
+      ? player.likenessFix.bodyType
+      : '';
+  if (candidate) {
+    if (candidate === 'Heavy' && w > 0 && w < 265 && !isLinemanPos) {
+      return w >= 230 ? 'Muscular' : 'Standard';
+    }
+    return candidate;
   }
   if (['DE', 'LE', 'RE', 'LEDG', 'REDG', 'EDGE', 'LB', 'MLB', 'ILB', 'OLB', 'LOLB', 'ROLB', 'SAM', 'WILL', 'MIKE', 'TE', 'FB'].includes(pos) || w >= 235) {
     return 'Muscular';
@@ -424,26 +485,27 @@ export function inferPlayerBodyType(player: BaselinePlayer, explicitBodyType?: s
 }
 
 /** Compatibility tier (1 = ideal build match, 2 = acceptable fallback build, 0 = incompatible)
- *  between a head/portrait build token and a Madden bodyType. */
+ *  between an effective head/portrait build token and a Madden bodyType. */
 export function buildCompatibilityTier(build: string, bodyType: string): 0 | 1 | 2 {
   if (!build) return 2; // Legacy M26 code without build token
   const bt = bodyType || 'Standard';
   if (bt === 'Heavy') {
-    if (build.includes('H')) return 1;
-    return 0;
+    // Only true Heavy ('H') heads/portraits match Heavy players; composite codes
+    // ('BMH', 'BHM', 'BHTM', 'BMTH') have lean/athletic face geometry.
+    return build === 'H' ? 1 : 0;
   }
   if (bt === 'Muscular') {
-    if (build.includes('M')) return 1;
+    if (build === 'M' || build === 'BM' || build === 'BMH' || build === 'BHM') return 1;
     if (build === 'B') return 2;
     return 0;
   }
   if (bt === 'Thin' || bt === 'Lean') {
-    if (build.includes('T')) return 1;
+    if (build === 'T' || build === 'BMT' || build === 'BTM') return 1;
     if (build === 'B') return 2;
     return 0;
   }
   // Standard
-  if (build === 'B' || build === 'BM' || build === 'BMT' || build === 'BTM' || build === 'BHTM' || build === 'BMTH') return 1;
+  if (build === 'B' || build === 'BM' || build === 'BMT' || build === 'BTM' || build === 'BMH' || build === 'BHM' || build === 'BHTM' || build === 'BMTH') return 1;
   if (build === 'M' || build === 'T') return 2;
   return 0;
 }
@@ -849,8 +911,9 @@ export const LikenessService = {
       const sCode = headStyleCode(port.plpo);
       if (!sCode || sGroup === 'unknown') continue;
 
+      const effectivePortBuild = headBuildCode(port.plpo) || port.build;
       for (const bt of ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean']) {
-        const tier = buildCompatibilityTier(port.build, bt);
+        const tier = buildCompatibilityTier(effectivePortBuild, bt);
         if (tier > 0) {
           const groupKey = `${tone}|${bt}|${tier}|${sGroup}`;
           if (!portByStyleGroup.has(groupKey)) portByStyleGroup.set(groupKey, []);
@@ -886,9 +949,20 @@ export const LikenessService = {
       }
     }
 
+    const effectiveBodyTypeFor = (idx: number): string => {
+      const pr = prospects[idx];
+      const pl = players[idx];
+      const merged: BaselinePlayer = {
+        ...pl,
+        weight: Number(pr?.weight) || pl.weight,
+        position: String(pr?.position || pl.position),
+      };
+      return inferPlayerBodyType(merged, String(pr?.bodyType || ''));
+    };
+
     indices.sort((a, b) => {
-      const btA = String(prospects[a].bodyType || inferPlayerBodyType(players[a]));
-      const btB = String(prospects[b].bodyType || inferPlayerBodyType(players[b]));
+      const btA = effectiveBodyTypeFor(a);
+      const btB = effectiveBodyTypeFor(b);
       const ordA = buildOrder[btA] ?? 3;
       const ordB = buildOrder[btB] ?? 3;
       if (ordA !== ordB) return ordA - ordB;
@@ -915,7 +989,7 @@ export const LikenessService = {
     for (const i of indices) {
       const p = prospects[i];
       const base = players[i];
-      const bodyType = String(p.bodyType || inferPlayerBodyType(base));
+      const bodyType = effectiveBodyTypeFor(i);
       const draftYear = base.draftYear ?? 2026;
       let tone = raceToSkinTone(base.race);
       let { tier1, tier2, all } = getToneCandidates(tone, draftYear, bodyType);
@@ -930,9 +1004,12 @@ export const LikenessService = {
         const unusedExtra = extraBucket.filter((h) => (usage.get(h.assetName) ?? 0) === 0);
         const hasUnusedGen = tier1.some((h) => (usage.get(h) ?? 0) === 0);
         
-        // If all generic heads in this bucket have been used once, or 50% chance when available
+        // Only fall back to extra 3D scans if every generic head in this tone AND adjacent tones is already used
+        const hasUnusedAdjGen = adjacentTones(tone).some((adjTone) =>
+          getToneCandidates(adjTone, draftYear, bodyType).tier1.some((h) => (usage.get(h) ?? 0) === 0)
+        );
         const seedVal = hash(`${base.firstName}|${base.lastName}|${i}|${variant}|3d`);
-        if (unusedExtra.length > 0 && (!hasUnusedGen || (seedVal % 100 < 50))) {
+        if (unusedExtra.length > 0 && !hasUnusedGen && !hasUnusedAdjGen) {
           assignedExtraHead = unusedExtra[seedVal % unusedExtra.length];
         }
       }
