@@ -635,7 +635,7 @@ export interface DroppedPlayer {
  * Long Snappers are protected up to the class target (5-10 for Madden 27).
  */
 function fitToCapacity(players: BaselinePlayer[], include: number[] = []): { kept: BaselinePlayer[]; keptIdx: number[]; dropped: DroppedPlayer[]; included: number[] } {
-  if (players.length <= LOGICAL_CAPACITY) return { kept: players, keptIdx: players.map((_, i) => i), dropped: [], included: [] };
+  if (players.length <= LOGICAL_CAPACITY) return { kept: [...players], keptIdx: players.map((_, i) => i), dropped: [], included: [] };
   // Keep-score = career caliber + what the draft slot promised: a first-round bust
   // stays (he was a real prospect), a 17th-rounder who never played goes first,
   // and an undrafted star (Warner) outranks both of those.
@@ -734,28 +734,44 @@ export function draftPositions(players: BaselinePlayer[], opts: GenOptions = {})
   const candidates: number[] = [];
   if (currentLS < targetLS) {
     const needed = targetLS - currentLS;
-    // First pass: lowest-risk fringe players (late round / UDFA, low wAV, no accolades)
-    for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
+    const isSnapFrameGroup = (posId: number) => {
+      const grp = PositionMapper.groupFromId(posId);
+      return grp === 'OL' || grp === 'TE' || grp === 'LB' || grp === 'EDGE' || grp === 'IDL' || posId === 2; // 2 = FB
+    };
+    const isEligibleBase = (i: number) => {
       const p = capped[i];
-      if (pins?.has(p.key ?? '')) continue;
-      if (included.includes(keptIdx[i])) continue;
-      if (posIds[i] === 21 || posIds[i] === 19 || posIds[i] === 20) continue;
-      if (p.isHOF || (p.proBowls ?? 0) > 0 || (p.allPro1 ?? 0) > 0) continue;
-      if ((p.wav ?? 0) > 4) continue;
-      if (p.draftRound != null && p.draftRound < 6) continue;
-      candidates.push(i);
+      if (pins?.has(p.key ?? '')) return false;
+      if (included.includes(keptIdx[i])) return false;
+      if (posIds[i] === 21 || posIds[i] === 19 || posIds[i] === 20) return false;
+      if (p.isHOF) return false;
+      return true;
+    };
+    const isLowRiskFringe = (i: number) => {
+      const p = capped[i];
+      if (!isEligibleBase(i)) return false;
+      if ((p.proBowls ?? 0) > 0 || (p.allPro1 ?? 0) > 0) return false;
+      if ((p.wav ?? 0) > 4) return false;
+      if (p.draftRound != null && p.draftRound < 6) return false;
+      return true;
+    };
+    // Pass 0: generated fillers first
+    for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
+      if (capped[i].source === 'generated' && isEligibleBase(i)) candidates.push(i);
     }
-    // Second pass: fallback if needed (preserve HOF and specialists)
-    if (candidates.length < needed) {
-      for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
-        if (candidates.includes(i)) continue;
-        const p = capped[i];
-        if (pins?.has(p.key ?? '')) continue;
-        if (included.includes(keptIdx[i])) continue;
-        if (posIds[i] === 21 || posIds[i] === 19 || posIds[i] === 20) continue;
-        if (p.isHOF) continue;
-        candidates.push(i);
-      }
+    // Pass 1: lowest-risk fringe OL/TE/FB/LB/DL players (natural long-snapper frames)
+    for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
+      if (!candidates.includes(i) && isLowRiskFringe(i) && isSnapFrameGroup(posIds[i])) candidates.push(i);
+    }
+    // Pass 2: any lowest-risk fringe non-specialist
+    for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
+      if (!candidates.includes(i) && isLowRiskFringe(i)) candidates.push(i);
+    }
+    // Pass 3: fallback non-HOF non-specialist (preferring OL/TE/FB/LB/DL first)
+    for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
+      if (!candidates.includes(i) && isEligibleBase(i) && isSnapFrameGroup(posIds[i])) candidates.push(i);
+    }
+    for (let i = capped.length - 1; i >= 0 && candidates.length < needed; i--) {
+      if (!candidates.includes(i) && isEligibleBase(i)) candidates.push(i);
     }
     for (const idx of candidates) {
       posIds[idx] = 21;
@@ -1175,10 +1191,11 @@ export const DraftClassBuilder = {
 
     const built = items.map((it) => toProspect(it, portraitMap.get(it.index), gameVersion, mode, opts.variant ?? 0));
     const prospects = built.map((b) => b.prospect);
+    const freakCapped = opts.freakMode ? capped.map((c) => ({ ...c })) : capped;
     const freakMap = opts.freakMode
       ? ProspectVarianceService.applyVarianceAndFreaks(
           prospects,
-          capped,
+          freakCapped,
           {
             enabled: true,
             preset: opts.freakPreset,
@@ -1225,7 +1242,7 @@ export const DraftClassBuilder = {
       withPortrait: capped.filter((p) => p.photoId != null).length,
       customPortrait: portraitMap.size,
     };
-    return { prospects, sourceIndices: keptIdx, truncated: dropped.length > 0, dropped, included, likeness, launchIdx, freakMap, capped };
+    return { prospects, sourceIndices: keptIdx, truncated: dropped.length > 0, dropped, included, likeness, launchIdx, freakMap, capped: freakCapped };
   },
 
   /** Full JSON preview of the generated class for the UI: per-player bio, photo,

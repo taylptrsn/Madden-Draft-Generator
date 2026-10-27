@@ -865,6 +865,19 @@
       "allPro1": 0,
       "careerTo": 2026,
       "isHOF": false
+    },
+    "2017|Taysom Hill": {
+      "wav": 32,
+      "proBowls": 0,
+      "allPro1": 0,
+      "seasonsStarted": 4,
+      "careerTo": 2024,
+      "isHOF": false,
+      "receptions": 104,
+      "recYards": 943,
+      "rushAtts": 448,
+      "rushYards": 2437,
+      "passYards": 2369
     }
   }
 }

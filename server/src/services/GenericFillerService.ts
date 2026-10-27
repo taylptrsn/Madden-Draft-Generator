@@ -91,10 +91,7 @@ export const GenericFillerService = {
    *  guaranteeing between 5 and 10 Long Snappers for Madden 27. */
   build(year: number, existing: BaselinePlayer[], target = FULL_CLASS_SIZE): BaselinePlayer[] {
     const targetLS = targetLongSnapperCount(year);
-    const existingLS = existing.filter(p => PositionMapper.resolve(p.firstName, p.lastName, p.position, p.weight ?? null) === 21).length;
-    const neededLS = Math.max(0, targetLS - existingLS);
-    const baseNeed = Math.max(0, target - existing.length);
-    const need = Math.max(baseNeed, neededLS);
+    const need = Math.max(0, target - existing.length);
     if (need === 0) return [];
     const positions = deficitPositions(existing, need, targetLS);
     const { first, last } = PlayerLookupService.namePool();

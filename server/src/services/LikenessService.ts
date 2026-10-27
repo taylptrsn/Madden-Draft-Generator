@@ -103,6 +103,24 @@ function playerFeatures(): Record<string, FaceFeatures> {
   return playerFeatMem!;
 }
 
+let lookupAssetYearMap: Map<string, number> | null = null;
+function lookupAssetYears(): Map<string, number> {
+  if (lookupAssetYearMap) return lookupAssetYearMap;
+  lookupAssetYearMap = new Map();
+  try {
+    const rows = parseCsvFile<Record<string, string>>(path.join(LOOKUPS_DIR, 'ALL_PLAYER_LOOKUP.csv'));
+    for (const r of rows) {
+      const a = (r['Player Assets ID'] || '').trim().toLowerCase();
+      if (!a || /^gen_/i.test(a)) continue;
+      const y = parseInt(r['Draft Class'] || '', 10) || 0;
+      if (y > 0 && (!lookupAssetYearMap.has(a) || y > lookupAssetYearMap.get(a)!)) {
+        lookupAssetYearMap.set(a, y);
+      }
+    }
+  } catch { /* optional */ }
+  return lookupAssetYearMap;
+}
+
 function catalogFor(version: 'm26' | 'm27'): FaceCatalog {
   const hit = catalogs[version];
   if (hit) return hit;
@@ -110,7 +128,12 @@ function catalogFor(version: 'm26' | 'm27'): FaceCatalog {
   try {
     const raw = JSON.parse(fs.readFileSync(path.join(LOOKUPS_DIR, 'face-assets-by-game.json'), 'utf8'));
     const v = raw?.[version] ?? {};
-    for (const [k, e] of Object.entries(v.assets ?? {})) cat.assets.set(k, e as RealFace);
+    const lkYears = lookupAssetYears();
+    for (const [k, e] of Object.entries(v.assets ?? {})) {
+      const face = { ...(e as RealFace) };
+      if (!face.draftYear && lkYears.has(k)) face.draftYear = lkYears.get(k);
+      cat.assets.set(k, face);
+    }
     for (const [k, a] of Object.entries(v.byName ?? {})) {
       // Register the key as written and in suffix-free m27Key form, so "will
       // anderson jr" is also found as "will anderson" (what the lookup asks for).

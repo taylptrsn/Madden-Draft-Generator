@@ -55,5 +55,5 @@ test('the weekly stats cover the undrafted: Taysom Hill (QB) is a usable back an
   assert.deepEqual(hill?.roles.sort(), ['HB', 'TE'], JSON.stringify(hill));
   assert.equal(hill?.source, 'stats');
   assert.equal(TwoWayService.rolesFor('Lamar', 'Jackson', 2018, PositionMapper.toM26Id('QB'), 32), null);
-  assert.ok(NflverseStatsService.usage('Taysom', 'Hill', 2017)!.carries > 400);
+  if (NflverseStatsService.available) assert.ok(NflverseStatsService.usage('Taysom', 'Hill', 2017)!.carries > 400);
 });

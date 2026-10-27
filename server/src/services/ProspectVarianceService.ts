@@ -2589,7 +2589,9 @@ class ProspectVarianceServiceImpl {
           this.applyRolePlayerPolarization(prospect as Record<string, number>, pos, rng);
         }
 
-        prospect.bodyType = bodyTypeFor(pos, Number(prospect.weight) || 215, () => rng.next());
+        if (!player?.likenessFix?.bodyType) {
+          prospect.bodyType = bodyTypeFor(pos, Number(prospect.weight) || 215, () => rng.next());
+        }
         reconcileToTarget(
           prospect as Record<string, number>,
           posId,
@@ -2837,7 +2839,7 @@ class ProspectVarianceServiceImpl {
 
       const archId = Number(prospect.archetype) || 0;
 
-      const lockedFloors = this.collectRookieScaledFloors(meta.archetypeKey, newTargetOvr);
+      const lockedFloors = this.collectRookieScaledFloors(meta.archetypeKey, newTargetOvr, Number(prospect.speed) || undefined);
 
       this.reconcileFreakToTarget(
 
@@ -2855,7 +2857,9 @@ class ProspectVarianceServiceImpl {
 
       );
 
-      prospect.bodyType = bodyTypeFor(pos, Number(prospect.weight) || 225, () => rng.next());
+      if (!player?.likenessFix?.bodyType) {
+        prospect.bodyType = bodyTypeFor(pos, Number(prospect.weight) || 225, () => rng.next());
+      }
 
 
 
@@ -2917,7 +2921,7 @@ class ProspectVarianceServiceImpl {
 
         if (fMeta) {
 
-          const floors = this.collectRookieScaledFloors(fMeta.archetypeKey, peakOvr);
+          const floors = this.collectRookieScaledFloors(fMeta.archetypeKey, peakOvr, Number(topP.speed) || undefined);
 
           this.reconcileFreakToTarget(topP as Record<string, number>, topPosId, topArch, peakOvr, floors, gameVersion);
 
@@ -2990,7 +2994,7 @@ class ProspectVarianceServiceImpl {
         sp.playRecognition = Math.max(Number(sp.playRecognition ?? 62), rng.randint(68, 78));
         const sMeta = metadataMap.get(pickIdx);
         if (sMeta) {
-          const floors = this.collectRookieScaledFloors(sMeta.archetypeKey, gemOvr);
+          const floors = this.collectRookieScaledFloors(sMeta.archetypeKey, gemOvr, Number(sp.speed) || undefined);
           this.reconcileFreakToTarget(sp as Record<string, number>, sPosId, sArch, gemOvr, floors, gameVersion);
         } else {
           reconcileToTarget(sp as Record<string, number>, sPosId, sArch, gemOvr, gameVersion);
@@ -3029,15 +3033,16 @@ class ProspectVarianceServiceImpl {
         kp.speed = Math.max(Number(kp.speed ?? 88), rng.randint(90, 95));
         kp.agility = Math.max(Number(kp.agility ?? 85), rng.randint(88, 94));
         kp.changeOfDirection = Math.max(Number(kp.changeOfDirection ?? 85), rng.randint(88, 94));
-        const kMeta = metadataMap.get(pickIdx);
-        if (kMeta) {
-          const floors = this.collectRookieScaledFloors(kMeta.archetypeKey, kOvr);
-          this.reconcileFreakToTarget(kp as Record<string, number>, kPosId, kArch, kOvr, floors, gameVersion);
-        } else {
-          reconcileToTarget(kp as Record<string, number>, kPosId, kArch, kOvr, gameVersion);
-          kp.overall = kOvr;
-        }
         kp.kickReturn = krVal;
+        const kMeta = metadataMap.get(pickIdx);
+        const krFloors: Record<string, number> = {
+          ...(kMeta ? this.collectRookieScaledFloors(kMeta.archetypeKey, kOvr, Number(kp.speed) || undefined) : {}),
+          speed: Number(kp.speed) || 90,
+          agility: Number(kp.agility) || 88,
+          changeOfDirection: Number(kp.changeOfDirection) || 88,
+          kickReturn: krVal,
+        };
+        this.reconcileFreakToTarget(kp as Record<string, number>, kPosId, kArch, kOvr, krFloors, gameVersion);
         krCount++;
       }
 
@@ -3318,7 +3323,7 @@ class ProspectVarianceServiceImpl {
 
    */
 
-  private collectRookieScaledFloors(archetypeKey: string, targetOvr: number): Record<string, number> {
+  private collectRookieScaledFloors(archetypeKey: string, targetOvr: number, maxSpeed?: number): Record<string, number> {
 
     const out: Record<string, number> = {};
 
@@ -3356,6 +3361,10 @@ class ProspectVarianceServiceImpl {
 
       }
 
+    }
+
+    if (maxSpeed != null && out.speed != null && out.speed > maxSpeed) {
+      out.speed = maxSpeed;
     }
 
     return out;

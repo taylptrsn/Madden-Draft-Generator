@@ -81,7 +81,9 @@ function build(): Map<string, UsageTotals> {
     for (const k of ['attempts', 'carries', 'receptions', 'defInts'] as const) t.maxSeason[k] = Math.max(t.maxSeason[k], rec[k] ?? 0);
     out.set(g, t);
   }
-  try { fs.writeFileSync(USAGE_CACHE, JSON.stringify([...out.values()])); } catch { /* read-only cache dir */ }
+  if (out.size > 0) {
+    try { fs.writeFileSync(USAGE_CACHE, JSON.stringify([...out.values()])); } catch { /* read-only cache dir */ }
+  }
   return out;
 }
 
@@ -89,9 +91,11 @@ function load(): Map<string, UsageTotals> {
   if (byGsis) return byGsis;
   byGsis = new Map();
   try {
-    const fresh = [OFF, DEF].filter(fs.existsSync).every((f) => fs.existsSync(USAGE_CACHE) && fs.statSync(USAGE_CACHE).mtimeMs >= fs.statSync(f).mtimeMs);
+    const sources = [OFF, DEF].filter(fs.existsSync);
+    const hasCache = fs.existsSync(USAGE_CACHE) && fs.statSync(USAGE_CACHE).size > 2;
+    const fresh = hasCache && sources.every((f) => fs.statSync(USAGE_CACHE).mtimeMs >= fs.statSync(f).mtimeMs);
     if (fresh) for (const t of JSON.parse(fs.readFileSync(USAGE_CACHE, 'utf8')) as UsageTotals[]) byGsis.set(t.gsis, t);
-    else byGsis = build();
+    else if (sources.length > 0) byGsis = build();
   } catch { byGsis = build(); }
   return byGsis;
 }
