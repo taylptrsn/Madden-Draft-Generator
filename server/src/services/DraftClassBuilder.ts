@@ -846,7 +846,7 @@ export function applyEdits(prospects: MdcProspect[], edits?: ClassEdits, gameVer
               const tone = Number(vis.skinTone) || Number(( /^gen_(\d+)/i.exec(peps) ?? [])[1]) || 4;
               const posName = PositionMapper.name(Number(p.position) || 0);
               const g = LikenessService.generic(
-                { firstName: String(p.firstName || ''), lastName: String(p.lastName || ''), race: tone, position: posName, weight: Number(p.weight) || 220 } as BaselinePlayer,
+                { firstName: String(p.firstName || ''), lastName: String(p.lastName || ''), race: tone, position: posName, weight: Number(p.weight) || 220, likenessFix: { bodyType: newBt } } as BaselinePlayer,
                 0,
                 gameVersion,
                 newBt
@@ -890,7 +890,7 @@ export function applyEdits(prospects: MdcProspect[], edits?: ClassEdits, gameVer
             const bt = String(p.bodyType || 'Standard');
             const posName = PositionMapper.name(Number(p.position) || 0);
             const g = LikenessService.generic(
-              { firstName: String(p.firstName || ''), lastName: String(p.lastName || ''), race: t, position: posName, weight: Number(p.weight) || 220 } as BaselinePlayer,
+              { firstName: String(p.firstName || ''), lastName: String(p.lastName || ''), race: t, position: posName, weight: Number(p.weight) || 220, likenessFix: { bodyType: bt } } as BaselinePlayer,
               0,
               gameVersion,
               bt

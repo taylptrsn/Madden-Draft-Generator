@@ -459,6 +459,9 @@ export function headStyleGroup(code: string | null | undefined): HeadStyleGroup 
  *  always receive Heavy-tier faces even if their body mesh rolled Muscular, and non-linemen under
  *  265 lbs never receive Heavy-tier chubby faces. */
 export function inferPlayerBodyType(player: BaselinePlayer, explicitBodyType?: string | null): string {
+  if (player.likenessFix?.bodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(player.likenessFix.bodyType)) {
+    return player.likenessFix.bodyType;
+  }
   const pos = (player.position || '').toUpperCase().trim();
   const w = Number(player.weight) || 0;
   const isLinemanPos = ['OT', 'LT', 'RT', 'T', 'OG', 'LG', 'RG', 'G', 'C', 'OL', 'DT', 'NT', 'IDL'].includes(pos);
@@ -467,9 +470,7 @@ export function inferPlayerBodyType(player: BaselinePlayer, explicitBodyType?: s
   }
   const candidate = (explicitBodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(explicitBodyType))
     ? explicitBodyType
-    : (player.likenessFix?.bodyType && ['Heavy', 'Muscular', 'Standard', 'Thin', 'Lean'].includes(player.likenessFix.bodyType))
-      ? player.likenessFix.bodyType
-      : '';
+    : '';
   if (candidate) {
     if (candidate === 'Heavy' && w > 0 && w < 265 && !isLinemanPos) {
       return w >= 230 ? 'Muscular' : 'Standard';
@@ -1149,7 +1150,7 @@ export const LikenessService = {
 
         // Option 2: If chosenPid has already been used by another prospect in this class,
         // borrow an unused portrait strictly constrained to the SAME hairstyle, facial hair, and hair length
-        if (!hadPinnedPortrait && isGenerated && (pidUsage.get(chosenPid) ?? 0) > 0) {
+        if (!hadPinnedPortrait && isGenerated && gameVersion === 'm27' && (pidUsage.get(chosenPid) ?? 0) > 0) {
           const headStyle = headStyleCode(bestHead);
           const targetGroup = headStyleGroup(bestHead);
           const headIsLong = isLongHairHead(bestHead);
