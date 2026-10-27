@@ -303,3 +303,31 @@ test('M27: Visual face fullness matches bodyType (no skinny faces on Heavy linem
     }
   }
 });
+
+test('M27: balanceClassGenericHeads preserves pre-pinned legend portraits on generic-headed players', () => {
+  const prospects: Array<Record<string, unknown>> = [
+    {
+      PEPS: 'gen_6_B_N_01',
+      bodyType: 'Muscular',
+      weight: 250,
+      position: 'SAM',
+      PID: 4829,
+      pinPortrait: true,
+      visuals: {},
+    },
+  ];
+  const players: BaselinePlayer[] = [
+    makePlayer({
+      firstName: 'Terrell',
+      lastName: 'Suggs',
+      draftYear: 2003,
+      race: 6,
+      source: 'historical',
+      position: 'SAM',
+      weight: 250,
+    }),
+  ];
+  LikenessService.balanceClassGenericHeads(prospects, players, 'm27', 0);
+  assert.equal(prospects[0].PID, 4829, 'Pinned legend portrait PID must not be overwritten by generic head balancer');
+  assert.equal(prospects[0].pinPortrait, true, 'pinPortrait flag must remain intact for assignM27Fields');
+});

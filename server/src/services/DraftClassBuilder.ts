@@ -1208,7 +1208,9 @@ export const DraftClassBuilder = {
         const customPid = portraitMap.get(i);
         if (gameVersion === 'm27') {
           p.PID = genericHeadPid(peps);
-        } else if (!customPid) {
+        } else if (customPid) {
+          p.PID = customPid;
+        } else {
           const legendPid = (capped[i]?.draftYear ?? 0) < 2015 && PlayerLookupService.isMostNotable(capped[i])
             ? LikenessService.legendPortraitPid(capped[i].firstName, capped[i].lastName, gameVersion)
             : 0;

@@ -1142,13 +1142,14 @@ export const LikenessService = {
 
       if (bestHead) {
         usage.set(bestHead, (usage.get(bestHead) ?? 0) + 1);
-        let chosenPid = pidForHead(bestHead);
+        const hadPinnedPortrait = Boolean(p.pinPortrait && Number(p.PID) > 0);
+        let chosenPid = hadPinnedPortrait ? Number(p.PID) : pidForHead(bestHead);
         const resolvedTone = toneFromCode(bestHead);
         p.PEPS = bestHead;
 
         // Option 2: If chosenPid has already been used by another prospect in this class,
         // borrow an unused portrait strictly constrained to the SAME hairstyle, facial hair, and hair length
-        if (isGenerated && (pidUsage.get(chosenPid) ?? 0) > 0) {
+        if (!hadPinnedPortrait && isGenerated && (pidUsage.get(chosenPid) ?? 0) > 0) {
           const headStyle = headStyleCode(bestHead);
           const targetGroup = headStyleGroup(bestHead);
           const headIsLong = isLongHairHead(bestHead);
